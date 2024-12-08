@@ -76,11 +76,7 @@ class SalesTable {
   }
 
   render() {
-<<<<<<< HEAD
     this.parentElement.appendChild(this.generateTable());
-=======
-    this.parentElement.replaceChildren(this.generateTable());
->>>>>>> 5783d4a951616438611353d595fe900cb7da770f
   }
 
   renderWithSum() {
@@ -150,10 +146,7 @@ class SalesTable {
 
   addDataSumByRegion() {
     let previousRegion = "";
-<<<<<<< HEAD
     this.#currentData = [];
-=======
->>>>>>> 5783d4a951616438611353d595fe900cb7da770f
     this.getDataSortedByRegion().forEach((item) => {
       if (item.region !== previousRegion) {
         previousRegion = item.region;
@@ -163,10 +156,7 @@ class SalesTable {
           sales: this.getTotalSalesByRegion(item.region),
         });
       }
-<<<<<<< HEAD
 
-=======
->>>>>>> 5783d4a951616438611353d595fe900cb7da770f
       this.#currentData.push(item);
     });
   }
