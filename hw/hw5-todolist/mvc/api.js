@@ -1,13 +1,13 @@
 export const API = (() => {
-  // const baseUrl = "https://jsonplaceholder.typicode.com";
-  const baseUrl = "http://localhost:4232";
-  const todoUrl = "todos";
+  const baseUrl = "https://jsonplaceholder.typicode.com";
+  // const baseUrl = "http://localhost:4232";
+  const todoPath = "todos";
 
   const getTodos = () =>
-    fetch([baseUrl, todoUrl].join("/")).then((response) => response.json());
+    fetch([baseUrl, todoPath].join("/")).then((response) => response.json());
 
   const addTodo = (newTodo) =>
-    fetch([baseUrl, todoUrl].join("/"), {
+    fetch([baseUrl, todoPath].join("/"), {
       method: "POST",
       body: JSON.stringify(newTodo),
       headers: {
@@ -16,7 +16,7 @@ export const API = (() => {
     }).then((response) => response.json());
 
   const deleteTodo = (id) =>
-    fetch([baseUrl, todoUrl, id].join("/"), {
+    fetch([baseUrl, todoPath, id].join("/"), {
       method: "DELETE",
     });
 

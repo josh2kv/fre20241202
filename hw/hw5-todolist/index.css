@@ -1,112 +1,112 @@
 :root {
-	--height-header: 60px;
-	--height-todolist: 300px;
-	--height-todolist-header: 30px;
+  --height-header: 60px;
+  --height-todoList: 300px;
+  --height-todoList-header: 30px;
 
-	--width-todolist: 400px;
+  --width-todoList: 400px;
 
-	--color-green: rgb(30, 255, 0);
-	--color-red-button: rgb(187, 9, 9);
-	--color-red-li-hover: rgb(27, 172, 8);
+  --color-green: rgb(30, 255, 0);
+  --color-red-button: rgb(187, 9, 9);
+  --color-red-li-hover: rgb(27, 172, 8);
 }
 
 html,
 body {
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: "Matemasie", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Matemasie", sans-serif;
 }
 
 .header {
-	height: var(--height-header);
-	line-height: var(--height-header);
-	background: linear-gradient(to right, black, var(--color-green));
-	color: white;
+  height: var(--height-header);
+  line-height: var(--height-header);
+  background: linear-gradient(to right, black, var(--color-green));
+  color: white;
 
-	padding-left: 10px;
-	font-size: 2.3rem;
+  padding-left: 10px;
+  font-size: 2.3rem;
 
-	letter-spacing: 1px;
-	text-transform: capitalize;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 
 .container {
-	background-color: beige;
-	height: calc(100% - var(--height-header));
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  background-color: beige;
+  height: calc(100% - var(--height-header));
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.todolist {
-	height: var(--height-todolist);
-	width: var(--width-todolist);
-	background-color: var(--color-green);
-	box-shadow: 5px 5px 2px black;
-	border-radius: 5px;
+.todoList {
+  height: var(--height-todoList);
+  width: var(--width-todoList);
+  background-color: var(--color-green);
+  box-shadow: 5px 5px 2px black;
+  border-radius: 5px;
 }
 
-.todolist-header,
-.todolist-input,
+.todoList-header,
+.todoList-input,
 ul li {
-	height: var(--height-todolist-header);
-	line-height: var(--height-todolist-header);
-	width: 100%;
-	padding-left: 10px;
-	letter-spacing: 1px;
-	text-transform: capitalize;
+  height: var(--height-todoList-header);
+  line-height: var(--height-todoList-header);
+  width: 100%;
+  padding-left: 10px;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 
-	list-style: none;
-	border: none;
-	outline: none;
+  list-style: none;
+  border: none;
+  outline: none;
 }
-.todolist-header {
-	text-align: center;
-	font-size: 1.7rem;
+.todoList-header {
+  text-align: center;
+  font-size: 1.7rem;
 }
 
 ul li:hover {
-	background-color: var(--color-red-li-hover);
+  background-color: var(--color-red-li-hover);
 }
 
 ul li {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 ul li span {
-	height: 100%;
-	line-height: var(--height-todolist-header);
-	overflow: hidden;
+  height: 100%;
+  line-height: var(--height-todoList-header);
+  overflow: hidden;
+  font-family: "Garamond";
 }
 
 ul li button {
-	margin-right: 10px;
-	background-color: rgba(0, 0, 0, 0);
-	border: none;
-	font-size: 1.5rem;
-	color: var(--color-red-button);
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-red-button);
 }
 ul li button:hover {
-	font-size: 1.7rem;
+  font-size: 1.7rem;
 }
 ul li button:active {
-	font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 
 ul {
-	height: calc(
-		var(--height-todolist) - var(--height-todolist-header) * 2
-	);
-	overflow: auto;
+  height: calc(var(--height-todoList) - var(--height-todoList-header) * 2);
+  overflow: auto;
 }
 
 /* ul li:nth-child(2n) {
