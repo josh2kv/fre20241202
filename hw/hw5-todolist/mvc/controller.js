@@ -54,12 +54,10 @@ export const Controller = ((model, view) => {
         return;
       }
 
-      const updatedTodo = { ...todo, completed: !todo.completed };
-
       try {
-        const res = await model.updateTodo(todoId, updatedTodo);
+        const res = await model.toggleTodo(todoId, !todo.completed);
         state.todoList = state.todoList.map((todo) =>
-          +todo.id === +todoId ? res : todo
+          +todo.id === +todoId ? { ...todo, ...res } : todo
         );
       } catch (e) {
         alert("Failed to update todo");

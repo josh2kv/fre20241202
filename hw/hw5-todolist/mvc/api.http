@@ -1,0 +1,26 @@
+
+@baseUrl=https://jsonplaceholder.typicode.com
+@todoPath=/todos
+@newTodoId=201
+
+###
+GET {{baseUrl}}{{todoPath}}
+
+###
+PUT {{baseUrl}}{{todoPath}}/{{newTodoId}}
+Content-Type: application/json
+
+{
+  "userId": 22,
+  "completed": true,
+  "title": "test"
+}
+
+###
+PATCH {{baseUrl}}{{todoPath}}/{{newTodoId}}
+Content-Type: application/json
+
+{
+  "completed": true,
+  "title": "test"
+}
