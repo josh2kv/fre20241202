@@ -56,7 +56,7 @@ body {
 
 .todoList-header,
 .todoList-input,
-ul li {
+.todo-item {
   height: var(--height-todoList-header);
   line-height: var(--height-todoList-header);
   width: 100%;
@@ -73,34 +73,39 @@ ul li {
   font-size: 1.7rem;
 }
 
-ul li:hover {
+.todo-item:hover {
   background-color: var(--color-red-li-hover);
 }
 
-ul li {
+.todo-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
 }
-ul li span {
+
+.todo-item span {
   height: 100%;
   line-height: var(--height-todoList-header);
   overflow: hidden;
   font-family: "Garamond";
 }
 
-ul li button {
+.todo-item.completed span {
+  text-decoration: line-through;
+}
+
+.todo-item button {
   margin-right: 10px;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   font-size: 1.5rem;
   color: var(--color-red-button);
 }
-ul li button:hover {
+.todo-item button:hover {
   font-size: 1.7rem;
 }
-ul li button:active {
+.todo-item button:active {
   font-size: 1.3rem;
 }
 
@@ -109,6 +114,6 @@ ul {
   overflow: auto;
 }
 
-/* ul li:nth-child(2n) {
+/* .todo-item:nth-child(2n) {
   background-color: var(--color-red-li-hover);
 } */

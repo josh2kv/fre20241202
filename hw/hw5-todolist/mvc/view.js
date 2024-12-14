@@ -5,6 +5,7 @@ export const View = (() => {
     inputBox: "todoList-input",
     listContainer: "todoList-container",
     deleteBtn: "delete-btn",
+    todoItem: "todo-item",
   };
 
   // Generates HTML template string from todo array
@@ -12,7 +13,7 @@ export const View = (() => {
     let tmp = "";
     todoArr.forEach((todo) => {
       tmp += `
-        <li>
+        <li class="${domStr.todoItem} ${todo.completed ? "completed" : ""}">
           <span>${todo.id}-${todo.title}</span>
           <button class="${domStr.deleteBtn}" id="${todo.id}">X</button>
         </li>`;
