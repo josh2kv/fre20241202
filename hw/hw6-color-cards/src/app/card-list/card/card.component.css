@@ -1,0 +1,43 @@
+.card {
+  flex: 1;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.card-btn {
+  color: white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card[data-color="blue"] {
+  .card-btn {
+    background-color: blue;
+  }
+}
+
+.card[data-color="black"] {
+  .card-btn {
+    background-color: black;
+  }
+}
+
+.card[data-color="red"] {
+  .card-btn {
+    background-color: red;
+  }
+}
+
+.card[data-color="green"] {
+  .card-btn {
+    background-color: green;
+  }
+}
+
+.card-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
