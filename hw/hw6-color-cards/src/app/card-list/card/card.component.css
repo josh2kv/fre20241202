@@ -1,0 +1,59 @@
+.card {
+  flex: 1;
+  border-radius: 8px;
+  padding: 16px;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 4px 0 transparent;
+}
+
+.card-btn {
+  color: white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  max-width: 160px;
+  width: 100%;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+.card[data-color="blue"] .card-btn {
+  background-color: blue;
+}
+
+.card[data-color="black"] .card-btn {
+  background-color: black;
+}
+
+.card[data-color="red"] .card-btn {
+  background-color: red;
+}
+
+.card[data-color="green"] .card-btn {
+  background-color: green;
+}
+
+.card[data-color="blue"][selected="true"] {
+  border-color: blue;
+  box-shadow: 0 4px 0 0 blue;
+}
+
+.card[data-color="black"][selected="true"] {
+  border-color: black;
+  box-shadow: 0 4px 0 0 black;
+}
+
+.card[data-color="red"][selected="true"] {
+  border-color: red;
+  box-shadow: 0 4px 0 0 red;
+}
+
+.card[data-color="green"][selected="true"] {
+  border-color: green;
+  box-shadow: 0 4px 0 0 green;
+}

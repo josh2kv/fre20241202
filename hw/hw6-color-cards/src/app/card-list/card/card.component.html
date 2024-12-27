@@ -1,0 +1,5 @@
+<li class="card" [attr.data-color]="card.color" [attr.selected]="themeColor === card.color">
+  <h2 class="card__title">{{ card.title }}</h2>
+  <p class="card__content">{{ card.content }}</p>
+  <button class="card-btn" (click)="onClick(card.color)">Set {{ card.color}}</button>
+</li>

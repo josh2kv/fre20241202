@@ -1,0 +1,12 @@
+<main>
+  <div>
+    <h1 class="title" [style.color]="themeColor">{{ title }}</h1>
+    <p class="sub-title">{{ subTitle }}</p>
+  </div>
+  <div class="cards">
+    <app-card *ngFor="let card of cards" [card]="card" (onBtnClick)="onCardBtnClick($event)" />
+  </div>
+</main>
+
+<router-outlet />
+<router-outlet />
