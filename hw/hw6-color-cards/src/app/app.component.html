@@ -1,8 +1,6 @@
 <main>
-  <app-title />
-  <app-card-list />
+  <app-title [themeColor]="themeColor" />
+  <app-card-list [themeColor]="themeColor" (onSetThemeColor)="handleSetThemeColor($event)" />
 </main>
-
-
 
 <router-outlet />

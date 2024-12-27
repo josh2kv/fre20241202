@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from './card/card.interfaces';
 
 @Component({
@@ -9,6 +9,13 @@ import { Card } from './card/card.interfaces';
   styleUrl: './card-list.component.css',
 })
 export class CardListComponent {
+  @Input() themeColor!: string;
+  @Output() onSetThemeColor = new EventEmitter<string>();
+
+  handleSetThemeColor(color: string) {
+    this.onSetThemeColor.emit(color);
+  }
+
   cards: Card[] = [
     {
       id: 1,

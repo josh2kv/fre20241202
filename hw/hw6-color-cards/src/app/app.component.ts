@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'hw6-color-cards';
+  themeColor: string = 'gray';
+
+  handleSetThemeColor(color: string) {
+    this.themeColor = color;
+  }
 }

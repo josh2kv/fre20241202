@@ -1,3 +1,4 @@
 <ul class="card-list">
-  <app-card *ngFor="let card of cards" [card]="card" />
+  <app-card *ngFor="let card of cards" [card]="card" [themeColor]="themeColor"
+    (onSetThemeColor)="handleSetThemeColor(card.color)" />
 </ul>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-title',
@@ -9,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class TitleComponent {
   title: string = 'Dynamic Color Cards';
+
+  @Input() themeColor!: string;
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Card } from './card.interfaces';
 
 @Component({
@@ -10,4 +10,10 @@ import { Card } from './card.interfaces';
 })
 export class CardComponent {
   @Input() card!: Card;
+  @Input() themeColor!: string;
+  @Output() onSetThemeColor = new EventEmitter<string>();
+
+  onClick(color: string) {
+    this.onSetThemeColor.emit(color);
+  }
 }

@@ -2,3 +2,23 @@
   text-align: center;
   font-weight: 800;
 }
+
+.title[data-theme-color="gray"] {
+  color: gray;
+}
+
+.title[data-theme-color="blue"] {
+  color: blue;
+}
+
+.title[data-theme-color="black"] {
+  color: black;
+}
+
+.title[data-theme-color="red"] {
+  color: red;
+}
+
+.title[data-theme-color="green"] {
+  color: green;
+}
