@@ -1,0 +1,61 @@
+.list-side {
+  max-width: 480px;
+  border: 1px solid #000;
+
+  .title {
+    padding: 16px;
+  }
+
+  .list {
+    .item {
+      display: flex;
+      border-top: 1px solid #000;
+      gap: 16px;
+
+      .indicator {
+        width: 6px;
+        background-color: #ccc;
+        flex-shrink: 0;
+      }
+
+      .item-content {
+        padding: 16px 0;
+        flex: 1;
+
+        .item-title {
+          margin-bottom: 8px;
+        }
+      }
+
+      &[data-color="red"] {
+        .indicator {
+          background-color: red;
+        }
+      }
+
+      &[data-color="green"] {
+        .indicator {
+          background-color: green;
+        }
+      }
+
+      &[data-color="blue"] {
+        .indicator {
+          background-color: blue;
+        }
+      }
+
+      &[data-color="black"] {
+        .indicator {
+          background-color: black;
+        }
+      }
+
+      &[data-selected="true"] {
+        .indicator {
+          width: 12px;
+        }
+      }
+    }
+  }
+}
