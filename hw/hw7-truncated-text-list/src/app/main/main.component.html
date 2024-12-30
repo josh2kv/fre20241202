@@ -1,0 +1,13 @@
+<div class="list-side">
+  <h1 class="title">List</h1>
+  <ul class="list">
+    <li class="item" *ngFor="let item of items" [attr.data-color]="item.color"
+      [attr.data-selected]="item.id === selectedItemId" (click)="onClickItem(item.id)">
+      <span class="indicator"></span>
+      <div class="item-content">
+        <h2 class="item-title">{{ item.title }}</h2>
+        <p class="content">{{ item.content | truncate }}</p>
+      </div>
+    </li>
+  </ul>
+</div>

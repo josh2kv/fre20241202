@@ -1,0 +1,29 @@
+<div class="search-result">
+  @if (!query) {
+  <div class="instructions">
+    Enter an <span class="highlight">artist name</span> in the search bar to find their albums.
+  </div>
+  } @else if (loading) {
+  <div class="loading">Loading...</div>
+  } @else if (error) {
+  <div class="error">{{ error }}</div>
+  } @else if (albums.length === 0) {
+  <div class="no-results">No albums found</div>
+  } @else {
+  <div class="result-meta">
+    <div class="result-meta-title">
+      <span class="count">{{ albums.length }}</span>
+      <span>results for </span>
+      <span class="query">{{ query }}</span>
+    </div>
+  </div>
+  <div class="result-list">
+    <div class="result-item" *ngFor="let album of albums">
+      <img [src]="album.thumbnail" alt="{{ album.collectionName }}" />
+      <div class="result-item-info">
+        <div class="result-item-title">{{ album.collectionName }}</div>
+        <div class="result-item-artist">{{ album.artistName }}</div>
+      </div>
+    </div>
+  </div>}
+</div>
