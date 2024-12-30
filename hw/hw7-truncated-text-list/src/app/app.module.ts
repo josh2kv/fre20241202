@@ -5,18 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { ItemComponent } from './item/item.component';
+import { TruncatePipe } from './truncate.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MainComponent,
-    ItemComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, MainComponent, ItemComponent],
+  imports: [BrowserModule, AppRoutingModule, TruncatePipe],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
