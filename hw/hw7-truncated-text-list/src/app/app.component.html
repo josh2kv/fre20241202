@@ -1,3 +1,4 @@
 <main>
-  <app-main [items]="items" [selectedItem]="selectedItem" />
+  <app-main class="main-side" [items]="items" [selectedItemId]="selectedItemId" />
+  <app-item class="item-side" [item]="selectedItem" />
 </main>

@@ -1,0 +1,38 @@
+.item-side {
+  padding: 24px 16px;
+  height: 100%;
+
+  .title {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+
+  .content {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .footer {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+
+    .save-btn {
+      background-color: blue;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 4px;
+      /* cursor: pointer; */
+    }
+  }
+
+  .empty-message {
+    font-size: 20px;
+    /* font-weight: 600; */
+    color: hsl(0, 0%, 33%);
+  }
+}

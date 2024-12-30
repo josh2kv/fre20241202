@@ -1,0 +1,10 @@
+<div class="item-side" *ngIf="item">
+  <h2 class="title">{{ item.title }}</h2>
+  <p class="content">{{ item.content }}</p>
+  <div class="footer">
+    <button class="save-btn">Save</button>
+  </div>
+</div>
+<div class="item-side" *ngIf="!item">
+  <p class="empty-message">Select an item to view its details</p>
+</div>

@@ -9,7 +9,7 @@ import { Item } from './app.interfaces';
 })
 export class AppComponent {
   title = 'hw7-truncated-text-list';
-  selectedItem: number | null = null;
+  selectedItemId: number | null = null;
   items: Item[] = [
     {
       id: 1,
@@ -40,4 +40,8 @@ export class AppComponent {
       color: 'black',
     },
   ];
+
+  get selectedItem(): Item | null {
+    return this.items.find((item) => item.id === this.selectedItemId) || null;
+  }
 }

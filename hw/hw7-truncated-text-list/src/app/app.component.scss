@@ -1,5 +1,16 @@
 main {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 16px;
+  border: 1px solid #000;
+
+  display: flex;
+
+  .main-side {
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .item-side {
+    flex: 1;
+  }
 }

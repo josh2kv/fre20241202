@@ -10,5 +10,5 @@ import { Item } from '../app.interfaces';
 })
 export class MainComponent {
   @Input() items!: Item[];
-  @Input() selectedItem!: number | null;
+  @Input() selectedItemId!: number | null;
 }
