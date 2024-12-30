@@ -10,6 +10,11 @@
       display: flex;
       border-top: 1px solid #000;
       gap: 16px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f0f0f0;
+      }
 
       .indicator {
         width: 6px;

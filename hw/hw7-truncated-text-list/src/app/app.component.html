@@ -1,4 +1,4 @@
 <main>
-  <app-main class="main-side" [items]="items" [selectedItemId]="selectedItemId" />
+  <app-main class="main-side" [items]="items" [selectedItemId]="selectedItemId" (onSelect)="selectedItemId = $event" />
   <app-item class="item-side" [item]="selectedItem" />
 </main>
