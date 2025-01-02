@@ -3,20 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { HomeComponent } from './pages/home/home.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MaterialModuleModule } from './shared/material-module.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    WishlistComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent, HomeComponent, WishlistComponent],
+  imports: [BrowserModule, AppRoutingModule, MaterialModuleModule],
+  providers: [provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
