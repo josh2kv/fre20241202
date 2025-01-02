@@ -1,6 +1,5 @@
-<mat-toolbar>
-  <span>Book Search App</span>
-  <mat-slide-toggle>
-    Slide me!
-  </mat-slide-toggle>
-</mat-toolbar>
+<div class="header">
+  <mat-form-field appearance="outline">
+    <input matInput type="text" placeholder="Search by title" [formControl]="searchControl" />
+  </mat-form-field>
+</div>
