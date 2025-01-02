@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BOOKS_QUERY_FIELDS, PER_PAGE } from '@core/config/constant';
 import {
   BooksQueryParams,
   BooksWithPagination,
@@ -10,7 +11,7 @@ import { map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class BooksServiceService {
+export class BooksApiService {
   private baseUrl = 'https://www.googleapis.com/books/v1';
   private searchPath = '/volumes';
   private apiKey = 'AIzaSyCuMNA6UIfjZYY4ntRpA4TwPl_BJX87FAo';
@@ -19,11 +20,11 @@ export class BooksServiceService {
 
   fetchBooks({
     q,
-    page = 0,
+    page = 1,
   }: BooksQueryParams): Observable<BooksWithPagination> {
     const params = {
       q,
-      startIndex: page,
+      startIndex: (page - 1) * PER_PAGE,
       maxResults: PER_PAGE,
       fields: BOOKS_QUERY_FIELDS,
       key: this.apiKey,

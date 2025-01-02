@@ -1,16 +1,5 @@
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 :host {
-  .mat-mdc-form-field {
-    max-width: 480px;
-    width: 100%;
-  }
-
-  .mat-mdc-form-field-focus-overlay {
-    background-color: red !important;
-  }
+  display: flex;
+  gap: 24px;
+  height: 100%;
 }

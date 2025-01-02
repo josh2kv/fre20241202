@@ -1,0 +1,18 @@
+<div class="search-result">
+  @if (!booksWithPagination) {
+  <div class="no-results">Please enter book title to search</div>}
+  @else if (loading) {
+  <div class="loading">Loading...</div>
+  } @else if (error) {
+  <div class="error">{{ error }}</div>
+  } @else if (booksWithPagination.meta.totalItems === 0) {
+  <div class="no-results">No books found</div>
+  } @else {
+  <div class="result-meta">
+    <div class="result-meta-title">
+      <span class="count">{{ booksWithPagination.meta.totalItems }}</span>
+
+    </div>
+  </div>
+  }
+</div>
