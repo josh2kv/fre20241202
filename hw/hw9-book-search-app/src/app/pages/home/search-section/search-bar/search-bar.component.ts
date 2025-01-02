@@ -25,11 +25,10 @@ export class SearchBarComponent implements OnInit {
     this.searchControl.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe((value) => {
-        console.log(value);
         const trimmedValue = value?.trim() || null;
         this.router.navigate([], {
           relativeTo: this.route,
-          queryParams: { q: trimmedValue },
+          queryParams: { q: trimmedValue, page: 1 },
           queryParamsHandling: 'merge',
         });
       });

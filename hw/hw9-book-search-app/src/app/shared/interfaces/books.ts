@@ -9,10 +9,10 @@ export interface ResBookVolumeInfo {
   title: string;
   subtitle: string;
   authors: string[];
-  publisher: string;
+  publisher: string | null;
   publishedDate: string;
   description: string;
-  imageLinks: {
+  imageLinks?: {
     smallThumbnail: string;
     thumbnail: string;
   };
@@ -27,7 +27,7 @@ export interface ResBookItem {
 export interface ResBooks {
   kind: string;
   totalItems: number;
-  items: ResBookItem[];
+  items?: ResBookItem[];
 }
 
 export interface Book {

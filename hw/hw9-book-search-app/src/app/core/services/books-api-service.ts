@@ -14,7 +14,7 @@ import { map, Observable } from 'rxjs';
 export class BooksApiService {
   private baseUrl = 'https://www.googleapis.com/books/v1';
   private searchPath = '/volumes';
-  private apiKey = 'AIzaSyCuMNA6UIfjZYY4ntRpA4TwPl_BJX87FAo';
+  private key = 'AIzaSyCuMNA6UIfjZYY4ntRpA4TwPl_BJX87FAo';
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,7 @@ export class BooksApiService {
       startIndex: (page - 1) * PER_PAGE,
       maxResults: PER_PAGE,
       fields: BOOKS_QUERY_FIELDS,
-      key: this.apiKey,
+      key: this.key,
     };
 
     return this.http
@@ -36,22 +36,29 @@ export class BooksApiService {
       })
       .pipe(
         map((response) => {
+          const totalItems = response.totalItems;
+          const totalPages = Math.ceil(totalItems / PER_PAGE);
+
           return {
-            data: response.items.map((item) => ({
-              id: item.id,
-              title: item.volumeInfo.title,
-              subtitle: item.volumeInfo.subtitle,
-              authors: item.volumeInfo.authors,
-              publisher: item.volumeInfo.publisher,
-              publishedDate: item.volumeInfo.publishedDate,
-              description: item.volumeInfo.description,
-              thumbnail: item.volumeInfo.imageLinks.thumbnail,
-            })),
+            data:
+              response.items?.map((item) => ({
+                id: item.id,
+                title: item.volumeInfo.title,
+                subtitle: item.volumeInfo.subtitle,
+                authors: item.volumeInfo.authors,
+                publisher: item.volumeInfo.publisher || 'Unknown',
+                publishedDate: item.volumeInfo.publishedDate,
+                description:
+                  item.volumeInfo.description || 'No description available',
+                thumbnail:
+                  item.volumeInfo.imageLinks?.thumbnail ||
+                  'https://placehold.co/310x465?text=No+Image',
+              })) || [],
             meta: {
-              totalItems: response.totalItems,
-              page: page + 1,
-              totalPages: Math.ceil(response.totalItems / PER_PAGE),
-              hasNextPage: response.items.length === PER_PAGE,
+              totalItems,
+              page,
+              totalPages,
+              hasNextPage: page < totalPages,
               hasPrevPage: page > 1,
               perPage: PER_PAGE,
             },
