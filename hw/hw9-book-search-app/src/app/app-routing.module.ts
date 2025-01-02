@@ -4,7 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'wishlist', component: WishlistComponent },
 ];
 

@@ -1,0 +1,27 @@
+.global-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    &__nav-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.active {
+        background-color: var(--mat-sys-primary-container);
+        color: var(--mat-sys-primary);
+      }
+    }
+  }
+}
+
+.global-main {
+  height: calc(100vh - 64px);
+}
