@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Book } from '@shared/interfaces/books';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
@@ -12,6 +13,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   searchControl = new FormControl();
+  books: Book[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
