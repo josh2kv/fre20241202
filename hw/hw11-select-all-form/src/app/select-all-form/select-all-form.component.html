@@ -1,0 +1,8 @@
+<form class="select-all-form" [formGroup]="selectAllForm" (ngSubmit)="onSubmit()">
+  <div class="checkbox-group" [formArrayName]="'items'">
+    <label [for]="item" *ngFor="let item of checkboxItems; let i = index">
+      <input [id]="item" type="checkbox" [formControlName]="i" />
+      {{ item }}</label>
+  </div>
+  <button type="submit">Submit</button>
+</form>
