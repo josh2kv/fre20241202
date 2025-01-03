@@ -1,6 +1,9 @@
 <div class="wishlist-section">
   <h2 class="section-title">Wishlist ({{ wishlist.length }})</h2>
   <ul class="list-container">
+    @if (wishlist.length === 0) {
+    <p class="message">Click the heart icon on the book card to add it to your wishlist.</p>
+    } @else {
     <li class="item" *ngFor="let book of wishlist">
       <div class="left-section">
         <img class="image" mat-list-avatar [src]="book.thumbnail" alt="{{ book.title }}" />
@@ -12,5 +15,6 @@
         </button>
       </div>
     </li>
+    }
   </ul>
 </div>

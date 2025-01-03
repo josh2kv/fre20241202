@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WishlistService } from '@core/services/wishlist/wishlist.service';
 import { Book } from '@shared/interfaces/books';
 
@@ -9,14 +9,13 @@ import { Book } from '@shared/interfaces/books';
   templateUrl: './wishlist-section.component.html',
   styleUrl: './wishlist-section.component.scss',
 })
-export class WishlistSectionComponent {
+export class WishlistSectionComponent implements OnInit {
   wishlist: Book[] = [];
 
   constructor(private wishlistService: WishlistService) {}
 
   ngOnInit(): void {
     this.wishlistService.wishlist$.subscribe((wishlist) => {
-      console.log(wishlist);
       this.wishlist = wishlist;
     });
   }
