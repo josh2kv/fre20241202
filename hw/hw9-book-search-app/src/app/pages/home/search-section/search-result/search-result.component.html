@@ -1,11 +1,11 @@
 <div class="search-result">
   @if (!booksWithPagination && !search) {
-  <div class="no-results">Please enter keyword to search</div>}
+  <div class="message no-results">Please enter keyword to search</div>}
   @else if (!booksWithPagination) {}
   @else if (error) {
-  <div class="error">{{ error }}</div>
+  <div class="message error">{{ error }}</div>
   } @else if (booksWithPagination.meta.totalItems === 0) {
-  <div class="no-results">No books found</div>
+  <div class="message no-results">No books found</div>
   } @else {
   <div *ngIf="loading" class="overlay">
     <mat-progress-spinner mode="indeterminate" diameter="24" color="primary" class="spinner" />
@@ -42,15 +42,17 @@
               {{ book.title }}
             </mat-card-title>
             <mat-card-subtitle class="authors">
-              {{ book.authors.join(', ') }}
+              {{ book.authors?.join(', ') || '-' }}
             </mat-card-subtitle>
             <mat-card-subtitle class="publisher">
               {{ book.publishedDate }} | {{ book.publisher }}
             </mat-card-subtitle>
           </div>
           <div class="right-section">
-            <button mat-icon-button>
-              <mat-icon>favorite</mat-icon>
+            <button mat-icon-button (click)="onToggleWishlist(book)" class="wishlist-button"
+              [ngClass]="{'wishlist-active': isInWishlist(book)}">
+              <mat-icon>{{ isInWishlist(book) ? 'favorite' :
+                'favorite_border' }}</mat-icon>
             </button>
           </div>
         </mat-card-header>

@@ -9,18 +9,29 @@
 }
 
 html {
-  color-scheme: light dark;
-  @include mat.theme(
-    (
-      color: mat.$azure-palette,
-      typography: Roboto,
-      density: 0,
-    )
-  );
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  color: #1f1f1f;
+}
+
+html {
+  color-scheme: light dark;
+  @include mat.theme(
+    (
+      theme-type: light,
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$violet-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
 }

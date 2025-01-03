@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BooksApiService } from '@core/services/books-api-service';
-import { BooksWithPagination } from '@shared/interfaces/books';
+import { BooksApiService } from '@core/services/books-api/books-api-service';
+import { WishlistService } from '@core/services/wishlist/wishlist.service';
+import { Book, BooksWithPagination } from '@shared/interfaces/books';
 import { of, switchMap } from 'rxjs';
 
 @Component({
@@ -16,11 +17,13 @@ export class SearchResultComponent implements OnInit {
   booksWithPagination: BooksWithPagination | null = null;
   loading: boolean = false;
   error: string = '';
+  wishlist: Book[] = [];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private booksApiService: BooksApiService
+    private booksApiService: BooksApiService,
+    private wishlistService: WishlistService
   ) {}
 
   ngOnInit(): void {
@@ -81,5 +84,13 @@ export class SearchResultComponent implements OnInit {
       queryParams: { page: this.booksWithPagination.meta.page + 1 },
       queryParamsHandling: 'merge',
     });
+  }
+
+  onToggleWishlist(book: Book) {
+    this.wishlistService.toggleWishlist(book);
+  }
+
+  isInWishlist(book: Book) {
+    return this.wishlistService.isInWishlist(book.id);
   }
 }

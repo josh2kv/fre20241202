@@ -35,6 +35,13 @@
   .search-result {
     position: relative;
 
+    .message {
+      margin-top: 2rem;
+      text-align: center;
+      color: gray;
+      font-size: 1.2rem;
+    }
+
     .overlay {
       position: absolute;
       top: 0;
@@ -89,6 +96,14 @@
                 display: -webkit-box;
                 -webkit-line-clamp: 1;
                 -webkit-box-orient: vertical;
+              }
+            }
+
+            .right-section {
+              .wishlist-button {
+                &.wishlist-active {
+                  color: var(--mat-sys-primary);
+                }
               }
             }
           }

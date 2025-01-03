@@ -1,1 +1,16 @@
-<p>wishlist-section works!</p>
+<div class="wishlist-section">
+  <h2 class="section-title">Wishlist ({{ wishlist.length }})</h2>
+  <ul class="list-container">
+    <li class="item" *ngFor="let book of wishlist">
+      <div class="left-section">
+        <img class="image" mat-list-avatar [src]="book.thumbnail" alt="{{ book.title }}" />
+        <h4 class="book-title">{{ book.title }}</h4>
+      </div>
+      <div class="right-section">
+        <button class="delete-button" mat-icon-button (click)="removeFromWishlist(book.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>

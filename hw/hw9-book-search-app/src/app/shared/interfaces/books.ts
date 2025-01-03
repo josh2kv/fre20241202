@@ -33,8 +33,8 @@ export interface ResBooks {
 export interface Book {
   id: string;
   title: string;
-  subtitle: string;
-  authors: string[];
+  subtitle: string | null;
+  authors: string[] | null;
   publisher: string;
   publishedDate: string;
   description: string;

@@ -13,7 +13,6 @@ import { SearchResultComponent } from '@pages/home/search-section/search-result/
 import { SearchSectionComponent } from '@pages/home/search-section/search-section.component';
 import { WishlistSectionComponent } from '@pages/home/wishlist-section/wishlist-section.component';
 import {
-  HttpClientModule,
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
