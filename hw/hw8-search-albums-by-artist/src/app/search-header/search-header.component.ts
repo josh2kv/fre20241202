@@ -23,7 +23,6 @@ export class SearchHeaderComponent implements OnInit {
     e.preventDefault();
 
     const trimmedSearch = this.search.trim();
-    console.log('trimmedSearch', trimmedSearch);
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { q: trimmedSearch },

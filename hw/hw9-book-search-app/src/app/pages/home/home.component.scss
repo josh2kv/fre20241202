@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  gap: 24px;
+  height: 100%;
+  overflow: hidden;
+
+  app-search-section {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  app-wishlist-section {
+    flex: 0 0 400px;
+  }
+}

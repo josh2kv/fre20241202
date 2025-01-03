@@ -1,0 +1,20 @@
+@use "@angular/material" as mat;
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input-container {
+  max-width: 480px;
+  width: 100%;
+}
+
+:host {
+  @include mat.form-field-overrides(
+    (
+      outlined-container-shape: 36px,
+    )
+  );
+}

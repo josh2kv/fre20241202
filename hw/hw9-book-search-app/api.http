@@ -1,0 +1,7 @@
+@baseUrl=https://www.googleapis.com/books/v1/volumes
+@q=java script
+@startIndex=0
+@maxResults=10
+@apiKey=AIzaSyCuMNA6UIfjZYY4ntRpA4TwPl_BJX87FAo
+@fields=kind,totalItems,items(id,volumeInfo/title,volumeInfo/subtitle,volumeInfo/authors,volumeInfo/publisher,volumeInfo/publishedDate,volumeInfo/description,volumeInfo/infoLink,volumeInfo/imageLinks)
+GET {{baseUrl}}?q={{q}}&startIndex={{startIndex}}&maxResults={{maxResults}}&key={{apiKey}}&fields={{fields}}
