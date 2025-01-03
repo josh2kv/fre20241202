@@ -1,0 +1,4 @@
+<main>
+  <app-reactive [formValues]="initialFormValues" (formSubmit)="onFormSubmitted($event)"></app-reactive>
+  <p>Submitted form values: {{ submittedFormValues | json }}</p>
+</main>
