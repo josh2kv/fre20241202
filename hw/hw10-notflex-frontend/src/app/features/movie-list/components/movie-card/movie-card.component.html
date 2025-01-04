@@ -1,1 +1,16 @@
-<p>movie-card works!</p>
+<div class="movie-card">
+  <img [src]="movie.posterUrl" alt="Movie Poster" />
+  <div class="movie-details">
+    <div class="btn-wrapper">
+      <button class="details-btn">▶</button>
+    </div>
+    <div class="movie-info">
+      <h3 class="title">{{movie.title}}</h3>
+      <div class="movie-info-row">
+        <span class="year">{{movie.releaseDate | date: 'yyyy'}}</span>
+        <span class="rating">{{movie.voteAverage | number: '1.1-1'}}</span>
+      </div>
+      <p class="description">{{movie.overview}}</p>
+    </div>
+  </div>
+</div>

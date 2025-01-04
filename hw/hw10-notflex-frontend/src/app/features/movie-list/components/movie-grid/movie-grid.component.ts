@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesApiService } from '@services/movies-api/movies-api.service';
+import { MovieService } from '@core/services/movie/movie.service';
 import { MoviesWithPagination } from '@shared/interfaces/movie';
 
 @Component({
@@ -14,7 +14,7 @@ export class MovieGridComponent implements OnInit {
   loading = false;
   error = '';
 
-  constructor(private moviesApiService: MoviesApiService) {}
+  constructor(private moviesApiService: MovieService) {}
 
   ngOnInit(): void {
     this.moviesApiService.getMovies().subscribe({

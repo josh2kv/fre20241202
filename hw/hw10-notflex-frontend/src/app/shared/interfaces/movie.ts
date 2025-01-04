@@ -30,16 +30,16 @@ export interface ResMovies {
 
 export interface Movie {
   id: number;
-  adult: boolean;
-  backdropPath: string | null;
+  title: string;
+  backdropUrl: string | null;
+  posterUrl: string | null;
   genreIds: number[];
   originalLanguage: string;
   originalTitle: string;
   overview: string;
   popularity: number;
-  posterPath: string | null;
   releaseDate: string;
-  title: string;
+  adult: boolean;
   video: boolean;
   voteAverage: number;
   voteCount: number;

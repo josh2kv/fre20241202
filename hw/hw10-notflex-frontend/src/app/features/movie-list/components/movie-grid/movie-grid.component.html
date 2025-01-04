@@ -5,9 +5,6 @@
   } @else if (error) {
   <div>{{ error }}</div>
   } @else {
-  <div class="movie-grid__item" *ngFor="let movie of movies?.data">
-    <img [src]="movie.posterPath" alt="{{ movie.title }}" />
-    <div class="movie-grid__item__title">{{ movie.title }}</div>
-  </div>
+  <app-movie-card *ngFor="let movie of movies?.data" [movie]="movie"></app-movie-card>
   }
 </div>
