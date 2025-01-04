@@ -1,0 +1,24 @@
+.header-container {
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+    height: 88px;
+  }
+
+  .left-wrapper {
+    .logo-wrapper {
+      width: 148px;
+      height: 40px;
+    }
+  }
+
+  .right-wrapper {
+    display: flex;
+    align-items: center;
+  }
+}

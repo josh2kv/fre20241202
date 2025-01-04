@@ -74,7 +74,7 @@
   │   │   │   └── token.interceptor.ts
   │   │   ├── services/
   │   │   │   └── api.service.ts
-  │   │   ├── layout/
+  │   │   ├── layouts/
   │   │   │   ├── header/
   │   │   │   └── footer/
   │   │   ├── config/
@@ -239,3 +239,13 @@ src/
 │   │
 │   └── pages/                   # Pages use shared/feature interfaces
 ```
+
+## Eager Loading VS Lazy Loading
+
+1. Eager Loading:
+   - The module is imported in AppModule's imports array
+   - Components are declared in their own feature modules (like HomeModule)
+   - The route configuration uses the component reference
+2. Lazy Loading:
+   - The module is NOT imported in AppModule
+   - The route configuration uses loadChildren to load the entire module when needed

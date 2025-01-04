@@ -1,0 +1,35 @@
+// Import all abstract definitions first
+/* @import 'abstracts/variables'; */
+/* @import 'abstracts/mixins'; */
+/* @import 'abstracts/functions'; */
+/*  */
+/* // Base styles */
+/* @import 'base/reset'; */
+/* @import 'base/typography'; */
+/*  */
+/* // Component styles */
+/* @import 'components/buttons'; */
+/* @import 'components/forms'; */
+
+@use "theme/theme";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+}

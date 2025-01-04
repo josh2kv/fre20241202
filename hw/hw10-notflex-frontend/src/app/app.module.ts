@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
   provideHttpClient,
+  withFetch,
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
-import { MovieListModule } from '@features/movie-list/movie-list.module';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HomeModule } from '@pages/home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,11 +23,12 @@ import { MovieListModule } from '@features/movie-list/movie-list.module';
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    MovieListModule,
+    HomeModule,
   ],
   providers: [
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent],
 })
