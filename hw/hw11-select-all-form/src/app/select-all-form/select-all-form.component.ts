@@ -35,6 +35,7 @@ export class SelectAllFormComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   selectAllForm: FormGroup<SelectAllFormControls>;
+  allItemsSelected = false;
 
   @Input() initialFormValues: SelectAllFormValues | null = null;
   @Input() checkboxItems: string[] = [];
@@ -49,18 +50,15 @@ export class SelectAllFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // NOTE: Now checkboxItems is available, so we can create controls
-    const itemsArray = this.selectAllForm.get('items') as FormArray<
-      FormControl<boolean>
-    >;
 
     // Clear any existing controls
-    while (itemsArray.length) {
-      itemsArray.removeAt(0);
+    while (this.currentItems.length) {
+      this.currentItems.removeAt(0);
     }
 
     // Add a FormControl for each checkbox item
     this.checkboxItems.forEach(() => {
-      itemsArray.push(this.fb.control(false));
+      this.currentItems.push(this.fb.control(false));
     });
 
     if (this.initialFormValues) {
@@ -70,7 +68,7 @@ export class SelectAllFormComponent implements OnInit, OnDestroy {
     this.selectAllForm.valueChanges
       .pipe(takeUntil(this.destroy$), distinctUntilChanged())
       .subscribe((value) => {
-        console.log('Form value changed:', value);
+        this.allItemsSelected = value.items?.every((item) => item) ?? false;
         this.onSubmit();
       });
   }
@@ -81,12 +79,27 @@ export class SelectAllFormComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  get moviesValue() {
-    return this.selectAllForm.get('movies')?.value || [];
+  onSubmit() {
+    this.formSubmit.emit(this.selectAllForm.value as SelectAllFormValues);
   }
 
-  onSubmit() {
-    console.log(this.selectAllForm.value);
-    this.formSubmit.emit(this.selectAllForm.value as SelectAllFormValues);
+  get currentItems() {
+    return this.selectAllForm.get('items') as FormArray<FormControl<boolean>>;
+  }
+
+  checkAll() {
+    this.currentItems.controls.forEach((control) => {
+      control.setValue(true);
+    });
+  }
+
+  uncheckAll() {
+    this.currentItems.controls.forEach((control) => {
+      control.setValue(false);
+    });
+  }
+
+  toggleSelectAll() {
+    this.allItemsSelected ? this.uncheckAll() : this.checkAll();
   }
 }

@@ -20,6 +20,14 @@
 
 ## Handling an array field: `onChange` vs `FormArray`
 
+- The `FormArray` approach is generally recommended as it's:
+
+  - More idiomatic Angular
+  - Less error-prone
+  - Better integrated with the forms system
+  - More maintainable
+- However, the manual approach might be better if you need more control over the exact behavior or data structure.
+
 | Aspect |  onChange(Manual) | FormArray (Automatic) |
 |--------|------------------|---------------------|
 | Code Complexity | Higher - Manual event handling and array updates | Lower - Angular handles bindings |

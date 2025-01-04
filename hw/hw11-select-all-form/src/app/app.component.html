@@ -1,7 +1,8 @@
 <main>
   <app-select-all-form [checkboxItems]="checkboxItems" (formSubmit)="onFormSubmitted($event)"></app-select-all-form>
+  <hr style="width: 100%; margin: 24px 0" />
   <div class="selected-items">
-    <p>Selected items:</p>
+    <h4>Selected items:</h4>
     <ul>
       <li *ngFor="let item of selectedItems">{{ item }}</li>
     </ul>

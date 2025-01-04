@@ -2,5 +2,17 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 36px;
   height: 100vh;
+}
+
+.selected-items {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.selected-items h4 {
+  margin-bottom: 12px;
 }

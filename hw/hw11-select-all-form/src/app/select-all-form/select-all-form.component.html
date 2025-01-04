@@ -1,8 +1,14 @@
 <form class="select-all-form" [formGroup]="selectAllForm" (ngSubmit)="onSubmit()">
-  <div class="checkbox-group" [formArrayName]="'items'">
-    <label [for]="item" *ngFor="let item of checkboxItems; let i = index">
-      <input [id]="item" type="checkbox" [formControlName]="i" />
-      {{ item }}</label>
-  </div>
-  <button type="submit">Submit</button>
+  <label for="select-all" class="select-all-label">
+    <input id="select-all" type="checkbox" [checked]="allItemsSelected" (change)="toggleSelectAll()" />
+    Select All
+  </label>
+  <ul class="checkbox-group" [formArrayName]="'items'">
+    <li *ngFor="let item of checkboxItems; let i = index">
+      <label [for]="item">
+        <input [id]="item" type="checkbox" [formControlName]="i" />
+        {{ item }}</label>
+    </li>
+  </ul>
+  <button (click)="uncheckAll()">Clear All</button>
 </form>
