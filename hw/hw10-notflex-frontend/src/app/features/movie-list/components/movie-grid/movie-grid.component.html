@@ -1,0 +1,13 @@
+<div class="movie-grid">
+  @if (!movies && loading) {
+  } @else if (loading) {
+  <div>Loading...</div>
+  } @else if (error) {
+  <div>{{ error }}</div>
+  } @else {
+  <div class="movie-grid__item" *ngFor="let movie of movies?.data">
+    <img [src]="movie.posterPath" alt="{{ movie.title }}" />
+    <div class="movie-grid__item__title">{{ movie.title }}</div>
+  </div>
+  }
+</div>

@@ -1,5 +1,16 @@
 # Hw10: Notflex Frontend
 
+## Pages
+
+- Home
+- Login
+- Register
+  - Multi Step
+- Movie List(Browse)
+  - Movie Item
+- Movie Detail
+  - Video Player
+  
 ## Folder structure: Organize by features([Link](https://medium.com/@marketing_26756/angular-best-practices-tips-for-project-structure-and-organization-490ca7950829))
 
 - A "feature" is a distinct functionality or business domain.
@@ -55,11 +66,6 @@
   │   │       │   └── register.component.ts
   │   │       ├── auth-pages.module.ts
   │   │       └── auth-pages-routing.module.ts
-  │   │  
-  │   ├── layout/                      # App layout components
-  │   │   ├── header/
-  │   │   ├── footer/
-  │   │   └── layout.module.ts
   │   │
   │   ├── core/                        # Singleton services, app-level components, guards
   │   │   ├── guards/
@@ -68,14 +74,19 @@
   │   │   │   └── token.interceptor.ts
   │   │   ├── services/
   │   │   │   └── api.service.ts
+  │   │   ├── layout/
+  │   │   │   ├── header/
+  │   │   │   └── footer/
+  │   │   ├── config/
   │   │   └── core.module.ts
   │   │
   │   ├── shared/                      # Shared components, pipes, directives
   │   │   ├── components/
-  │   │   │   ├── header/
-  │   │   │   └── footer/
+  │   │   │   ├── button/
+  │   │   │   └── modal/
   │   │   ├── directives/
   │   │   ├── pipes/
+  │   │   ├── utils/
   │   │   └── shared.module.ts
   │   │
   │   ├── app.component.ts
@@ -87,6 +98,8 @@
   │   └── icons/
   |
   ├── environments/           # Environment configurations
+  │   ├── environment.template.ts
+  │   ├── environment.prod.template.ts
   │   ├── environment.ts
   │   └── environment.prod.ts
   │
@@ -139,3 +152,90 @@
 - Keep page-specific components within their respective page modules
 - Use lazy loading for all page modules
 - Import SharedModule in each page module that needs shared components
+
+## Sticking to reactive forms over template-driven forms throughout an app
+
+- Many Angular developers and teams choose to standardize on Reactive Forms for their projects, even for simple forms.
+- This approach is:
+  - More idiomatic Angular
+  - Less error-prone
+  - More maintainable
+  - Better integrated with Angular's form system
+
+## Services
+
+- Services are singleton classes that handle data and logic separate from components.
+- Singleton by default when provided in root
+- Injectable into components and other services
+- Can maintain state
+- Can communicate with APIs
+- Can be shared across the app
+
+### Common Uses
+
+- API communication
+- State management
+- Authentication
+- Data caching
+- Business logic
+- Utility functions
+
+### Root-level service VS Module-level Service
+
+- Root-level(Singleton)
+  - Most services should use providedIn: 'root'
+  - Module providers are for special cases
+  - Core services always go in root
+  - Feature services depend on their scope
+  - Consider lazy loading implications
+  - This approach:
+    - Simplifies dependency injection
+    - Ensures proper singleton behavior
+    - Works better with tree-shaking
+    - Makes services easier to test
+    - Reduces configuration errors
+
+- Module-level
+  - You want a new instance of the service for each lazy-loaded module
+  - The service is specific to a feature and shouldn't be available elsewhere
+  - You need different configurations of the same service
+
+## Core Module
+
+- Core Module should include:
+  - Singleton services with providedIn: 'root'
+  - HTTP interceptors
+  - Global guards
+  - App-level components (like header/footer)
+  - Single-instance components
+  - Global error handlers
+- You don't need CoreModule if you only have services with providedIn: 'root'.
+
+## How to manage interfaces
+
+```bash
+src/
+├── app/
+│   ├── core/
+│   │   └── interfaces/           # Core-related interfaces
+│   │       ├── auth.interface.ts
+│   │       └── api.interface.ts
+│   │
+│   ├── shared/
+│   │   └── interfaces/          # Shared interfaces
+│   │       ├── index.ts         # Re-exports
+│   │       ├── movie.interface.ts
+│   │       ├── user.interface.ts
+│   │       └── common.interface.ts
+│   │
+│   ├── features/
+│   │   ├── movie-list/
+│   │   │   └── interfaces/      # Feature-specific interfaces
+│   │   │       └── movie-filter.interface.ts
+│   │   │
+│   │   └── movie-detail/
+│   │       └── interfaces/
+│   │           └── movie-detail.interface.ts
+│   │
+│   └── pages/                   # Pages use shared/feature interfaces
+```
