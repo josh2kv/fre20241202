@@ -11,7 +11,10 @@
 /* @import 'components/buttons'; */
 /* @import 'components/forms'; */
 
-@use "theme/theme";
+@use "abstracts/functions" as *;
+@use "abstracts/variables" as *;
+
+@use "theme/theme" as *;
 
 *,
 *::before,
@@ -29,7 +32,7 @@ body {
 body {
   min-height: 100vh;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: var(--mat-sys-typography-body-font);
   background: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
 }
