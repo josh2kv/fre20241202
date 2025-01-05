@@ -1,13 +1,19 @@
-.header-container {
-  .wrapper {
+.global-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--nf-z-index-header);
+
+  .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    max-width: 1280px;
+    max-width: var(--nf-screen-width-lg);
     margin: 0 auto;
-    padding: 0 16px;
-    height: 88px;
+    padding: 0 var(--nf-spacing-lg);
+    height: var(--nf-header-height);
   }
 
   .left-wrapper {
@@ -20,5 +26,10 @@
   .right-wrapper {
     display: flex;
     align-items: center;
+
+    .btn.sign-in {
+      font-size: var(--nf-font-size-md);
+      height: 36px;
+    }
   }
 }

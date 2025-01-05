@@ -5,8 +5,8 @@ import { HomeComponent } from '@pages/home/home.component';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./pages/home/home.module').then((m) => m.HomeModule),
+    component: HomeComponent,
+    pathMatch: 'full',
   },
   {
     path: 'browse',

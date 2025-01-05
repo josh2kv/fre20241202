@@ -24,21 +24,34 @@ html {
     (
       primary: var.$nf-color-primary,
       on-primary: var.$nf-color-on-primary,
+      on-surface: var.$nf-color-on-surface,
+      on-surface-variant: var.$nf-color-on-surface-variant,
+      outline: var.$nf-color-outline,
 
       //// Remove ripple effect
       // state-layer-opacity: 0,
       // hover-state-layer-opacity: 0,
       // focus-state-layer-opacity: 0,
       // pressed-state-layer-opacity: 0,
-      // dragged-state-layer-opacity: 0,
+      // dragged-state-layer-opacity: 0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
     )
   );
 
   @include mat.button-overrides(
     (
-      filled-container-shape: var.$nf-radius-medium,
-      filled-label-text-weight: var.$nf-font-weight-bold,
-      filled-label-text-size: var.$nf-font-size-large,
+      filled-container-shape: var.$nf-radius-sm,
+      filled-label-text-weight: var.$nf-font-weight-medium,
+      filled-label-text-size: var.$nf-font-size-md,
+      filled-horizontal-padding: var.$nf-spacing-xl,
+    )
+  );
+
+  @include mat.form-field-overrides(
+    (
+      outlined-focus-outline-color: var.$nf-color-outline-focus,
+      outlined-focus-label-text-color: var.$nf-color-outline-focus,
+      outlined-input-text-placeholder-color: var.$nf-color-placeholder,
+      outlined-label-text-weight: var.$nf-font-weight-medium,
     )
   );
 }
