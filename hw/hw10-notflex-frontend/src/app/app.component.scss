@@ -4,6 +4,16 @@
   min-height: 100vh;
 }
 
-.main-container {
+app-global-header {
+  height: var(--nf-header-height);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--nf-z-index-header);
+}
+
+main {
+  padding-top: var(--nf-header-height);
   flex: 1;
 }

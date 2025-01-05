@@ -25,8 +25,8 @@ export class MovieService {
   });
 
   private imageBaseUrl = IMAGE_BASE_URL;
-  posterSize = POSTER_SIZE.w342;
-  backdropSize = BACKDROP_SIZE.w1280;
+  posterSize = POSTER_SIZE.W342;
+  backdropSize = BACKDROP_SIZE.W1280;
 
   constructor(private http: HttpClient) {}
 

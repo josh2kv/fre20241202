@@ -242,10 +242,60 @@ src/
 
 ## Eager Loading VS Lazy Loading
 
-1. Eager Loading:
+1. Eager Loading
+
    - The module is imported in AppModule's imports array
    - Components are declared in their own feature modules (like HomeModule)
    - The route configuration uses the component reference
-2. Lazy Loading:
-   - The module is NOT imported in AppModule
-   - The route configuration uses loadChildren to load the entire module when needed
+
+2. Lazy Loading
+
+    - The module is NOT imported in AppModule
+    - The route configuration uses loadChildren to load the entire module when needed
+
+## `ng-template` VS `ng-container` VS `ng-content`
+
+| Feature | ng-template | ng-container | ng-content |
+|---------|------------|--------------|------------|
+| Main Purpose | Template definition | Logical grouping | Content projection |
+| Renders to DOM | No | No | Yes |
+| Common Use | Conditional content | Multiple structural directives | Component wrapper |
+
+1. `ng-template`: Loading State
+
+    ```html
+    <!-- Loading state template -->
+    <ng-template #loading>
+      <div>Loading...</div>
+    </ng-template>
+
+    <div *ngIf="data; else loading">
+      {{ data }}
+    </div>
+    ```
+
+2. `ng-container`: Multiple Structural Directives
+
+    ```html
+    <!-- Multiple conditions and loops -->
+    <ng-container *ngIf="isLoggedIn">
+      <ng-container *ngFor="let item of items">
+        <div>{{ item }}</div>
+      </ng-container>
+    </ng-container>
+    ```
+
+3. `ng-content`: Layout Wrapper
+
+    ```html
+    <!-- Card component template -->
+    <app-card>
+      <h2>Card Title</h2>
+      <p>Card content</p>
+    </app-card>
+
+    <!-- card.component.html -->
+    <div class="card">
+      <ng-content></ng-content>
+    </div>
+    ```
