@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CredentialsStepComponent } from './components/credentials-step/credentials-step.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('@features/movie-list/movie-list.module').then(
-        (m) => m.MovieListModule
-      ),
+    component: CredentialsStepComponent,
   },
 ];
 
@@ -15,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class BrowseRoutingModule {}
+export class RegisterRoutingModule {}

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './register.component';
+import { MovieGridComponent } from '@features/movie-list/components/movie-grid/movie-grid.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RegisterComponent,
+    component: MovieGridComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class RegisterRoutingModule {}
+export class MovieListRoutingModule {}
