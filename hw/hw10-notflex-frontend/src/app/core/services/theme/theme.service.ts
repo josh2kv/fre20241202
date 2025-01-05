@@ -24,9 +24,12 @@ export class ThemeService {
     }
   }
 
-  private onRouteChange(route: string): void {
-    const isLightModeRoute = this.lightModeRoutes.includes(route);
+  private onRouteChange(url: string): void {
+    const isLightModeRoute = this.lightModeRoutes.some((route) =>
+      url.startsWith(route)
+    );
     const currentThemeMode = this.themeSubject.getValue();
+
     if (isLightModeRoute && currentThemeMode === 'dark-mode') {
       this.setThemeMode('light-mode');
     } else if (!isLightModeRoute && currentThemeMode === 'light-mode') {

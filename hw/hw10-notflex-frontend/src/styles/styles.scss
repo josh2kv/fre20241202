@@ -34,3 +34,10 @@ body {
   margin: 0;
   font-family: var(--nf-font-family);
 }
+
+.container {
+  max-width: var(--nf-screen-width-lg);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--nf-spacing-lg);
+}

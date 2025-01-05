@@ -10,9 +10,13 @@ $nf-color-inverse-primary: #e50914;
 $nf-color-inverse-surface: #ffffff;
 $nf-color-inverse-on-surface: #1f1f1f;
 
-$nf-color-outline: rgba(128, 128, 128, 0.7);
-$nf-color-outline: rgba(128, 128, 128, 0.7);
-$nf-color-outline-focus: #ffffff;
+$nf-color-error: light-dark(hsl(0, 100%, 50%), hsl(0, 100%, 50%));
+$nf-color-on-error: light-dark(hsl(0, 100%, 55%), hsl(0, 100%, 60%));
+$nf-color-error-container: light-dark(hsl(0, 100%, 50%), hsl(0, 100%, 50%));
+$nf-color-error-hover: light-dark(hsl(0, 100%, 55%), hsl(0, 100%, 60%));
+
+$nf-color-outline: light-dark(rgba(128, 128, 128, 1), rgba(128, 128, 128, 0.7));
+$nf-color-outline-focus: light-dark(hsla(0, 0%, 20%, 1), #ffffff);
 
 $nf-color-placeholder: hsla(0, 0%, 40%, 1);
 
@@ -97,6 +101,7 @@ $nf-screen-width-2xl: 1920px;
   --nf-header-height: #{$nf-header-height};
   --nf-z-index-header: #{$nf-z-index-header};
   --nf-color-overlay: #{$nf-gradient-surface};
+  --nf-color-text-secondary: hsla(0, 0%, 50%, 1);
 
   --nf-screen-width-sm: #{$nf-screen-width-sm};
   --nf-screen-width-md: #{$nf-screen-width-md};

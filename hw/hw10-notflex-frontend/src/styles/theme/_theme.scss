@@ -52,12 +52,16 @@ body {
 
       outline: var.$nf-color-outline,
 
+      error: var.$nf-color-error,
+      on-error: var.$nf-color-on-error,
+      error-container: var.$nf-color-error-container,
+
       //// Remove ripple effect
       // state-layer-opacity: 0,
       // hover-state-layer-opacity: 0,
       // focus-state-layer-opacity: 0,
       // pressed-state-layer-opacity: 0,
-      // dragged-state-layer-opacity: 0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+      // dragged-state-layer-opacity: 0,,,,,
     )
   );
 
@@ -72,10 +76,17 @@ body {
 
   @include mat.form-field-overrides(
     (
+      outlined-input-text-color: var.$nf-color-outline-focus,
       outlined-focus-outline-color: var.$nf-color-outline-focus,
       outlined-focus-label-text-color: var.$nf-color-outline-focus,
       outlined-input-text-placeholder-color: var.$nf-color-placeholder,
       outlined-label-text-weight: var.$nf-font-weight-medium,
+      outlined-hover-outline-color: var.$nf-color-outline-focus,
+      outlined-hover-label-text-color: var.$nf-color-placeholder,
+      outlined-error-hover-label-text-color: var.$nf-color-error-hover,
+      outlined-error-hover-outline-color: var.$nf-color-error-hover,
+      outlined-error-label-text-color: var.$nf-color-error,
+      outlined-error-outline-color: var.$nf-color-error,
     )
   );
 }
