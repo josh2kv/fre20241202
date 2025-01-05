@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ROUTE_SEGMENT } from '@core/config/routes';
 import { CredentialsFormControls } from '@shared/interfaces/auth';
 
 @Component({
@@ -29,6 +30,8 @@ export class CredentialsStepComponent {
 
   onSubmit() {
     console.log(this.credentialsForm.value);
-    this.router.navigate(['../account'], { relativeTo: this.route });
+    this.router.navigate([`../${ROUTE_SEGMENT.ACCOUNT}`], {
+      relativeTo: this.route,
+    });
   }
 }
