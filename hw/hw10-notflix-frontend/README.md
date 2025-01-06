@@ -1,4 +1,4 @@
-# Hw10: Notflex Frontend
+# Hw10: Notflix Frontend
 
 ## Pages
 

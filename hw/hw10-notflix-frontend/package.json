@@ -1,5 +1,5 @@
 {
-  "name": "hw10-notflex-frontend",
+  "name": "hw10-notflix-frontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:hw10-notflex-frontend": "node dist/hw10-notflex-frontend/server/server.mjs"
+    "serve:ssr:hw10-notflix-frontend": "node dist/hw10-notflix-frontend/server/server.mjs"
   },
   "private": true,
   "dependencies": {
