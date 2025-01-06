@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hw10-notflex-frontend": {
+    "hw10-notflix-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/hw10-notflex-frontend",
+            "outputPath": "dist/hw10-notflix-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -81,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "hw10-notflex-frontend:build:production"
+              "buildTarget": "hw10-notflix-frontend:build:production"
             },
             "development": {
-              "buildTarget": "hw10-notflex-frontend:build:development"
+              "buildTarget": "hw10-notflix-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
