@@ -2,15 +2,16 @@
 
 ## Pages
 
-- Home
-- Login
-- Register
-  - Multi Step
-- Movie List(Browse)
-  - Movie Item
-- Movie Detail
-  - Video Player
-  
+✅ Done, 🟢 To Review, 🔵 In Progress, ⚪️ Not Started
+
+| Page | UI/Layout | Features | API Integration | Sub Tasks | Note |
+|-------------|:---------------:|:---------:|:---------------:|:-------------|:-----|
+| Home | 🟢 | 🟢 | N/A | - Hero section<br> - Email form |  |
+| Login | 🟢 | 🟢 | ⚪️ | - Form validation<br>- Error handling |  |
+| Register | 🟢 | 🟢 | ⚪️ | - Credentials step<br>- Account step<br>- Plan step |  |
+| Movie List | 🟢 | 🟢 | ⚪️ | - Movie grid<br>- Movie card |  |
+| Movie Detail | ⚪️ | ⚪️ | ⚪️ | - Video player<br>- Movie info |  |
+
 ## Folder structure: Organize by features([Link](https://medium.com/@marketing_26756/angular-best-practices-tips-for-project-structure-and-organization-490ca7950829))
 
 - A "feature" is a distinct functionality or business domain.
@@ -113,13 +114,14 @@
    - Services for API calls, authentication
    - Guards for route protection
    - HTTP interceptors
-   - Core module should be imported only in AppModule
+   - App-wide layout components(header, footer, sidebar)
+   - `CoreModule` should be imported only in `AppModule`
    - Core services remain in the core module
 2. `features/` - Contains feature modules, each representing a main section of your app:
-   - auth/ - Login/signup functionality
-   - browse/ - Main movie browsing interface
-   - details/ - Movie/show detail pages
-   - profile/ - User profile management
+   - `auth/` - Login/signup functionality
+   - `browse/` - Main movie browsing interface
+   - `details/` - Movie/show detail pages
+   - `profile/` - User profile management
 3. `shared/` - Contains reusable components, directives, and pipes:
    - Movie card component
    - Rating component
@@ -128,32 +130,28 @@
    - Should be imported in feature modules as needed
    - Shared components stay in the shared module
 4. `pages/` - Contains page modules that compose features together:
-   - home/ - Landing page with featured content
-   - browse/ - Movie browsing pages
-   - movie-details/ - Individual movie pages
-   - profile/ - User profile pages
+   - `home/` - Landing page with featured content
+   - `browse/` - Movie browsing pages
+   - `movie-details/` - Individual movie pages
+   - `profile/` - User profile pages
    - Pages can still use components from other features by importing those feature modules
-5. `layout/` - Contains app-wide layout components:
-   - Header/navbar
-   - Footer
-   - Sidebar (if any)
 
 ### Benefits of this approach
 
-- Lazy Loading: Each page module loads only when needed
-- Encapsulation: Page-specific components stay with their page
-- Better Organization: Clear separation between shared and page-specific components
-- Scalability: Easy to add new features within each page module
-- Performance: Better initial load time due to code splitting
+- **Lazy Loading**: Each page module loads only when needed
+- **Encapsulation**: Page-specific components stay with their page
+- **Better Organization**: Clear separation between shared and page-specific components
+- **Scalability**: Easy to add new features within each page module
+- **Performance**: Better initial load time due to code splitting
 
 ### Remember to
 
 - Keep shared components that are used across multiple pages in the shared module
 - Keep page-specific components within their respective page modules
 - Use lazy loading for all page modules
-- Import SharedModule in each page module that needs shared components
+- Import `SharedModule` in each page module that needs shared components
 
-## Sticking to reactive forms over template-driven forms throughout an app
+## Stick to Reactive Forms over Template-driven Forms throughout an app
 
 - Many Angular developers and teams choose to standardize on Reactive Forms for their projects, even for simple forms.
 - This approach is:
@@ -180,7 +178,7 @@
 - Business logic
 - Utility functions
 
-### Root-level service VS Module-level Service
+### Root-level Services VS Module-level Services
 
 - Root-level(Singleton)
   - Most services should use providedIn: 'root'
@@ -244,18 +242,18 @@ src/
 
 1. Eager Loading
 
-   - The module is imported in AppModule's imports array
+   - The module is imported in `AppModule`'s imports array
    - Components are declared in their own feature modules (like HomeModule)
    - The route configuration uses the component reference
 
 2. Lazy Loading
 
-    - The module is NOT imported in AppModule
-    - The route configuration uses loadChildren to load the entire module when needed
+    - The module is NOT imported in `AppModule`
+    - The route configuration uses `loadChildren` to load the entire module when needed
 
 ## `ng-template` VS `ng-container` VS `ng-content`
 
-| Feature | ng-template | ng-container | ng-content |
+|  | ng-template | ng-container | ng-content |
 |---------|------------|--------------|------------|
 | Main Purpose | Template definition | Logical grouping | Content projection |
 | Renders to DOM | No | No | Yes |
