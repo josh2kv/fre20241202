@@ -82,6 +82,7 @@ $nf-letter-spacing-lg: 0.025em;
 $nf-letter-spacing-xl: 0.05em;
 $nf-letter-spacing-2xl: 0.1em;
 
+$nf-rounded-xs: 2px;
 $nf-rounded-sm: 4px;
 $nf-rounded-md: 8px;
 $nf-rounded-lg: 16px;
@@ -155,6 +156,7 @@ $nf-screen-width-2xl: 1920px;
   --nf-letter-spacing-xl: #{$nf-letter-spacing-xl};
   --nf-letter-spacing-2xl: #{$nf-letter-spacing-2xl};
 
+  --nf-spacing-xs: #{$nf-spacing-xs};
   --nf-spacing-sm: #{$nf-spacing-sm};
   --nf-spacing-md: #{$nf-spacing-md};
   --nf-spacing-lg: #{$nf-spacing-lg};
@@ -163,6 +165,7 @@ $nf-screen-width-2xl: 1920px;
   --nf-spacing-3xl: #{$nf-spacing-3xl};
   --nf-spacing-4xl: #{$nf-spacing-4xl};
 
+  --nf-rounded-xs: #{$nf-rounded-xs};
   --nf-rounded-sm: #{$nf-rounded-sm};
   --nf-rounded-md: #{$nf-rounded-md};
   --nf-rounded-lg: #{$nf-rounded-lg};

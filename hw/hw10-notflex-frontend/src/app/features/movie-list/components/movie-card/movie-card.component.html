@@ -2,7 +2,10 @@
   <img [src]="movie.posterUrl" alt="Movie Poster" />
   <div class="movie-details">
     <div class="btn-wrapper">
-      <button class="details-btn">▶</button>
+      <button mat-flat-button class="btn to-details">
+        More
+        <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
+      </button>
     </div>
     <div class="movie-info">
       <h3 class="title">{{movie.title}}</h3>

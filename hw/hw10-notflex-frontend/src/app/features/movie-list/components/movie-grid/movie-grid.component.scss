@@ -1,6 +1,10 @@
 .movie-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--nf-spacing-lg);
   justify-content: center;
+  padding: var(--nf-spacing-2xl) var(--nf-spacing-md);
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
 }
