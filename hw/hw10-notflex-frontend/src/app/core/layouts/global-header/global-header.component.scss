@@ -1,0 +1,31 @@
+.global-header {
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: var(--nf-screen-width-xl);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 var(--nf-spacing-lg);
+    height: var(--nf-header-height);
+  }
+
+  .left-wrapper {
+    .logo-wrapper {
+      display: inline-block;
+      width: 148px;
+      height: 40px;
+    }
+  }
+
+  .right-wrapper {
+    display: flex;
+    align-items: center;
+
+    .btn.sign-in {
+      font-size: var(--nf-font-size-md);
+      height: 36px;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+app-global-header {
+  height: var(--nf-header-height);
+  /* position: sticky;
+  top: 0;
+  left: 0;
+  right: 0; */
+  z-index: var(--nf-z-index-header);
+  border-bottom: 1px solid light-dark(hsla(0, 0%, 50%, 0.4), transparent);
+  background-color: var(--nf-header-background);
+  /* backdrop-filter: blur(var(--nf-header-blur)); */
+}
+
+main {
+  /* padding-top: var(--nf-header-height); */
+  flex: 1;
+}

@@ -1,0 +1,10 @@
+<div class="movie-grid">
+  @if (!movies && loading) {
+  } @else if (loading) {
+  <div>Loading...</div>
+  } @else if (error) {
+  <div>{{ error }}</div>
+  } @else {
+  <app-movie-card *ngFor="let movie of movies?.data" [movie]="movie"></app-movie-card>
+  }
+</div>

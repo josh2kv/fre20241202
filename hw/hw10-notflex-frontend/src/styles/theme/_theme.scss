@@ -1,0 +1,118 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+@use "theme-colors" as theme;
+@use "abstracts/variables" as var;
+
+@mixin light-theme {
+  --nf-header-blur: 0px;
+  --nf-header-background: #fff;
+}
+
+@mixin dark-theme {
+  --nf-header-blur: 40px;
+  --nf-header-background: hsl(0, 0, 0, 1);
+}
+
+html {
+  color-scheme: dark;
+  @include dark-theme;
+
+  @include mat.theme(
+    (
+      color: (
+        theme-type: dark,
+        primary: theme.$primary-palette,
+        tertiary: theme.$tertiary-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+
+  &.light-mode {
+    color-scheme: light;
+    @include light-theme;
+  }
+
+  &.dark-mode {
+    color-scheme: dark;
+    @include dark-theme;
+  }
+}
+
+body {
+  background-color: light-dark(
+    var.$nf-color-inverse-surface,
+    var.$nf-color-surface
+  );
+  color: light-dark(var.$nf-color-inverse-on-surface, var.$nf-color-on-surface);
+}
+
+:root {
+  // https://github.com/angular/components/blob/main/src/material/core/tokens/_m3-tokens.scss
+  @include mat.theme-overrides(
+    (
+      primary: var.$nf-color-primary,
+      on-primary: var.$nf-color-on-primary,
+      background: var.$nf-color-surface,
+      on-background: var.$nf-color-on-surface,
+      on-surface: var.$nf-color-on-surface,
+      on-surface-variant: var.$nf-color-on-surface-variant,
+
+      inverse-surface: var.$nf-color-inverse-surface,
+      inverse-on-surface: var.$nf-color-inverse-on-surface,
+      inverse-primary: var.$nf-color-inverse-primary,
+
+      outline: var.$nf-color-outline,
+
+      error: var.$nf-color-error,
+      on-error: var.$nf-color-on-error,
+      error-container: var.$nf-color-error-container,
+      on-error-container: var.$nf-color-on-error-container,
+
+      //// Remove ripple effect
+      // state-layer-opacity: 0,
+      // hover-state-layer-opacity: 0,
+      // focus-state-layer-opacity: 0,
+      // pressed-state-layer-opacity: 0,
+      // dragged-state-layer-opacity: 0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+    )
+  );
+
+  @include mat.button-overrides(
+    (
+      filled-container-shape: var.$nf-rounded-sm,
+      filled-label-text-weight: var.$nf-font-weight-medium,
+      filled-label-text-size: var.$nf-font-size-md,
+      filled-horizontal-padding: var.$nf-spacing-xl,
+      outlined-label-text-color: var.$nf-color-on-primary,
+    )
+  );
+
+  @include mat.form-field-overrides(
+    (
+      outlined-input-text-color: var.$nf-color-outline-focus,
+      outlined-focus-outline-color: var.$nf-color-outline-focus,
+      outlined-focus-label-text-color: var.$nf-color-outline-focus,
+      outlined-input-text-placeholder-color: var.$nf-color-placeholder,
+      outlined-label-text-weight: var.$nf-font-weight-normal,
+      outlined-hover-outline-color: var.$nf-color-outline-focus,
+      outlined-hover-label-text-color: var.$nf-color-placeholder,
+      outlined-error-hover-label-text-color: var.$nf-color-error-hover,
+      outlined-error-hover-outline-color: var.$nf-color-error-hover,
+      outlined-error-label-text-color: var.$nf-color-error,
+      outlined-error-outline-color: var.$nf-color-error,
+    )
+  );
+
+  @include mat.checkbox-overrides(
+    (
+      state-layer-size: 24px,
+      selected-checkmark-color: var.$nf-color-surface,
+      selected-icon-color: var.$nf-color-on-surface,
+      selected-focus-icon-color: var.$nf-color-on-surface,
+      selected-hover-icon-color: var.$nf-color-on-surface,
+    )
+  );
+}

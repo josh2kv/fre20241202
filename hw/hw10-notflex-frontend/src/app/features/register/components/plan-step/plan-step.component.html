@@ -1,0 +1,67 @@
+<div class="step-container">
+  <div class="header">
+    <div class="step">Step <strong>3</strong> of <strong>3</strong></div>
+    <h2 class="title">Choose the plan that’s right for you
+    </h2>
+  </div>
+  <form [formGroup]="planForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="plan-grid">
+      <div *ngFor="let plan of plans" class="plan-option">
+        <input type="radio" [id]="'plan-' + plan.id" [value]="plan.id" formControlName="selectedPlan"
+          class="plan-radio visually-hidden">
+        <label [for]="'plan-' + plan.id" class="plan-card"
+          [class.selected]="planForm.get('selectedPlan')?.value === plan.id">
+          <div class="plan-header" [attr.data-plan-id]="plan.id">
+            <h3 class="plan-title">{{ plan.name }}</h3>
+            <span class="plan-subtitle">{{ plan.resolution }}</span>
+            <div class="icon-row" [class.selected]="planForm.get('selectedPlan')?.value === plan.id">
+              <mat-icon class="check-circle-icon">check_circle</mat-icon>
+            </div>
+          </div>
+          <ul class="features">
+            <li class="feature">
+              <span class="feature-label">Monthly Price</span>
+              <span class="feature-value">{{ plan.features.monthlyPrice | currency }}</span>
+            </li>
+            <hr class="divider">
+            <li class="feature">
+              <span class="feature-label">Video Quality</span>
+              <span class="feature-value">{{ plan.features.videoQuality }}</span>
+            </li>
+            <hr class="divider">
+            <li class="feature">
+              <span class="feature-label">Resolution</span>
+              <span class="feature-value">{{ plan.features.resolution }}</span>
+            </li>
+            <hr class="divider">
+            <li class="feature" *ngIf="plan.features.spatialAudio">
+              <span class="feature-label">Spatial Audio</span>
+              <span class="feature-value">{{ plan.features.spatialAudio }}</span>
+            </li>
+            <hr class="divider" *ngIf="plan.features.spatialAudio">
+            <li class="feature">
+              <span class="feature-label">Supported Devices</span>
+              <span class="feature-value">{{ plan.features.supportedDevices }}</span>
+            </li>
+            <hr class="divider">
+            <li class="feature">
+              <span class="feature-label">Simultaneous Streams</span>
+              <span class="feature-value">{{ plan.features.simultaneousStreams }}</span>
+            </li>
+            <hr class="divider">
+            <li class="feature">
+              <span class="feature-label">Download Devices</span>
+              <span class="feature-value">{{ plan.features.downloadDevices }}</span>
+            </li>
+            <hr class="divider">
+            <li class="feature">
+              <span class="feature-label">Ads</span>
+              <span class="feature-value">{{ plan.features.ads }}</span>
+            </li>
+          </ul>
+        </label>
+      </div>
+    </div>
+    <button mat-flat-button type="submit" class="btn to-next-step" [disabled]="!planForm.valid">Next</button>
+  </form>
+</div>

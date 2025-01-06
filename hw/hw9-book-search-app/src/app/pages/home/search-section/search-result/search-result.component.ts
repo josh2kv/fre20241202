@@ -47,12 +47,10 @@ export class SearchResultComponent implements OnInit {
       .subscribe({
         next: (booksWithPagination) => {
           this.booksWithPagination = booksWithPagination;
-          this.loading = false;
         },
         error: (err) => {
           console.error('error', err);
           this.error = 'Failed to fetch books. Please try again.';
-          this.loading = false;
         },
         complete: () => {
           this.loading = false;
