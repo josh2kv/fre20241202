@@ -25,7 +25,7 @@ export class AccountStepComponent {
   }
 
   onSubmit() {
-    console.log(this.accountForm.value);
+    console.log('accountFormValues', this.accountForm.value);
     if (this.accountForm.valid) {
       this.router.navigate([`../${ROUTE_SEGMENT.PLAN}`], {
         relativeTo: this.route,

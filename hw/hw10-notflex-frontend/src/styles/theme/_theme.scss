@@ -76,7 +76,7 @@ body {
       // hover-state-layer-opacity: 0,
       // focus-state-layer-opacity: 0,
       // pressed-state-layer-opacity: 0,
-      // dragged-state-layer-opacity: 0,,,,,,,,,,,,,,,,,,,,,
+      // dragged-state-layer-opacity: 0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
     )
   );
 
@@ -96,13 +96,23 @@ body {
       outlined-focus-outline-color: var.$nf-color-outline-focus,
       outlined-focus-label-text-color: var.$nf-color-outline-focus,
       outlined-input-text-placeholder-color: var.$nf-color-placeholder,
-      outlined-label-text-weight: var.$nf-font-weight-medium,
+      outlined-label-text-weight: var.$nf-font-weight-normal,
       outlined-hover-outline-color: var.$nf-color-outline-focus,
       outlined-hover-label-text-color: var.$nf-color-placeholder,
       outlined-error-hover-label-text-color: var.$nf-color-error-hover,
       outlined-error-hover-outline-color: var.$nf-color-error-hover,
       outlined-error-label-text-color: var.$nf-color-error,
       outlined-error-outline-color: var.$nf-color-error,
+    )
+  );
+
+  @include mat.checkbox-overrides(
+    (
+      state-layer-size: 24px,
+      selected-checkmark-color: var.$nf-color-surface,
+      selected-icon-color: var.$nf-color-on-surface,
+      selected-focus-icon-color: var.$nf-color-on-surface,
+      selected-hover-icon-color: var.$nf-color-on-surface,
     )
   );
 }

@@ -78,12 +78,22 @@
         }
 
         .rating {
-          font-size: var(--nf-font-size-sm);
-          font-weight: var(--nf-font-weight-medium);
-          border-radius: var(--nf-rounded-sm);
-          padding: var(--nf-spacing-xs) var(--nf-spacing-sm);
-          background-color: rgba(0, 0, 0, 0.4);
-          border: 1px solid rgba(188, 188, 188, 0.2);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: var(--nf-spacing-xs);
+
+          .mat-icon {
+            width: var(--nf-font-size-md);
+            height: var(--nf-font-size-md);
+            font-size: var(--nf-font-size-md);
+            color: #ffb200;
+          }
+
+          span {
+            font-size: var(--nf-font-size-md);
+            font-weight: var(--nf-font-weight-medium);
+          }
         }
       }
 

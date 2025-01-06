@@ -35,6 +35,15 @@ body {
   font-family: var(--nf-font-family);
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .container {
   max-width: var(--nf-screen-width-lg);
   width: 100%;

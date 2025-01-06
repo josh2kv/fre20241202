@@ -1,0 +1,102 @@
+.img-background {
+  margin-top: calc(-1 * var(--nf-header-height));
+  min-height: 100vh;
+  width: 100%;
+  background-image: var(--nf-home-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--nf-color-overlay);
+  }
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  max-width: var(--nf-screen-width-lg);
+  margin: 0 auto;
+  padding: 0 var(--nf-spacing-lg);
+  padding-top: var(--nf-spacing-4xl);
+  min-height: calc(100vh - var(--nf-header-height));
+
+  .login-container {
+    max-width: 450px;
+    width: 100%;
+    padding: 48px 68px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: var(--nf-border-radius-sm);
+
+    .title {
+      font-size: var(--nf-font-size-3xl);
+      font-weight: var(--nf-font-weight-bold);
+      margin-bottom: var(--nf-spacing-3xl);
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--nf-spacing-sm);
+
+      .form-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--nf-spacing-sm);
+
+        ::ng-deep .mdc-checkbox__background {
+          width: 16px;
+          height: 16px;
+        }
+
+        .link.forgot-password {
+          font-size: var(--nf-font-size-sm);
+        }
+      }
+
+      .btn.sign-in {
+        margin-top: var(--nf-spacing-md);
+        height: 50px;
+      }
+    }
+
+    .sign-up-container {
+      display: flex;
+      gap: var(--nf-spacing-sm);
+      align-items: center;
+      margin-top: var(--nf-spacing-xl);
+      font-size: var(--nf-font-size-md);
+
+      .sign-up-text {
+        color: hsla(255, 255, 255, 0.7);
+      }
+
+      .link.sign-up {
+        font-weight: var(--nf-font-weight-medium);
+      }
+    }
+
+    .recaptcha-text {
+      margin-top: var(--nf-spacing-2xl);
+      font-size: var(--nf-font-size-xs);
+      color: hsla(255, 255, 255, 0.4);
+      letter-spacing: var(--nf-letter-spacing-xl);
+
+      .link.recaptcha-link {
+        color: #0071eb;
+      }
+    }
+  }
+}

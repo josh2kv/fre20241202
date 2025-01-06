@@ -1,12 +1,12 @@
 <header class="global-header">
   <div class="header-container">
     <div class="left-wrapper">
-      <a class="logo-wrapper" routerLink="/">
+      <a class="logo-wrapper" [routerLink]="toHome">
         <img src="assets/images/netflix-logo.svg" alt="Netflix Logo" />
       </a>
     </div>
     <div class="right-wrapper">
-      <button mat-flat-button class="btn sign-in" routerLink="/signin">Sign In</button>
+      <button *ngIf="showLogin" mat-flat-button class="btn sign-in" [routerLink]="toLogin">Sign In</button>
     </div>
   </div>
 </header>

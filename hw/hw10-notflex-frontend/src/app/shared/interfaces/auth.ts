@@ -1,5 +1,9 @@
 import { FormControl } from '@angular/forms';
 
+export type LoginFormControls = {
+  rememberMe: FormControl<boolean>;
+} & CredentialsFormControls;
+
 export interface CredentialsFormControls {
   email: FormControl<string>;
   password: FormControl<string>;
