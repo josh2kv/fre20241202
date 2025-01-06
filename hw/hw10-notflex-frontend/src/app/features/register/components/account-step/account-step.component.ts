@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTE_SEGMENT } from '@core/config/routes';
-import {
-  AccountFormControls,
-  CredentialsFormControls,
-} from '@shared/interfaces/auth';
+import { AccountFormControls } from '@shared/interfaces/auth';
 @Component({
   selector: 'app-account-step',
   standalone: false,

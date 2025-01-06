@@ -4,8 +4,20 @@
 @use "theme-colors" as theme;
 @use "abstracts/variables" as var;
 
+@mixin light-theme {
+  --nf-header-blur: 0px;
+  --nf-header-background: #fff;
+}
+
+@mixin dark-theme {
+  --nf-header-blur: 40px;
+  --nf-header-background: hsl(0, 0, 0, 1);
+}
+
 html {
   color-scheme: dark;
+  @include dark-theme;
+
   @include mat.theme(
     (
       color: (
@@ -20,10 +32,12 @@ html {
 
   &.light-mode {
     color-scheme: light;
+    @include light-theme;
   }
 
   &.dark-mode {
     color-scheme: dark;
+    @include dark-theme;
   }
 }
 
@@ -62,7 +76,7 @@ body {
       // hover-state-layer-opacity: 0,
       // focus-state-layer-opacity: 0,
       // pressed-state-layer-opacity: 0,
-      // dragged-state-layer-opacity: 0,,,,,,,,,,,,
+      // dragged-state-layer-opacity: 0,,,,,,,,,,,,,,,,,,,,,
     )
   );
 

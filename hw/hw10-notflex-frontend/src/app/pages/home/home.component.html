@@ -8,16 +8,22 @@
         </div>
         <div class="get-started">
           <p class="message">Ready to watch? Enter your email to create or restart your membership.</p>
-          <div class="input-group">
-            <mat-form-field appearance="outline" subscriptSizing="dynamic">
+          <form [formGroup]="emailForm" (ngSubmit)="onSubmit()" class="input-group">
+            <mat-form-field appearance="outline" hideRequiredMarker>
               <mat-label>Email address</mat-label>
-              <input matInput type="email" placeholder="example@example.com" />
+              <input matInput type="email" placeholder="example@example.com" formControlName="email" />
+              <mat-error *ngIf="emailForm.get('email')?.hasError('required')">
+                Email is required
+              </mat-error>
+              <mat-error *ngIf="emailForm.get('email')?.hasError('email')">
+                Please enter a valid email address
+              </mat-error>
             </mat-form-field>
-            <button mat-flat-button class="btn to-register" routerLink="/auth/register">
+            <button type="submit" mat-flat-button class="btn to-register">
               Get Started
               <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>
