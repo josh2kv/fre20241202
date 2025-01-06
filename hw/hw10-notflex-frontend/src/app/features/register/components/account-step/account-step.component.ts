@@ -29,8 +29,10 @@ export class AccountStepComponent {
 
   onSubmit() {
     console.log(this.accountForm.value);
-    this.router.navigate([`../${ROUTE_SEGMENT.PLAN}`], {
-      relativeTo: this.route,
-    });
+    if (this.accountForm.valid) {
+      this.router.navigate([`../${ROUTE_SEGMENT.PLAN}`], {
+        relativeTo: this.route,
+      });
+    }
   }
 }

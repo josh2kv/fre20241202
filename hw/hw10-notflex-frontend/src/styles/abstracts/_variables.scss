@@ -1,24 +1,28 @@
 @use "./functions" as *;
 
-$nf-color-primary: #e50914;
-$nf-color-on-primary: #ffffff;
-$nf-color-surface: #000000;
-$nf-color-on-surface: #ffffff;
-$nf-color-on-surface-variant: hsla(0, 0%, 70%, 1);
+$nf-color-primary: light-dark(#e50914, #e50914);
+$nf-color-on-primary: light-dark(#ffffff, #ffffff);
+$nf-color-surface: light-dark(#ffffff, #000000);
+$nf-color-on-surface: light-dark(#1f1f1f, #ffffff);
+$nf-color-on-surface-variant: light-dark(
+  hsla(0, 0%, 50%, 1),
+  hsla(0, 0%, 70%, 1)
+);
 
-$nf-color-inverse-primary: #e50914;
-$nf-color-inverse-surface: #ffffff;
-$nf-color-inverse-on-surface: #1f1f1f;
+$nf-color-inverse-primary: light-dark(#e50914, #e50914);
+$nf-color-inverse-surface: light-dark(#ffffff, #000000);
+$nf-color-inverse-on-surface: light-dark(#1f1f1f, #ffffff);
 
 $nf-color-error: light-dark(hsl(0, 100%, 50%), hsl(0, 100%, 50%));
 $nf-color-on-error: light-dark(hsl(0, 100%, 55%), hsl(0, 100%, 60%));
 $nf-color-error-container: light-dark(hsl(0, 100%, 50%), hsl(0, 100%, 50%));
+$nf-color-on-error-container: light-dark(hsl(0, 100%, 55%), hsl(0, 100%, 60%));
 $nf-color-error-hover: light-dark(hsl(0, 100%, 55%), hsl(0, 100%, 60%));
 
 $nf-color-outline: light-dark(rgba(128, 128, 128, 1), rgba(128, 128, 128, 0.7));
 $nf-color-outline-focus: light-dark(hsla(0, 0%, 20%, 1), #ffffff);
 
-$nf-color-placeholder: hsla(0, 0%, 40%, 1);
+$nf-color-placeholder: light-dark(hsla(0, 0%, 50%, 1), hsla(0, 0%, 40%, 1));
 
 $nf-gradient-surface: linear-gradient(
   360deg,
@@ -78,12 +82,15 @@ $nf-letter-spacing-lg: 0.025em;
 $nf-letter-spacing-xl: 0.05em;
 $nf-letter-spacing-2xl: 0.1em;
 
-$nf-radius-sm: 4px;
-$nf-radius-md: 8px;
-$nf-radius-lg: 16px;
+$nf-rounded-sm: 4px;
+$nf-rounded-md: 8px;
+$nf-rounded-lg: 16px;
+$nf-rounded-xl: 24px;
+$nf-rounded-full: 9999px;
 
-$nf-spacing-sm: 4px;
-$nf-spacing-md: 8px;
+$nf-spacing-xs: 4px;
+$nf-spacing-sm: 8px;
+$nf-spacing-md: 12px;
 $nf-spacing-lg: 16px;
 $nf-spacing-xl: 20px;
 $nf-spacing-2xl: 24px;
@@ -97,6 +104,8 @@ $nf-screen-width-xl: 1440px;
 $nf-screen-width-2xl: 1920px;
 
 :root {
+  --nf-color-primary: #{$nf-color-primary};
+
   --nf-home-bg-image: url("/assets/images/home-bg.jpg");
   --nf-header-height: #{$nf-header-height};
   --nf-z-index-header: #{$nf-z-index-header};
@@ -153,4 +162,10 @@ $nf-screen-width-2xl: 1920px;
   --nf-spacing-2xl: #{$nf-spacing-2xl};
   --nf-spacing-3xl: #{$nf-spacing-3xl};
   --nf-spacing-4xl: #{$nf-spacing-4xl};
+
+  --nf-rounded-sm: #{$nf-rounded-sm};
+  --nf-rounded-md: #{$nf-rounded-md};
+  --nf-rounded-lg: #{$nf-rounded-lg};
+  --nf-rounded-xl: #{$nf-rounded-xl};
+  --nf-rounded-full: #{$nf-rounded-full};
 }

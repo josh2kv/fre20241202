@@ -1,10 +1,14 @@
 .global-header {
-  .container {
+  border-bottom: 1px solid light-dark(hsla(0, 0%, 50%, 0.4), transparent);
+  background-color: light-dark(#fff, transparent);
+
+  .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    max-width: var(--nf-screen-width-lg);
+    max-width: var(--nf-screen-width-xl);
+    width: 100%;
     margin: 0 auto;
     padding: 0 var(--nf-spacing-lg);
     height: var(--nf-header-height);

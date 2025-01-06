@@ -30,8 +30,10 @@ export class CredentialsStepComponent {
 
   onSubmit() {
     console.log(this.credentialsForm.value);
-    this.router.navigate([`../${ROUTE_SEGMENT.ACCOUNT}`], {
-      relativeTo: this.route,
-    });
+    if (this.credentialsForm.valid) {
+      this.router.navigate([`../${ROUTE_SEGMENT.ACCOUNT}`], {
+        relativeTo: this.route,
+      });
+    }
   }
 }

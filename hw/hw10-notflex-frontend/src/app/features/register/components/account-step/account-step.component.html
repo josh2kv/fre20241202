@@ -1,6 +1,6 @@
 <div class="step-container">
   <div class="header">
-    <span class="step">Step 2 of 3</span>
+    <span class="step">Step <strong>2</strong> of <strong>3</strong></span>
     <h2 class="title">Create your username and add TMDB API key</h2>
     <p class="description">
       Just a few more steps and you're done! <br />
@@ -18,7 +18,7 @@
       <input matInput type="text" placeholder="TMDB API key" formControlName="apiKey" />
       <mat-error *ngIf="accountForm.get('apiKey')?.hasError('required')">TMDB API key is required</mat-error>
     </mat-form-field>
-    <button type="submit" mat-flat-button class="btn to-next-step">
+    <button type="submit" mat-flat-button class="btn to-next-step" [disabled]="!accountForm.valid">
       Next
     </button>
   </form>
