@@ -1,0 +1,9 @@
+[build]
+  base = "hw/hw10-notflix-frontend"
+  publish = "dist/hw10-notflix-frontend/browser"
+  command = "cp src/environments/environment.netlify.ts src/environments/environment.ts && npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
