@@ -12,7 +12,7 @@ import { LoginFormControls } from '@shared/interfaces/auth';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  toSignUp = ROUTE_PATH.AUTH_REGISTER;
+  toSignup = ROUTE_PATH.AUTH_REGISTER;
   loginForm: FormGroup<LoginFormControls>;
 
   constructor(private fb: NonNullableFormBuilder, private router: Router) {

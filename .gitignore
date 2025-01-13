@@ -46,3 +46,10 @@ logs/
 # Optional: Windows folder attributes
 desktop.ini
 ehthumbs.db
+
+# Environment
+src/environments/environment.ts
+src/environments/environment.prod.ts
+
+# Local Netlify folder
+.netlify
