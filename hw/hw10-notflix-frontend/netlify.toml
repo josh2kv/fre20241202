@@ -1,7 +1,11 @@
 [build]
   base = "hw/hw10-notflix-frontend"
   publish = "dist/hw10-notflix-frontend/browser"
-  command = "cp src/environments/environment.netlify.ts src/environments/environment.ts && npm run build"
+  command = """
+    sed -i "s/TMDB_API_KEY_PLACEHOLDER/$TMDB_API_KEY/" src/environments/environment.netlify.ts &&
+    cp src/environments/environment.netlify.ts src/environments/environment.ts &&
+    npm run build
+  """
 
 [[redirects]]
   from = "/*"
