@@ -36,8 +36,8 @@ export class MovieService {
   });
 
   private imageBaseUrl = IMAGE_BASE_URL;
-  posterSize = POSTER_SIZES.W342;
-  backdropSize = BACKDROP_SIZES.W1280;
+  posterSize = POSTER_SIZES.W500;
+  backdropSize = BACKDROP_SIZES.ORIGINAL;
   profileSize = PROFILE_SIZES.W185;
 
   maxCastCount = 5;
