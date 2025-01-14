@@ -168,15 +168,10 @@
 
     .movie-cast-item {
       position: relative;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
-
-      &:hover {
-        .movie-cast-image {
-          transform: scale(1.05);
-        }
-      }
 
       .movie-cast-image-wrapper {
         overflow: hidden;
@@ -202,6 +197,28 @@
         }
       }
 
+      &:hover {
+        .movie-cast-image-wrapper {
+          &:before {
+            background: transparent;
+          }
+
+          .movie-cast-image {
+            transform: scale(1.05);
+          }
+        }
+
+        .movie-cast-info {
+          height: 48px;
+
+          .movie-cast-character {
+            display: -webkit-box;
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+      }
+
       .movie-cast-info {
         position: absolute;
         left: 0;
@@ -217,18 +234,41 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: var(--nf-spacing-sm);
+        height: 36px;
+        transition: all 0.3s ease;
 
-        .movie-cast-character {
+        .movie-cast-name {
           font-size: var(--nf-font-size-md);
-          font-weight: var(--nf-font-weight-bold);
+          font-weight: var(--nf-font-weight-medium);
           line-height: var(--nf-line-height-xl);
-          color: hsla(0, 0%, 70%, 1);
+          color: hsla(0, 0%, 100%, 1);
           text-align: center;
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
           width: 100%;
+          transition: all 0.3s ease;
+        }
+
+        .movie-cast-character {
+          display: none;
+          transform: translateY(100%);
+          opacity: 0;
+          font-size: var(--nf-font-size-sm);
+          font-weight: var(--nf-font-weight-normal);
+          line-height: var(--nf-line-height-sm);
+          color: hsla(0, 0%, 70%, 1);
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          width: 100%;
+          text-align: center;
+          transition: all 0.3s ease;
         }
       }
     }

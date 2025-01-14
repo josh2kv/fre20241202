@@ -1,9 +1,33 @@
-.video-player-container {
+.content-wrapper {
   width: 100%;
   height: 100%;
   margin: 0 auto;
   display: flex;
-  gap: var(--nf-spacing-xl);
+  gap: var(--nf-spacing-3xl);
+
+  .video-player-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nf-spacing-sm);
+
+    .btn {
+      height: fit-content;
+      width: fit-content;
+      padding: var(--nf-spacing-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid hsla(0, 0%, 50%, 0.2);
+
+      mat-icon {
+        font-size: var(--nf-font-size-3xl);
+        width: 1em;
+        height: 1em;
+      }
+    }
+  }
 
   .videos-list {
     display: flex;

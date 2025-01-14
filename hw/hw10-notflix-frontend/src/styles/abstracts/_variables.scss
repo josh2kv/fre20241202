@@ -112,6 +112,8 @@ $nf-screen-width-2xl: 1920px;
   --nf-z-index-header: #{$nf-z-index-header};
   --nf-color-overlay: #{$nf-gradient-surface};
   --nf-color-text-secondary: hsla(0, 0%, 50%, 1);
+  --nf-color-outline: #{$nf-color-outline};
+  --nf-color-outline-focus: #{$nf-color-outline-focus};
 
   --nf-screen-width-sm: #{$nf-screen-width-sm};
   --nf-screen-width-md: #{$nf-screen-width-md};
