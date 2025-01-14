@@ -1,14 +1,24 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
-  BACKDROP_SIZE,
+  BACKDROP_SIZES,
   IMAGE_BASE_URL,
   movieConfig,
-  POSTER_SIZE,
+  POSTER_SIZES,
+  PROFILE_SIZES,
 } from '@core/config/movie';
-import { MoviesWithPagination, ResMovies } from '@shared/interfaces/movie';
+import { ROUTE_SEGMENT } from '@core/config/routes';
+import {
+  MovieCast,
+  MovieDetails,
+  MoviesWithPagination,
+  MovieWithCredits,
+  ResMovieCredits,
+  ResMovieDetails,
+  ResMovies,
+} from '@shared/interfaces/movie';
 import { environment } from 'environments/environment';
-import { map, Observable } from 'rxjs';
+import { forkJoin, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +27,8 @@ export class MovieService {
   private baseUrl = environment.tmdbApiBaseUrl;
   private apiKey = environment.tmdbApiKey;
   private movieListPath = '/discover/movie';
-  private movieDetailsPath = '/movie/:id';
+  private movieDetailsPath = `/movie/${ROUTE_SEGMENT.DYNAMIC_ID}`;
+  private movieCreditsPath = `/movie/${ROUTE_SEGMENT.DYNAMIC_ID}/credits`;
   private configPath = '/configuration';
   private headers = new HttpHeaders({
     Authorization: `Bearer ${this.apiKey}`,
@@ -25,8 +36,9 @@ export class MovieService {
   });
 
   private imageBaseUrl = IMAGE_BASE_URL;
-  posterSize = POSTER_SIZE.W342;
-  backdropSize = BACKDROP_SIZE.W1280;
+  posterSize = POSTER_SIZES.W342;
+  backdropSize = BACKDROP_SIZES.W1280;
+  profileSize = PROFILE_SIZES.W185;
 
   constructor(private http: HttpClient) {}
 
@@ -82,9 +94,78 @@ export class MovieService {
       );
   }
 
-  getImageUrl(path: string, type: 'poster' | 'backdrop'): string {
+  getMovieWithCredits(id: number): Observable<MovieWithCredits> {
+    return forkJoin({
+      details: this.getMovieDetails(id).pipe(
+        map((response) => ({
+          id: response.id,
+          title: response.title,
+          tagline: response.tagline,
+          overview: response.overview,
+          posterUrl: response.poster_path
+            ? this.getImageUrl(response.poster_path, 'poster')
+            : null,
+          backdropUrl: response.backdrop_path
+            ? this.getImageUrl(response.backdrop_path, 'backdrop')
+            : null,
+          releaseDate: response.release_date,
+          status: response.status,
+          runtime: response.runtime,
+          voteAverage: response.vote_average,
+          adult: response.adult,
+          video: response.video,
+          genres: response.genres,
+          imdbId: response.imdb_id,
+        }))
+      ),
+      cast: this.getMovieCredits(id).pipe(
+        map((response) => response.cast),
+        map((cast) =>
+          cast
+            .map((c) => {
+              return {
+                id: c.id,
+                name: c.name,
+                character: c.character,
+                profileUrl: c.profile_path
+                  ? this.getImageUrl(c.profile_path, 'profile')
+                  : null,
+                order: c.order,
+              };
+            })
+            .sort((a, b) => a.order - b.order)
+        )
+      ),
+    });
+  }
+
+  getMovieDetails(id: number): Observable<ResMovieDetails> {
+    return this.http.get<ResMovieDetails>(
+      this.baseUrl +
+        this.movieDetailsPath.replace(ROUTE_SEGMENT.DYNAMIC_ID, id.toString()),
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+  getMovieCredits(id: number): Observable<ResMovieCredits> {
+    return this.http.get<ResMovieCredits>(
+      this.baseUrl +
+        this.movieCreditsPath.replace(ROUTE_SEGMENT.DYNAMIC_ID, id.toString()),
+      {
+        headers: this.headers,
+      }
+    );
+  }
+
+  getImageUrl(path: string, type: 'poster' | 'backdrop' | 'profile'): string {
     return `${this.imageBaseUrl}${
-      type === 'poster' ? this.posterSize : this.backdropSize
+      type === 'poster'
+        ? this.posterSize
+        : type === 'backdrop'
+        ? this.backdropSize
+        : this.profileSize
     }${path}`;
   }
 }
