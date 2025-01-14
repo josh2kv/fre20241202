@@ -1,5 +1,9 @@
 # Hw10: Notflix Frontend
 
+## Screenshot([Demo](https://notflix-demo.netlify.app/))
+
+![Notflix Screenshot](./notflix-screenshot.jpg)
+
 ## Pages
 
 ✅ Done, 🟢 To Review, 🔵 In Progress, ⚪️ Not Started
@@ -10,7 +14,7 @@
 | Login | 🟢 | 🟢 | ⚪️ | - Form validation<br>- Error handling |  |
 | Register | 🟢 | 🟢 | ⚪️ | - Credentials step<br>- Account step<br>- Plan step |  |
 | Movie List | 🟢 | 🟢 | ⚪️ | - Movie grid<br>- Movie card |  |
-| Movie Detail | ⚪️ | ⚪️ | ⚪️ | - Video player<br>- Movie info |  |
+| Movie Detail | 🟢 | 🟢 | ⚪️ | - Video player<br>- Movie info |  |
 
 ## Folder structure: Organize by features([Link](https://medium.com/@marketing_26756/angular-best-practices-tips-for-project-structure-and-organization-490ca7950829))
 
