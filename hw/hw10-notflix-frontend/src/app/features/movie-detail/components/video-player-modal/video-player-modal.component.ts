@@ -12,7 +12,7 @@ import { MovieVideo } from '@shared/interfaces/movie';
 })
 export class VideoPlayerModalComponent implements OnInit {
   movieId: number;
-  selectedVideoId: string = '';
+  selectedVideoIndex: number = 0;
   movieVideos: MovieVideo[] = [];
 
   constructor(
@@ -25,11 +25,22 @@ export class VideoPlayerModalComponent implements OnInit {
   ngOnInit(): void {
     this.movieService.getMovieVideos(this.movieId).subscribe((videos) => {
       this.movieVideos = videos;
-      this.selectedVideoId = videos[0]?.key;
+      this.selectedVideoIndex = 0;
     });
   }
 
-  selectVideo(videoId: string) {
-    this.selectedVideoId = videoId;
+  selectVideo(index: number) {
+    this.selectedVideoIndex = index;
+  }
+
+  goBack() {
+    this.selectedVideoIndex = Math.max(0, this.selectedVideoIndex - 1);
+  }
+
+  goForward() {
+    this.selectedVideoIndex = Math.min(
+      this.movieVideos.length - 1,
+      this.selectedVideoIndex + 1
+    );
   }
 }

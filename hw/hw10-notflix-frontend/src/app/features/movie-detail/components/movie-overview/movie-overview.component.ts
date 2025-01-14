@@ -14,7 +14,7 @@ export class MovieOverviewComponent {
   @Input() movie!: MovieWithCredits;
   @Input() movieId!: number;
 
-  modalWidth = '1400px';
+  modalWidth = '1560px';
   modalHeight = '720px';
 
   constructor(private dialog: MatDialog) {}

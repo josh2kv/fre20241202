@@ -1,11 +1,20 @@
 <ng-container *ngIf="movieVideos.length > 0">
   <!-- <h2 mat-dialog-title>Trailer</h2> -->
   <mat-dialog-content>
-    <div class="video-player-container">
-      <youtube-player width="1080" height="720" [videoId]="selectedVideoId"></youtube-player>
+    <div class="content-wrapper">
+      <div class="video-player-container">
+        <button mat-icon-button class="btn go-back" (click)="goBack()" [disabled]="selectedVideoIndex === 0">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <youtube-player width="1080" height="720" [videoId]="movieVideos[selectedVideoIndex].key"></youtube-player>
+        <button mat-icon-button class="btn go-forward" (click)="goForward()"
+          [disabled]="selectedVideoIndex === movieVideos.length - 1">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
       <div class="videos-list">
-        <button mat-stroked-button class="btn video-item" [attr.data-selected]="selectedVideoId === video.key"
-          *ngFor="let video of movieVideos" (click)="selectVideo(video.key)">
+        <button mat-stroked-button class="btn video-item" [attr.data-selected]="selectedVideoIndex === index"
+          *ngFor="let video of movieVideos; let index = index" (click)="selectVideo(index)">
           <mat-icon class="video-item-icon">play_arrow</mat-icon>
           <span class="video-item-name">{{ video.name }}</span>
         </button>
