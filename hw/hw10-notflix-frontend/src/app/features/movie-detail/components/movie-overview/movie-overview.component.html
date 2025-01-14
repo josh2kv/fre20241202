@@ -1,0 +1,44 @@
+<ng-container *ngIf="movie">
+  <div class="backdrop">
+    <img [src]="movie.details.backdropUrl" [alt]="movie.details.title" class="backdrop-image" />
+    <div class="overlay"></div>
+  </div>
+  <div class="movie-info-container">
+    <div class="movie-info">
+      <div class="movie-info-header">
+        <button mat-icon-button class="btn back" [routerLink]="['../']">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <div class="movie-rating">
+          <mat-icon>star</mat-icon>
+          <span>{{movie.details.voteAverage | number: '1.1-1'}}</span>
+        </div>
+        <span class="movie-year">{{ movie.details.releaseDate | date: 'yyyy' }}</span>
+        <span class="movie-runtime">{{ movie.details.runtime }} min</span>
+      </div>
+      <h1 class="movie-title">{{ movie.details.title }}</h1>
+      <p class="movie-tagline">{{ movie.details.tagline }}</p>
+      <p class="movie-overview">{{ movie.details.overview }}</p>
+    </div>
+    <div class="movie-info-actions">
+      <button mat-flat-button class="btn play">
+        <mat-icon class="play-icon">play_arrow</mat-icon>
+        <span>Play</span>
+      </button>
+      <button mat-stroked-button class="btn trailer" (click)="openVideoPlayerModal()">Trailer</button>
+    </div>
+  </div>
+  <div class="movie-cast-container">
+    <div class="movie-cast-list">
+      <div class="movie-cast-item" *ngFor="let cast of movie.cast">
+        <div class="movie-cast-image-wrapper">
+          <img [src]="cast.profileUrl" [alt]="cast.name" class="movie-cast-image" />
+        </div>
+        <div class="movie-cast-info">
+          <!-- <p class="movie-cast-name">{{ cast.name }}</p> -->
+          <p class="movie-cast-character">{{ cast.character }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

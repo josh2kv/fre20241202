@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { MatDialogModule } from '@angular/material/dialog';
 const materialModules = [
   MatButtonModule,
   MatIconModule,
@@ -15,6 +15,7 @@ const materialModules = [
   MatRadioModule,
   MatDividerModule,
   MatCheckboxModule,
+  MatDialogModule,
 ];
 
 @NgModule({

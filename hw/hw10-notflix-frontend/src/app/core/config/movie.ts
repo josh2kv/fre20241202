@@ -13,7 +13,7 @@ export const movieConfig = {
 
 export const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/';
 
-export const POSTER_SIZE = {
+export const POSTER_SIZES = {
   W92: 'w92',
   W154: 'w154',
   W185: 'w185',
@@ -23,9 +23,33 @@ export const POSTER_SIZE = {
   ORIGINAL: 'original',
 } as const;
 
-export const BACKDROP_SIZE = {
+export const BACKDROP_SIZES = {
   W300: 'w300',
   W780: 'w780',
   W1280: 'w1280',
+  ORIGINAL: 'original',
+} as const;
+
+export const PROFILE_SIZES = {
+  W45: 'w45',
+  W185: 'w185',
+  H632: 'h632',
+  ORIGINAL: 'original',
+} as const;
+
+export const STILL_SIZES = {
+  W92: 'w92',
+  W185: 'w185',
+  W300: 'w300',
+  ORIGINAL: 'original',
+} as const;
+
+export const LOGO_SIZES = {
+  W45: 'w45',
+  W92: 'w92',
+  W154: 'w154',
+  W185: 'w185',
+  W300: 'w300',
+  W500: 'w500',
   ORIGINAL: 'original',
 } as const;
