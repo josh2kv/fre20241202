@@ -76,7 +76,7 @@ body {
       // hover-state-layer-opacity: 0,
       // focus-state-layer-opacity: 0,
       // pressed-state-layer-opacity: 0,
-      // dragged-state-layer-opacity: 0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+      // dragged-state-layer-opacity: 0,,,,,,
     )
   );
 
@@ -87,6 +87,8 @@ body {
       filled-label-text-size: var.$nf-font-size-md,
       filled-horizontal-padding: var.$nf-spacing-xl,
       outlined-label-text-color: var.$nf-color-on-primary,
+      outlined-container-shape: var.$nf-rounded-sm,
+      outlined-state-layer-color: var.$nf-color-on-primary,
     )
   );
 

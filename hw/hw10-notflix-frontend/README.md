@@ -297,3 +297,33 @@ src/
       <ng-content></ng-content>
     </div>
     ```
+
+## Mapping Operators
+
+| Operator | Behavior | Best For | Example Use Case |
+|----------|----------|----------|------------------|
+| `map` | Transforms each value directly | - Simple transformations<br>- Data formatting<br>- Type conversion | ```movies$.pipe(map(response => ({ id: response.id, title: response.title, year: new Date(response.date).getFullYear() })))``` |
+| `switchMap` | Cancels previous request, switches to new one | - Route changes<br>- Search queries<br>- Latest value only | ```this.route.params.pipe(switchMap(params => this.movieService.getMovie(params.id)))``` |
+| `mergeMap` | Runs all requests in parallel | - Independent operations<br>- Parallel downloads<br>- Multiple updates | ```userIds$.pipe(mergeMap(id => this.notificationService.send(id), 3))``` |
+| `concatMap` | Runs requests in sequence, one after another | - Sequential operations<br>- Ordered uploads<br>- Database transactions | ```this.fileList$.pipe(concatMap(file => this.uploadService.upload(file)))``` |
+| `exhaustMap` | Ignores new requests until current completes | - Form submissions<br>- Login attempts<br>- Rate limiting | ```this.submitButton.clicks.pipe(exhaustMap(() => this.formService.submit()))``` |
+
+### Key Differences
+
+- Observable Creation:
+  - `map`: No new Observable created
+  - Others: Create new Observable for each value
+- Async Handling:
+  - `map`: Synchronous transformation
+  - Others: Handle async operations
+- Common Usage:
+  - `map`: Data transformation
+  - `switchMap`: Latest async result
+  - `mergeMap`: Parallel async operations
+  - `concatMap`: Sequential async operations
+  - `exhaustMap`: Debounced async operations
+- Choose based on needs:
+  - Need latest only? → `switchMap`
+  - Need all in parallel? → `mergeMap`
+  - Need sequence? → `concatMap`
+  - Need to ignore until complete? → `exhaustMap`

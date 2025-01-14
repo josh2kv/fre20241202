@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ROUTE_PATH } from '@core/config/routes';
+import { ROUTE_PATH, ROUTE_SEGMENT } from '@core/config/routes';
 import { filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -13,6 +13,10 @@ import { filter, Subject, takeUntil } from 'rxjs';
 export class GlobalHeaderComponent {
   toHome = ROUTE_PATH.HOME;
   toLogin = ROUTE_PATH.AUTH_LOGIN;
+  hiddenLoginRoutes = [
+    ROUTE_PATH.AUTH_LOGIN,
+    new RegExp(`^/${ROUTE_SEGMENT.BROWSE}/\\d+$`),
+  ];
   showLogin = true;
   private destroy$ = new Subject<void>();
 
@@ -26,7 +30,12 @@ export class GlobalHeaderComponent {
         takeUntil(this.destroy$)
       )
       .subscribe(() => {
-        this.showLogin = this.router.url !== ROUTE_PATH.AUTH_LOGIN;
+        this.showLogin = !this.hiddenLoginRoutes.some((route) => {
+          if (route instanceof RegExp) {
+            return route.test(this.router.url);
+          }
+          return this.router.url === route;
+        });
       });
   }
 }

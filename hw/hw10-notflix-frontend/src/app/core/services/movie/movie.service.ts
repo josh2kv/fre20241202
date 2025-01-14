@@ -18,7 +18,7 @@ import {
   ResMovies,
 } from '@shared/interfaces/movie';
 import { environment } from 'environments/environment';
-import { forkJoin, map, Observable } from 'rxjs';
+import { filter, forkJoin, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -119,7 +119,7 @@ export class MovieService {
         }))
       ),
       cast: this.getMovieCredits(id).pipe(
-        map((response) => response.cast),
+        map((response) => response.cast.slice(0, 5)),
         map((cast) =>
           cast
             .map((c) => {
