@@ -13,6 +13,7 @@ import { map, switchMap } from 'rxjs';
 })
 export class MovieDetailComponent implements OnInit {
   movieDetails!: MovieWithCredits;
+  movieId!: number;
 
   constructor(
     private movieService: MovieService,
@@ -23,7 +24,10 @@ export class MovieDetailComponent implements OnInit {
     this.route.params
       .pipe(
         map((params) => +params['id']),
-        switchMap((id) => this.movieService.getMovieWithCredits(id))
+        switchMap((id) => {
+          this.movieId = id;
+          return this.movieService.getMovieWithCredits(id);
+        })
       )
       .subscribe((movie) => {
         this.movieDetails = movie;

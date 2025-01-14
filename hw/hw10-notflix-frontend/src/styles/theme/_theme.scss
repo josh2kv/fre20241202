@@ -76,7 +76,7 @@ body {
       // hover-state-layer-opacity: 0,
       // focus-state-layer-opacity: 0,
       // pressed-state-layer-opacity: 0,
-      // dragged-state-layer-opacity: 0,,,,,,
+      // dragged-state-layer-opacity: 0,,,,,,,,
     )
   );
 
@@ -117,4 +117,14 @@ body {
       selected-hover-icon-color: var.$nf-color-on-surface,
     )
   );
+
+  @include mat.dialog-overrides(
+    (
+      container-shape: var.$nf-rounded-md,
+    )
+  );
+}
+
+.video-player-modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
 }

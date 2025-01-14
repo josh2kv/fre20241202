@@ -4,9 +4,19 @@ import { MovieOverviewComponent } from './components/movie-overview/movie-overvi
 import { MovieDetailRoutingModule } from './movie-detail-routing.module';
 import { SharedModule } from '@shared/shared.module';
 import { MovieDetailComponent } from './movie-detail.component';
-
+import { VideoPlayerModalComponent } from './components/video-player-modal/video-player-modal.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 @NgModule({
-  declarations: [MovieOverviewComponent, MovieDetailComponent],
-  imports: [CommonModule, MovieDetailRoutingModule, SharedModule],
+  declarations: [
+    MovieOverviewComponent,
+    MovieDetailComponent,
+    VideoPlayerModalComponent,
+  ],
+  imports: [
+    CommonModule,
+    MovieDetailRoutingModule,
+    YouTubePlayerModule,
+    SharedModule,
+  ],
 })
 export class MovieDetailModule {}

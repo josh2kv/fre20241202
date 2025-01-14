@@ -3,14 +3,11 @@ import { Injectable } from '@angular/core';
 import {
   BACKDROP_SIZES,
   IMAGE_BASE_URL,
-  movieConfig,
   POSTER_SIZES,
   PROFILE_SIZES,
 } from '@core/config/movie';
 import { ROUTE_SEGMENT } from '@core/config/routes';
 import {
-  MovieCast,
-  MovieDetails,
   MoviesWithPagination,
   MovieVideo,
   MovieWithCredits,
@@ -42,6 +39,9 @@ export class MovieService {
   posterSize = POSTER_SIZES.W342;
   backdropSize = BACKDROP_SIZES.W1280;
   profileSize = PROFILE_SIZES.W185;
+
+  maxCastCount = 5;
+  maxVideoCount = 10;
 
   constructor(private http: HttpClient) {}
 
@@ -122,7 +122,7 @@ export class MovieService {
         }))
       ),
       cast: this.getMovieCredits(id).pipe(
-        map((response) => response.cast.slice(0, 5)),
+        map((response) => response.cast.slice(0, this.maxCastCount)),
         map((cast) =>
           cast
             .map((c) => {
@@ -163,7 +163,7 @@ export class MovieService {
       )
       .pipe(
         map((response) =>
-          response.results.map((video) => ({
+          response.results.slice(0, this.maxVideoCount).map((video) => ({
             id: video.id,
             key: video.key,
             name: video.name,
