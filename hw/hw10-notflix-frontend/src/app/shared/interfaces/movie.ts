@@ -185,3 +185,27 @@ export interface MovieWithCredits {
   details: MovieDetails;
   cast: MovieCast[];
 }
+
+export interface ResMovieVideos {
+  id: number;
+  results: {
+    iso_639_1: string; // Language code
+    iso_3166_1: string; // Country code
+    name: string; // Video title
+    key: string; // Video key
+    site: string; // Video site
+    size: number; // Video resolution
+    type: string; // Video type
+    official: boolean; // Official flag
+    published_at: string; // Video publish date
+    id: string; // Video ID
+  }[];
+}
+
+export interface MovieVideo {
+  id: string;
+  key: string;
+  name: string;
+  site: string;
+  type: string;
+}

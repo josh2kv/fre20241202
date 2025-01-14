@@ -12,10 +12,12 @@ import {
   MovieCast,
   MovieDetails,
   MoviesWithPagination,
+  MovieVideo,
   MovieWithCredits,
   ResMovieCredits,
   ResMovieDetails,
   ResMovies,
+  ResMovieVideos,
 } from '@shared/interfaces/movie';
 import { environment } from 'environments/environment';
 import { filter, forkJoin, map, Observable } from 'rxjs';
@@ -29,6 +31,7 @@ export class MovieService {
   private movieListPath = '/discover/movie';
   private movieDetailsPath = `/movie/${ROUTE_SEGMENT.DYNAMIC_ID}`;
   private movieCreditsPath = `/movie/${ROUTE_SEGMENT.DYNAMIC_ID}/credits`;
+  private movieVideosPath = `/movie/${ROUTE_SEGMENT.DYNAMIC_ID}/videos`;
   private configPath = '/configuration';
   private headers = new HttpHeaders({
     Authorization: `Bearer ${this.apiKey}`,
@@ -147,6 +150,28 @@ export class MovieService {
         headers: this.headers,
       }
     );
+  }
+
+  getMovieVideos(id: number): Observable<MovieVideo[]> {
+    return this.http
+      .get<ResMovieVideos>(
+        this.baseUrl +
+          this.movieVideosPath.replace(ROUTE_SEGMENT.DYNAMIC_ID, id.toString()),
+        {
+          headers: this.headers,
+        }
+      )
+      .pipe(
+        map((response) =>
+          response.results.map((video) => ({
+            id: video.id,
+            key: video.key,
+            name: video.name,
+            site: video.site,
+            type: video.type,
+          }))
+        )
+      );
   }
 
   getMovieCredits(id: number): Observable<ResMovieCredits> {
