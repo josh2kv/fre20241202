@@ -1,1 +1,18 @@
-<p>global-header works!</p>
+<header class="global-header">
+  <div class="wrapper">
+    <a [routerLink]="toDirectory" class="logo">CVS Directory</a>
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a [routerLink]="toDirectory" [routerLinkActive]="activeLinkClass">Directory</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="toContactUs" [routerLinkActive]="activeLinkClass">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="toAbout" [routerLinkActive]="activeLinkClass">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
