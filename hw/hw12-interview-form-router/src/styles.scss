@@ -33,7 +33,7 @@ body {
   --global-header-height: 80px;
   --container-width: 1440px;
 
-  --primary-color: #eb0000;
+  --primary-color: hsl(0, 100%, 46%);
   --primary-on-color: hsl(0, 0%, 95%);
 
   --spacing-xs: 4px;
@@ -42,4 +42,9 @@ body {
   --spacing-lg: 24px;
   --spacing-xl: 36px;
   --spacing-2xl: 48px;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
 }
