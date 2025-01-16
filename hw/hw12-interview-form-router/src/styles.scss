@@ -24,6 +24,10 @@ body {
   height: 100%;
 }
 
+textarea {
+  font-family: inherit;
+}
+
 body {
   min-height: 100vh;
   font-family: "Arial", "Montserrat", sans-serif;
@@ -38,10 +42,10 @@ body {
 
   --spacing-xs: 4px;
   --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 36px;
-  --spacing-2xl: 48px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 36px;
 }
 
 .container {
