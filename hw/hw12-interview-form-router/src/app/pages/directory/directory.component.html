@@ -1,0 +1,18 @@
+<div class="directory-container">
+  <h2 class="title">CVS Users</h2>
+  <ng-container *ngIf="!loading; else loadingTpl">
+    <ng-container *ngIf="!errorMessage; else errorTpl">
+      <app-user-card *ngFor="let user of users" [user]="user" />
+    </ng-container>
+  </ng-container>
+</div>
+
+
+<ng-template #loadingTpl>
+  <div>Loading...</div>
+</ng-template>
+
+
+<ng-template #errorTpl>
+  <div>{{ errorMessage }}</div>
+</ng-template>

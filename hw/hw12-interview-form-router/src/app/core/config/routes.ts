@@ -1,0 +1,15 @@
+export const ROUTE_SEGMENTS = {
+  ROOT: '',
+
+  DIRECTORY: 'directory',
+  CONTACT_US: 'contact-us',
+  ABOUT: 'about',
+} as const;
+
+export const ROUTE_PATHS = {
+  ROOT: `/${ROUTE_SEGMENTS.ROOT}`,
+
+  DIRECTORY: `/${ROUTE_SEGMENTS.ROOT}/${ROUTE_SEGMENTS.DIRECTORY}`,
+  CONTACT_US: `/${ROUTE_SEGMENTS.ROOT}/${ROUTE_SEGMENTS.CONTACT_US}`,
+  ABOUT: `/${ROUTE_SEGMENTS.ROOT}/${ROUTE_SEGMENTS.ABOUT}`,
+};

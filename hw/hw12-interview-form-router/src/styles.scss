@@ -1,0 +1,54 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Arial", "Montserrat", sans-serif;
+}
+
+:root {
+  --global-header-height: 80px;
+  --container-width: 1200px;
+
+  --primary-color: hsl(0, 100%, 46%);
+  --primary-on-color: hsl(0, 0%, 95%);
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 36px;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}

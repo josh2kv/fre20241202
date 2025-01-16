@@ -1,0 +1,48 @@
+<div class="contact-us-container">
+  <h2 class="title">Contact Us</h2>
+  <form *ngIf="!submitted; else submittedTpl" class="form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" autocomplete="off" placeholder="Enter your name" formControlName="name"
+        required />
+      <div class="error-messages" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+        <p *ngIf="name?.hasError('required')">Name is required.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="message">Message:</label>
+      <textarea rows="4" name="message" id="message" autocomplete="off" placeholder="Enter your message"
+        formControlName="message"></textarea>
+      <div class="error-messages" *ngIf="message?.invalid && (message?.dirty || name?.touched)">
+        <p *ngIf="message?.hasError('required')">
+          Message is required
+        </p>
+        <p *ngIf="message?.hasError('minLength')">
+          Message must be at least 10 characters long
+        </p>
+      </div>
+    </div>
+    <div class="form-footer">
+      <button [disabled]="!contactForm.valid">Send Message</button>
+    </div>
+  </form>
+</div>
+
+
+<ng-template #submittedTpl>
+  <div class="review-result">
+    <p class="success-message">Thank you for contacting us. We will be in touch shortly!</p>
+    <hr />
+    <div class="review-values">
+      <p class="message-title">You have submitted the following message:</p>
+      <div class="row">
+        <div class="label">Name:</div>
+        <div class="value">{{ contactForm.value.name }}</div>
+      </div>
+      <div class="row">
+        <div class="label">Message:</div>
+        <div class="value">{{ contactForm.value.message }}</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

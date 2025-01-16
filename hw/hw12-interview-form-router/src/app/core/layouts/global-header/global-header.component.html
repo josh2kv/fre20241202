@@ -1,0 +1,18 @@
+<header class="global-header">
+  <div class="wrapper container">
+    <a [routerLink]="toDirectory" class="logo">CVS Directory</a>
+    <nav>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="toDirectory" [routerLinkActive]="activeLinkClass">Directory</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="toContactUs" [routerLinkActive]="activeLinkClass">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="toAbout" [routerLinkActive]="activeLinkClass">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
