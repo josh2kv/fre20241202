@@ -1,7 +1,6 @@
-import { User } from "@models/user.model";
+import { User } from "@features/users/user.model";
 import { DataSource } from "typeorm";
 
-console.log(process.env.DB_URI);
 export const AppDataSource = new DataSource({
   type: "mongodb",
   url: process.env.DB_URI,

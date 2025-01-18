@@ -2,30 +2,55 @@
 
 ## Folder Structure
 
+### Feature-based
+
+- Easy to understand where to find code
+- Good for smaller to medium projects
+- Features are self-contained
+- Easy to maintain and scale per feature
+- Good for teams working on different features
+
 ### Example
 
 ```
-├── src/
-│   ├── core/           # Configuration files
-│   │   ├── passport.ts   # Passport configuration
-│   │   └── database.ts   # Database configuration
-│   ├── controllers/      # Request handlers
-│   │   ├── auth.ts       # Authentication controllers
-│   │   ├── user.ts       # User-related controllers
-│   │   └── movie.ts      # Movie-related controllers
-│   ├── models/           # Database models
-│   │   └── user.ts       # User model
-│   ├── routes/           # API routes
-│   │   ├── auth.ts       # Authentication routes
-│   │   ├── user.ts       # User routes
-│   │   └── movie.ts      # Movie routes
-│   ├── services/         # Business logic
-│   │   └── tmdb.ts       # TMDB API service
-│   ├── middleware/       # Custom middleware
-│   │   └── auth.ts       # Authentication middleware
-│   ├── types/           # TypeScript type definitions
-│   │   └── index.ts     # Common types
-│   └── app.ts           # Express app setup
-├── package.json
-└── tsconfig.json
+src/
+├── config/                 # Configuration files
+│   ├── database.ts
+│   └── env.ts
+│
+├── features/              # Group by feature/domain
+│   ├── users/            # Everything related to users
+│   │   ├── user.model.ts
+│   │   ├── user.dto.ts
+│   │   ├── user.controller.ts
+│   │   ├── user.service.ts
+│   │   ├── user.route.ts
+│   │   └── user.test.ts
+│   │
+│   ├── auth/             # Authentication feature
+│   │   ├── auth.controller.ts
+│   │   ├── auth.service.ts
+│   │   ├── auth.route.ts
+│   │   └── auth.middleware.ts
+│   │
+│   └── movies/           # Movie-related features
+│       ├── movie.model.ts
+│       ├── movie.controller.ts
+│       ├── movie.service.ts
+│       └── movie.route.ts
+│
+├── shared/               # Shared utilities and middleware
+│   ├── middleware/
+│   │   ├── error.middleware.ts
+│   │   └── validation.middleware.ts
+│   │
+│   └── utils/
+│       ├── response.util.ts
+│       └── logger.util.ts
+│
+├── types/               # Type definitions
+│   └── index.ts
+│
+├── app.ts
+└── server.ts
 ```

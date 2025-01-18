@@ -15,14 +15,10 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
-      "@core/*": ["core/*"],
-      "@controllers/*": ["controllers/*"],
-      "@models/*": ["models/*"],
-      "@routes/*": ["routes/*"],
-      "@services/*": ["services/*"],
-      "@middleware/*": ["middleware/*"],
-      "@types/*": ["types/*"],
-      "@utils/*": ["utils/*"]
+      "@config/*": ["config/*"],
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@types/*": ["types/*"]
     }
   },
   "include": ["src/**/*"],
