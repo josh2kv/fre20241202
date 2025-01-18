@@ -1,5 +1,17 @@
-@baseUrl=http://localhost:{{port}}
 @port=3434
+@baseUrl=http://localhost:{{port}}
 
+### Get all users
+GET {{baseUrl}}/test-db
 
-GET {{baseUrl}}
+###te a user
+
+POST {{baseUrl}}/api/test-db
+content-type: application/json
+
+{
+    "email": "test@example.com",
+    "password": "test123",
+    "tmdbApiKey": "test-key"
+}
+
