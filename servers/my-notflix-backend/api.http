@@ -1,0 +1,5 @@
+@baseUrl=http://localhost:{{port}}
+@port=3434
+
+
+GET {{baseUrl}}
