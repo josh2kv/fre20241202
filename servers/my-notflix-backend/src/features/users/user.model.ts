@@ -1,4 +1,4 @@
-import { UserRole } from "@/types";
+import { Plan, UserRole } from "@/types";
 import { ObjectId } from "mongodb";
 import {
   Column,
@@ -25,14 +25,23 @@ export class User {
   password: string;
 
   @Column({
+    nullable: false,
+    type: "enum",
+    enum: Plan,
+    default: Plan.STANDARD_WITH_ADS,
+  })
+  plan: Plan;
+
+  @Column({ nullable: false })
+  tmdbApiKey: string;
+
+  @Column({
+    nullable: false,
     type: "enum",
     enum: UserRole,
     default: UserRole.USER,
   })
   role: UserRole;
-
-  @Column({ nullable: false })
-  tmdbApiKey: string;
 
   @CreateDateColumn()
   createdAt: Date;

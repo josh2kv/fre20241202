@@ -3,3 +3,9 @@ export enum UserRole {
   ADMIN = "ADMIN",
   USER = "USER",
 }
+
+export enum Plan {
+  STANDARD_WITH_ADS = "STANDARD_WITH_ADS",
+  STANDARD = "STANDARD",
+  PREMIUM = "PREMIUM",
+}

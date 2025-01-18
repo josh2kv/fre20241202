@@ -8,7 +8,7 @@ POST {{baseUrl}}/auth/login
 content-type: application/json
 
 {
-    "email": "test1234567890@example.com",
+    "email": "test10@example.com",
     "password": "testhh1212"
 }
 
@@ -18,8 +18,11 @@ POST {{baseUrl}}/auth/register
 content-type: application/json
 
 {
-    "email": "test1234567890@example.com",
-    "password": "testhh1212"
+    "email": "test11@example.com",
+    "password": "testhh1212",
+    "username": "test1234567890",
+    "tmdbApiKey": "test-key",
+    "role": "ADMIN"
 }
 
 

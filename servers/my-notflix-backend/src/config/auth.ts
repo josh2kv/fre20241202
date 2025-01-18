@@ -12,7 +12,6 @@ export const jwtStrategy = new JwtStrategy(
   },
   async (payload, done) => {
     try {
-      console.log(payload);
       const userRepository = AppDataSource.getRepository(User);
       const user = await userRepository.findOne({
         where: { _id: payload.sub },

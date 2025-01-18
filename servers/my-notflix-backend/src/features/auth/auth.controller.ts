@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { AuthService } from "./auth.service";
-import { LoginDto } from "./auth.dto";
+import { LoginDto, RegisterDto } from "./auth.dto";
 import { ApiResponse } from "@/shared/utils/api-response";
+import { CreateUserDto } from "@/features/users/user.dto";
+import { HttpStatusCode } from "axios";
 
 export class AuthController {
   private authService = new AuthService();
@@ -13,6 +15,17 @@ export class AuthController {
       const token = this.authService.generateToken(user);
 
       res.json(ApiResponse.success({ accessToken: token }));
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async register(req: Request, res: Response, next: NextFunction) {
+    try {
+      const registerDto: RegisterDto = req.body;
+      const userWithToken = await this.authService.register(registerDto);
+
+      res.status(201).json(ApiResponse.success(userWithToken));
     } catch (error) {
       next(error);
     }

@@ -14,8 +14,8 @@ export class UserService {
         email: rest.email,
       },
     });
-
     if (found) throw new ConflictError(`Email [${rest.email}] already exists`);
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = this.userRepository.create({
       ...rest,
@@ -43,5 +43,9 @@ export class UserService {
     }
 
     return this.userRepository.save(user);
+  }
+
+  async findUserByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { email } });
   }
 }

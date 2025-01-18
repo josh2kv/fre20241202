@@ -12,6 +12,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
@@ -19,7 +20,8 @@
       "@features/*": ["features/*"],
       "@shared/*": ["shared/*"],
       "@types/*": ["types/*"]
-    }
+    },
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
