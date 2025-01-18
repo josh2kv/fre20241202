@@ -8,6 +8,7 @@ export const AppDataSource = new DataSource({
   useUnifiedTopology: true,
   synchronize: process.env.NODE_ENV === "development",
   logging: process.env.NODE_ENV === "development",
+  // dropSchema: process.env.NODE_ENV === "development",
   entities: [User],
   subscribers: [],
   migrations: [],

@@ -3,18 +3,24 @@
 @baseUrl=http://localhost:{{port}}/{{prefix}}
 
 
-### Get all users
-GET {{baseUrl}}/
 
-###te a user
 
+### Create a user
 POST {{baseUrl}}/users
 content-type: application/json
 
 {
     "username": "te2232323",
-    "email": "test12@example.com",
+    "email": "dddd@example.com",
     "password": "test1212",    
     "tmdbApiKey": "test-key"
+}
+
+### Update a user
+PATCh {{baseUrl}}/users/678b6987cb9ad5d7cfed63b7
+content-type: application/json
+
+{
+    "username": "test1234567890"
 }
 

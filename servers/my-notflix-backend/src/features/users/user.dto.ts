@@ -6,6 +6,7 @@ import {
   MaxLength,
   MinLength,
   IsEmail,
+  IsOptional,
 } from "class-validator";
 
 export class CreateUserDto {
@@ -31,4 +32,26 @@ export class CreateUserDto {
 
   @IsEnum(UserRole)
   role: UserRole = UserRole.USER;
+}
+
+export class UpdateUserDto {
+  @IsString()
+  @MinLength(4)
+  @MaxLength(20)
+  @IsOptional()
+  username?: string;
+
+  @IsString()
+  @MinLength(8)
+  @MaxLength(20)
+  @IsOptional()
+  password?: string;
+
+  @IsString()
+  @IsOptional()
+  tmdbApiKey?: string;
+
+  @IsEnum(UserRole)
+  @IsOptional()
+  role?: UserRole;
 }

@@ -25,6 +25,12 @@ export class ValidationError extends AppError {
   }
 }
 
+export class NotFoundError extends AppError {
+  constructor(message: string) {
+    super(message, STATUS_CODES.NOT_FOUND);
+  }
+}
+
 export class ConflictError extends AppError {
   constructor(message: string) {
     super(message, STATUS_CODES.CONFLICT);

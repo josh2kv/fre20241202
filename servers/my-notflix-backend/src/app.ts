@@ -6,6 +6,7 @@ import { API_VERSION } from "./config/routes";
 import { ROUTE_SEGMENT } from "./config/routes";
 import userRoutes from "./features/users/user.routes";
 import { errorHandler } from "./shared/middlewares/error.middleware";
+import { ApiResponse } from "./shared/utils/api-response";
 const bootstrap = async () => {
   const app: Express = express();
   const apiRouter = express.Router();
@@ -15,15 +16,15 @@ const bootstrap = async () => {
 
   app.use(express.json());
 
-  // apiRouter.use(ROUTE_SEGMENT.ROOT, (req, res) => {
-  //   res.status(200).json({
-  //     message: "This is for testing! and testing is good!",
-  //   });
-  // });
-
   apiRouter.use(ROUTE_SEGMENT.USERS, userRoutes);
 
   app.use(API_PREFIX + API_VERSION, apiRouter);
+
+  app.use("*", (req: Request, res: Response) => {
+    res
+      .status(404)
+      .json(ApiResponse.error(`Route ${req.originalUrl} not found`));
+  });
 
   app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     errorHandler(err, req, res, next);

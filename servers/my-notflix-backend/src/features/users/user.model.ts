@@ -12,7 +12,7 @@ import {
 @Entity("user")
 export class User {
   @ObjectIdColumn()
-  id: ObjectId;
+  _id: ObjectId;
 
   @Column({ nullable: false })
   username: string;

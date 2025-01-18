@@ -1,8 +1,9 @@
 import { AppDataSource } from "@/config/db";
 import { User } from "./user.model";
-import { CreateUserDto } from "./user.dto";
+import { CreateUserDto, UpdateUserDto } from "./user.dto";
 import bcrypt from "bcrypt";
-import { ConflictError } from "@/shared/errors";
+import { ConflictError, NotFoundError } from "@/shared/errors";
+import { ObjectId } from "mongodb";
 
 export class UserService {
   private userRepository = AppDataSource.getRepository(User);
@@ -20,6 +21,26 @@ export class UserService {
       ...rest,
       password: hashedPassword,
     });
+
+    return this.userRepository.save(user);
+  }
+
+  // TODO: Check if creator is admin
+  // TODO: Check if creator is updating himself
+  async updateUser(
+    id: string,
+    { password, ...rest }: UpdateUserDto
+  ): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: { _id: new ObjectId(id) },
+    });
+    if (!user) throw new NotFoundError(`User ${id} not found`);
+    Object.assign(user, rest);
+
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+    }
 
     return this.userRepository.save(user);
   }
