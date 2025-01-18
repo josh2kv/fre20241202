@@ -5,6 +5,9 @@ export const ROUTE_SEGMENT = {
   ROOT: "/",
   ID_PARAM: "/:id",
 
-  USERS: "/users",
   AUTH: "/auth",
+  LOGIN: "/login",
+  REGISTER: "/register",
+
+  USERS: "/users",
 };

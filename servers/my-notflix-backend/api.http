@@ -3,6 +3,24 @@
 @baseUrl=http://localhost:{{port}}/{{prefix}}
 
 
+### Login
+POST {{baseUrl}}/auth/login
+content-type: application/json
+
+{
+    "email": "test1234567890@example.com",
+    "password": "testhh1212"
+}
+
+
+### Register
+POST {{baseUrl}}/auth/register
+content-type: application/json
+
+{
+    "email": "test1234567890@example.com",
+    "password": "testhh1212"
+}
 
 
 ### Create a user

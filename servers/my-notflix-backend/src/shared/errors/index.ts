@@ -20,19 +20,31 @@ export class AppError extends Error {
 }
 
 export class ValidationError extends AppError {
-  constructor(message: string, errors?: any[]) {
+  constructor(message: string = "Validation failed", errors?: any[]) {
     super(message, STATUS_CODES.BAD_REQUEST, errors);
   }
 }
 
+export class UnauthorizedError extends AppError {
+  constructor(message: string = "Unauthorized") {
+    super(message, STATUS_CODES.UNAUTHORIZED);
+  }
+}
+
+export class ForbiddenError extends AppError {
+  constructor(message: string = "Forbidden") {
+    super(message, STATUS_CODES.FORBIDDEN);
+  }
+}
+
 export class NotFoundError extends AppError {
-  constructor(message: string) {
+  constructor(message: string = "Not Found") {
     super(message, STATUS_CODES.NOT_FOUND);
   }
 }
 
 export class ConflictError extends AppError {
-  constructor(message: string) {
+  constructor(message: string = "Conflict") {
     super(message, STATUS_CODES.CONFLICT);
   }
 }
