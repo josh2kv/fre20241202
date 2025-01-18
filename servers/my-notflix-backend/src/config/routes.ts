@@ -15,4 +15,8 @@ export const ROUTE_SEGMENT = {
   USERS: {
     ROOT: "/users",
   },
-};
+
+  MOVIES: {
+    ROOT: "/movies",
+  },
+} as const;

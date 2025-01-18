@@ -10,7 +10,7 @@ const router = Router();
 const userController = new UserController();
 
 router.post(
-  ROUTE_SEGMENT.ROOT,
+  "/",
   requireRole([UserRole.ADMIN]),
   validateDto(CreateUserDto),
   userController.createUser.bind(userController)

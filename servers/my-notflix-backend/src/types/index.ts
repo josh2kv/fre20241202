@@ -9,3 +9,16 @@ export enum Plan {
   STANDARD = "STANDARD",
   PREMIUM = "PREMIUM",
 }
+export interface PaginationMeta {
+  totalItems: number;
+  page: number;
+  totalPages: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  perPage: number;
+}
+
+export interface Pagination<T> {
+  data: T[];
+  meta: PaginationMeta;
+}

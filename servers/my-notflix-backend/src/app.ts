@@ -11,6 +11,7 @@ import { authenticate } from "./shared/middlewares/auth.middleware";
 import passport from "passport";
 import { jwtStrategy } from "./config/auth";
 import authRoutes from "./features/auth/auth.routes";
+import movieRoutes from "./features/movies/movie.routes";
 
 const bootstrap = async () => {
   const app: Express = express();
@@ -27,6 +28,7 @@ const bootstrap = async () => {
   // Protected routes
   apiRouter.use(authenticate);
   apiRouter.use(ROUTE_SEGMENT.USERS.ROOT, userRoutes);
+  apiRouter.use(ROUTE_SEGMENT.MOVIES.ROOT, movieRoutes);
 
   app.use(API_PREFIX + API_VERSION, apiRouter);
 

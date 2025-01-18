@@ -4,6 +4,7 @@ export const STATUS_CODES = {
   FORBIDDEN: 403,
   NOT_FOUND: 404,
   CONFLICT: 409,
+  VALIDATION_ERROR: 422,
   INTERNAL_SERVER_ERROR: 500,
 } as const;
 
@@ -19,9 +20,15 @@ export class AppError extends Error {
   }
 }
 
+export class BadRequestError extends AppError {
+  constructor(message: string = "Bad Request") {
+    super(message, STATUS_CODES.BAD_REQUEST);
+  }
+}
+
 export class ValidationError extends AppError {
-  constructor(message: string = "Validation failed", errors?: any[]) {
-    super(message, STATUS_CODES.BAD_REQUEST, errors);
+  constructor(errors?: any[]) {
+    super("Validation failed", STATUS_CODES.VALIDATION_ERROR, errors);
   }
 }
 
@@ -46,5 +53,11 @@ export class NotFoundError extends AppError {
 export class ConflictError extends AppError {
   constructor(message: string = "Conflict") {
     super(message, STATUS_CODES.CONFLICT);
+  }
+}
+
+export class InternalServerError extends AppError {
+  constructor(message: string = "Internal Server Error") {
+    super(message, STATUS_CODES.INTERNAL_SERVER_ERROR);
   }
 }

@@ -1,22 +1,21 @@
 import { Request, Response, NextFunction } from "express";
 import { validate } from "class-validator";
+import { ValidationError } from "@/shared/errors";
 import { plainToInstance } from "class-transformer";
-import { ValidationError } from "../errors";
 
-export const validateDto = (dtoClass: any) => {
+export const validateDto = (dtoClass: any, type: "body" | "query" = "body") => {
   return async (req: Request, res: Response, next: NextFunction) => {
-    const dtoInstance = plainToInstance(dtoClass, req.body);
+    const dtoInstance = plainToInstance(dtoClass, req[type]);
     const errors = await validate(dtoInstance);
 
     if (errors.length > 0) {
-      const formattedErrors = errors.map((error) => ({
-        field: error.property,
-        constraints: Object.values(error.constraints || {}),
+      const errorMessages = errors.map((error) => ({
+        property: error.property,
+        constraints: error.constraints,
       }));
-
-      next(new ValidationError("Validation failed", formattedErrors));
+      return next(new ValidationError(errorMessages));
     } else {
-      req.body = dtoInstance;
+      req[type] = dtoInstance;
       next();
     }
   };

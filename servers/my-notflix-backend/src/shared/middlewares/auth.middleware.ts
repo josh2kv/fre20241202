@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from "express";
 import passport from "passport";
 import { ForbiddenError, UnauthorizedError } from "@/shared/errors";
 import { UserRole } from "@/types";
-import { ObjectId } from "mongodb";
 
 export const authenticate = (
   req: Request,
