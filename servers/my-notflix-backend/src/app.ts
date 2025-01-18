@@ -1,5 +1,5 @@
 import express, { Express } from "express";
-import "./core/env.config";
+import "@core/env.config";
 
 (() => {
   const app: Express = express();
