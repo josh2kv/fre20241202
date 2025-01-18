@@ -5,9 +5,14 @@ export const ROUTE_SEGMENT = {
   ROOT: "/",
   ID_PARAM: "/:id",
 
-  AUTH: "/auth",
-  LOGIN: "/login",
-  REGISTER: "/register",
+  AUTH: {
+    ROOT: "/auth",
+    LOGIN: "/login",
+    REGISTER: "/register",
+    REFRESH_TOKEN: "/refresh-token",
+  },
 
-  USERS: "/users",
+  USERS: {
+    ROOT: "/users",
+  },
 };

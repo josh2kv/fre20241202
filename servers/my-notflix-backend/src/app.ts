@@ -11,6 +11,7 @@ import { authenticate } from "./shared/middlewares/auth.middleware";
 import passport from "passport";
 import { jwtStrategy } from "./config/auth";
 import authRoutes from "./features/auth/auth.routes";
+
 const bootstrap = async () => {
   const app: Express = express();
   const apiRouter = express.Router();
@@ -21,11 +22,11 @@ const bootstrap = async () => {
   passport.use(jwtStrategy);
   app.use(express.json());
 
-  apiRouter.use(ROUTE_SEGMENT.AUTH, authRoutes);
+  apiRouter.use(ROUTE_SEGMENT.AUTH.ROOT, authRoutes);
 
   // Protected routes
   apiRouter.use(authenticate);
-  apiRouter.use(ROUTE_SEGMENT.USERS, userRoutes);
+  apiRouter.use(ROUTE_SEGMENT.USERS.ROOT, userRoutes);
 
   app.use(API_PREFIX + API_VERSION, apiRouter);
 

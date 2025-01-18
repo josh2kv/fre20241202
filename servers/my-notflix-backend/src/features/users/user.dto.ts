@@ -55,3 +55,11 @@ export class UpdateUserDto {
   @IsOptional()
   role?: UserRole;
 }
+
+export type BriefUser = {
+  id: string;
+  username: string;
+  email: string;
+  role: UserRole;
+  tmdbApiKey: string;
+};

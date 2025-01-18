@@ -26,6 +26,15 @@ content-type: application/json
 }
 
 
+### Refresh token
+POST {{baseUrl}}/auth/refresh-token
+content-type: application/json
+
+{
+    "refreshToken": "0dc7694d5dc62da2223a869e502f935b801d5f69d49dedd590deb139ecedf1cee6e53445a4763de93910b548c5e659329b5b6a0beb20592316360244baf30cb7"
+}
+
+
 ### Create a user
 POST {{baseUrl}}/users
 content-type: application/json

@@ -1,3 +1,4 @@
+import { RefreshToken } from "@/features/auth/refresh-token.model";
 import { User } from "@features/users/user.model";
 import { DataSource } from "typeorm";
 
@@ -9,7 +10,7 @@ export const AppDataSource = new DataSource({
   synchronize: process.env.NODE_ENV === "development",
   logging: process.env.NODE_ENV === "development",
   // dropSchema: process.env.NODE_ENV === "development",
-  entities: [User],
+  entities: [User, RefreshToken],
   subscribers: [],
   migrations: [],
 });

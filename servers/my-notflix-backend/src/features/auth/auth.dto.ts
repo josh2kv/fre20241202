@@ -8,6 +8,7 @@ import {
   MaxLength,
   MinLength,
 } from "class-validator";
+import { BriefUser } from "../users/user.dto";
 
 export class LoginDto {
   @IsEmail()
@@ -44,3 +45,15 @@ export class RegisterDto {
   @IsOptional()
   role: UserRole = UserRole.USER;
 }
+
+export class RefreshTokenDto {
+  @IsNotEmpty()
+  @IsString()
+  refreshToken: string;
+}
+
+export type UserWithToken = {
+  user: BriefUser;
+  accessToken: string;
+  refreshToken: string;
+};
