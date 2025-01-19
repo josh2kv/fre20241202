@@ -26,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const accessToken = this.authState.getAccessToken();
-
+    console.log('accessToken', accessToken);
     if (accessToken) {
       request = this.addToken(request, accessToken);
     }

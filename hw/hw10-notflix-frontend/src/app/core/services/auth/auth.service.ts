@@ -75,4 +75,12 @@ export class AuthService {
         })
       );
   }
+
+  logout() {
+    this.authStateService.clearAuthState();
+    return this.http.post<ApiSuccessResponse<ResAuth>>(
+      `${this.apiUrl + API_PATHS.AUTH_LOGOUT}`,
+      { refreshToken: this.authStateService.getRefreshToken() }
+    );
+  }
 }

@@ -1,5 +1,10 @@
 export type ThemeMode = 'light-mode' | 'dark-mode';
 
+export interface DataWithPagination<T> {
+  data: T;
+  meta: PaginationMeta;
+}
+
 export interface PaginationMeta {
   totalItems: number;
   page: number;
