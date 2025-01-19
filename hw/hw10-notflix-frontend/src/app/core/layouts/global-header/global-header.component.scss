@@ -22,10 +22,25 @@
   .right-wrapper {
     display: flex;
     align-items: center;
+    gap: var(--nf-spacing-md);
 
-    .btn.sign-in {
+    .btn {
       font-size: var(--nf-font-size-md);
       height: 36px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: var(--nf-spacing-xs);
+      opacity: 0.9;
+      color: var(--nf-color-on-primary);
+
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        opacity: 1;
+      }
     }
   }
 }

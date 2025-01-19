@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ROUTE_PATH } from '@core/config/routes';
+import { ROUTE_PATHS } from '@core/config/routes';
 import { EmailFormControls } from '@shared/interfaces/home';
 
 @Component({
@@ -13,7 +13,7 @@ import { EmailFormControls } from '@shared/interfaces/home';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  toRegister = ROUTE_PATH.AUTH_REGISTER;
+  toRegister = ROUTE_PATHS.AUTH_REGISTER;
   emailForm: FormGroup<EmailFormControls>;
 
   constructor(private fb: NonNullableFormBuilder, private router: Router) {

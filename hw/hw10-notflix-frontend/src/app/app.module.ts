@@ -7,6 +7,7 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {
+  HTTP_INTERCEPTORS,
   provideHttpClient,
   withFetch,
   withInterceptorsFromDi,
@@ -15,6 +16,7 @@ import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeModule } from '@pages/home/home.module';
+import { AuthInterceptor } from '@core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +31,11 @@ import { HomeModule } from '@pages/home/home.module';
     provideClientHydration(withEventReplay()),
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
     provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

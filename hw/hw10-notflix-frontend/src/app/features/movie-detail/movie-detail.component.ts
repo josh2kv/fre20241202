@@ -26,7 +26,7 @@ export class MovieDetailComponent implements OnInit {
         map((params) => +params['id']),
         switchMap((id) => {
           this.movieId = id;
-          return this.movieService.getMovieWithCredits(id);
+          return this.movieService.getMovieDetails(id);
         })
       )
       .subscribe((movie) => {

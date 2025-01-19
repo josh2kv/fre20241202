@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ROUTE_PATH } from '@core/config/routes';
-import { LoginFormControls } from '@shared/interfaces/auth';
+import { ROUTE_PATHS } from '@core/config/routes';
+import { AuthService } from '@core/services/auth/auth.service';
+import {
+  CredentialFormValues,
+  LoginFormControls,
+} from '@shared/interfaces/auth';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +16,14 @@ import { LoginFormControls } from '@shared/interfaces/auth';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  toSignup = ROUTE_PATH.AUTH_REGISTER;
+  toSignup = ROUTE_PATHS.AUTH_REGISTER;
   loginForm: FormGroup<LoginFormControls>;
 
-  constructor(private fb: NonNullableFormBuilder, private router: Router) {
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group<LoginFormControls>({
       email: this.fb.control('', [Validators.required, Validators.email]),
       password: this.fb.control('', [Validators.required]),
@@ -24,10 +32,12 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log('loginFormValues', this.loginForm.value);
+    if (!this.loginForm.valid) return;
 
-    if (this.loginForm.valid) {
-      this.router.navigate([`${ROUTE_PATH.BROWSE}`]);
-    }
+    this.authService
+      .login(this.loginForm.value as CredentialFormValues)
+      .subscribe((res) => {
+        this.router.navigate([`${ROUTE_PATHS.BROWSE}`]);
+      });
   }
 }

@@ -7,14 +7,13 @@
   <form [formGroup]="planForm" (ngSubmit)="onSubmit()" class="form-container">
     <div class="plan-grid">
       <div *ngFor="let plan of plans" class="plan-option">
-        <input type="radio" [id]="'plan-' + plan.id" [value]="plan.id" formControlName="selectedPlan"
+        <input type="radio" [id]="'plan-' + plan.id" [value]="plan.id" formControlName="plan"
           class="plan-radio visually-hidden">
-        <label [for]="'plan-' + plan.id" class="plan-card"
-          [class.selected]="planForm.get('selectedPlan')?.value === plan.id">
+        <label [for]="'plan-' + plan.id" class="plan-card" [class.selected]="planForm.get('plan')?.value === plan.id">
           <div class="plan-header" [attr.data-plan-id]="plan.id">
             <h3 class="plan-title">{{ plan.name }}</h3>
             <span class="plan-subtitle">{{ plan.resolution }}</span>
-            <div class="icon-row" [class.selected]="planForm.get('selectedPlan')?.value === plan.id">
+            <div class="icon-row" [class.selected]="planForm.get('plan')?.value === plan.id">
               <mat-icon class="check-circle-icon">check_circle</mat-icon>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { RegisterComponent } from './register.component';
 import { CredentialsStepComponent } from './components/credentials-step/credentials-step.component';
 import { PlanStepComponent } from './components/plan-step/plan-step.component';
 import { AccountStepComponent } from './components/account-step/account-step.component';
-import { ROUTE_SEGMENT } from '@core/config/routes';
+import { ROUTE_SEGMENTS } from '@core/config/routes';
 
 const routes: Routes = [
   {
@@ -13,26 +13,26 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: ROUTE_SEGMENT.CREDENTIALS,
+        redirectTo: ROUTE_SEGMENTS.CREDENTIALS,
         pathMatch: 'full',
       },
       {
-        path: ROUTE_SEGMENT.CREDENTIALS,
+        path: ROUTE_SEGMENTS.CREDENTIALS,
         component: CredentialsStepComponent,
       },
       {
-        path: ROUTE_SEGMENT.ACCOUNT,
+        path: ROUTE_SEGMENTS.ACCOUNT,
         component: AccountStepComponent,
       },
       {
-        path: ROUTE_SEGMENT.PLAN,
+        path: ROUTE_SEGMENTS.PLAN,
         component: PlanStepComponent,
       },
     ],
   },
   {
     path: '**',
-    redirectTo: ROUTE_SEGMENT.CREDENTIALS,
+    redirectTo: ROUTE_SEGMENTS.CREDENTIALS,
   },
 ];
 

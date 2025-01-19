@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '@core/services/movie/movie.service';
-import { MoviesWithPagination } from '@shared/interfaces/movie';
+import { DataWithPagination } from '@shared/interfaces/common';
+import { Movie, MoviesWithPagination } from '@shared/interfaces/movie';
 
 @Component({
   selector: 'app-movie-grid',
@@ -10,7 +11,7 @@ import { MoviesWithPagination } from '@shared/interfaces/movie';
   styleUrl: './movie-grid.component.scss',
 })
 export class MovieGridComponent implements OnInit {
-  movies: MoviesWithPagination | null = null;
+  movies: DataWithPagination<Movie[]> | null = null;
   loading = false;
   error = '';
 
