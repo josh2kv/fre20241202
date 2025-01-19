@@ -9,6 +9,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development nodemon --exec ts-node -r tsconfig-paths/register ./src/app.ts",
     "start:pro": "cross-env NODE_ENV=production node dist/app.js",
+    "tscheck": "tsc --noEmit",
     "build": "tsc && tsc-alias"
   },
   "dependencies": {

@@ -3,7 +3,10 @@ import { validate } from "class-validator";
 import { ValidationError } from "@/shared/errors";
 import { plainToInstance } from "class-transformer";
 
-export const validateDto = (dtoClass: any, type: "body" | "query" = "body") => {
+export const validateDto = (
+  dtoClass: any,
+  type: "body" | "query" | "params" = "body"
+) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const dtoInstance = plainToInstance(dtoClass, req[type]);
     const errors = await validate(dtoInstance);

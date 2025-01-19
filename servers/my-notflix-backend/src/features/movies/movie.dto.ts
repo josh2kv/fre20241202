@@ -8,3 +8,10 @@ export class GetMoviesDto {
   @Type(() => Number)
   page: number = 1;
 }
+
+export class GetMovieWithCreditsDto {
+  @IsNotEmpty()
+  @IsNumber()
+  @Type(() => Number)
+  id: number;
+}

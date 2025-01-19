@@ -1,9 +1,14 @@
 import axios, { AxiosInstance } from "axios";
 import {
   BACKDROP_SIZES,
+  MovieVideo,
+  MovieWithCredits,
   POSTER_SIZES,
   PROFILE_SIZES,
+  ResMovieCredits,
+  ResMovieDetails,
   ResMovies,
+  ResMovieVideos,
 } from "./movie.types";
 import { ROUTE_SEGMENT } from "@/config/routes";
 import {
@@ -13,6 +18,8 @@ import {
 } from "@/shared/errors";
 
 export class TmdbService {
+  private readonly client: AxiosInstance;
+
   private readonly tmdbApiBaseUrl = "https://api.themoviedb.org/3";
   private readonly movieListPath = "/discover/movie";
   private readonly movieDetailsPath = `/movie/${ROUTE_SEGMENT.ID_PARAM}`;
@@ -23,7 +30,8 @@ export class TmdbService {
   private readonly posterSize = POSTER_SIZES.W500;
   private readonly backdropSize = BACKDROP_SIZES.W1280;
   private readonly profileSize = PROFILE_SIZES.W45;
-  private readonly client: AxiosInstance;
+  private readonly maxCastCount = 5;
+  private readonly maxVideoCount = 10;
 
   constructor(apiKey: string) {
     this.client = axios.create({
@@ -94,6 +102,68 @@ export class TmdbService {
         perPage: 20,
       },
     };
+  }
+
+  async getMovieWithCredits(id: number): Promise<MovieWithCredits> {
+    const rawDetails = await this.getMovieDetails(id);
+    const rawCredits = await this.getMovieCredits(id);
+
+    return {
+      details: {
+        id: rawDetails.id,
+        title: rawDetails.title,
+        tagline: rawDetails.tagline,
+        overview: rawDetails.overview,
+        posterUrl: rawDetails.poster_path
+          ? this.getImageUrl(rawDetails.poster_path, "poster")
+          : null,
+        backdropUrl: rawDetails.backdrop_path
+          ? this.getImageUrl(rawDetails.backdrop_path, "backdrop")
+          : null,
+        releaseDate: rawDetails.release_date,
+        status: rawDetails.status,
+        runtime: rawDetails.runtime,
+        voteAverage: rawDetails.vote_average,
+        adult: rawDetails.adult,
+        video: rawDetails.video,
+      },
+      cast: rawCredits.cast.slice(0, this.maxCastCount).map((c) => ({
+        id: c.id,
+        name: c.name,
+        character: c.character,
+        profileUrl: c.profile_path
+          ? this.getImageUrl(c.profile_path, "profile")
+          : null,
+        order: c.order,
+      })),
+    };
+  }
+
+  async getMovieDetails(id: number): Promise<ResMovieDetails> {
+    const response = await this.client.get<ResMovieDetails>(
+      this.movieDetailsPath.replace(ROUTE_SEGMENT.ID_PARAM, id.toString())
+    );
+    return response.data;
+  }
+
+  async getMovieVideos(id: number): Promise<MovieVideo[]> {
+    const response = await this.client.get<ResMovieVideos>(
+      this.movieVideosPath.replace(ROUTE_SEGMENT.ID_PARAM, id.toString())
+    );
+    return response.data.results.map((video) => ({
+      id: video.id,
+      key: video.key,
+      name: video.name,
+      site: video.site,
+      type: video.type,
+    }));
+  }
+
+  async getMovieCredits(id: number): Promise<ResMovieCredits> {
+    const response = await this.client.get<ResMovieCredits>(
+      this.movieCreditsPath.replace(ROUTE_SEGMENT.ID_PARAM, id.toString())
+    );
+    return response.data;
   }
 
   getImageUrl(path: string, type: "poster" | "backdrop" | "profile"): string {

@@ -22,4 +22,17 @@ export class MovieController {
       next(error);
     }
   }
+
+  async getMovieWithCredits(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    const { user } = req;
+    const tmdbApiKey = user?.tmdbApiKey;
+    if (!tmdbApiKey) throw new BadRequestError("TMDB API key is required");
+
+    const movie = await this.movieService.getMovieWithCredits(
+      Number(id),
+      tmdbApiKey
+    );
+    res.json(ApiResponse.success(movie));
+  }
 }
