@@ -1,0 +1,56 @@
+@port=3434
+@prefix=api/v1
+@baseUrl=http://localhost:{{port}}/{{prefix}}
+
+
+### Login
+POST {{baseUrl}}/auth/login
+content-type: application/json
+
+{
+    "email": "test@test.com",
+    "password": "12121212"
+}
+
+
+### Register
+POST {{baseUrl}}/auth/register
+content-type: application/json
+
+{
+    "email": "test11@example.com",
+    "password": "testhh1212",
+    "username": "test1234567890",
+    "tmdbApiKey": "test-key",
+    "role": "ADMIN"
+}
+
+
+### Refresh token
+POST {{baseUrl}}/auth/refresh-token
+content-type: application/json
+
+{
+    "refreshToken": "0dc7694d5dc62da2223a869e502f935b801d5f69d49dedd590deb139ecedf1cee6e53445a4763de93910b548c5e659329b5b6a0beb20592316360244baf30cb7"
+}
+
+
+### Create a user
+POST {{baseUrl}}/users
+content-type: application/json
+
+{
+    "username": "te2232323",
+    "email": "dddd@example.com",
+    "password": "test1212",    
+    "tmdbApiKey": "test-key"
+}
+
+### Update a user
+PATCh {{baseUrl}}/users/678b6987cb9ad5d7cfed63b7
+content-type: application/json
+
+{
+    "username": "test1234567890"
+}
+
