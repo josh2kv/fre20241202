@@ -2,7 +2,7 @@
   base = "hw/hw10-notflix-frontend"
   publish = "dist/hw10-notflix-frontend/browser"
   command = """
-    sed -i "s/TMDB_API_KEY_PLACEHOLDER/$TMDB_API_KEY/" src/environments/environment.netlify.ts &&
+    sed -i "s/API_BASE_URL_PLACEHOLDER/$API_BASE_URL/" src/environments/environment.netlify.ts &&
     cp src/environments/environment.netlify.ts src/environments/environment.ts &&
     npm run build
   """
