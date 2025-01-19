@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ROUTE_PATH } from '@core/config/routes';
-import { Plan, PlanFormControls } from '@shared/interfaces/auth';
+import { ROUTE_PATHS, ROUTE_SEGMENTS } from '@core/config/routes';
+import { AuthService } from '@core/services/auth/auth.service';
+import {
+  Plan,
+  PlanDetails,
+  PlanFormControls,
+  SignupValues,
+} from '@shared/interfaces/auth';
 @Component({
   selector: 'app-plan-step',
   standalone: false,
@@ -11,10 +17,17 @@ import { Plan, PlanFormControls } from '@shared/interfaces/auth';
   styleUrl: './plan-step.component.scss',
 })
 export class PlanStepComponent {
+  signUpFormValues: SignupValues = {
+    email: '',
+    password: '',
+    username: '',
+    tmdbApiKey: '',
+    plan: '',
+  };
   planForm: FormGroup<PlanFormControls>;
-  plans: Plan[] = [
+  plans: PlanDetails[] = [
     {
-      id: '1',
+      id: Plan.STANDARD_WITH_ADS,
       name: 'Standard with ads',
       resolution: '1080p',
       features: {
@@ -28,7 +41,7 @@ export class PlanStepComponent {
       },
     },
     {
-      id: '2',
+      id: Plan.STANDARD,
       name: 'Standard',
       resolution: '1080p',
       features: {
@@ -42,7 +55,7 @@ export class PlanStepComponent {
       },
     },
     {
-      id: '3',
+      id: Plan.PREMIUM,
       name: 'Premium',
       resolution: '4K + HDR',
       features: {
@@ -61,17 +74,44 @@ export class PlanStepComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {
+    const navigation = this.router.getCurrentNavigation();
+    this.signUpFormValues.email = navigation?.extras?.state?.['email'] || '';
+    this.signUpFormValues.password =
+      navigation?.extras?.state?.['password'] || '';
+    this.signUpFormValues.username =
+      navigation?.extras?.state?.['username'] || '';
+    this.signUpFormValues.tmdbApiKey =
+      navigation?.extras?.state?.['tmdbApiKey'] || '';
+
+    if (
+      !this.signUpFormValues.email ||
+      !this.signUpFormValues.password ||
+      !this.signUpFormValues.username ||
+      !this.signUpFormValues.tmdbApiKey
+    ) {
+      this.router.navigate([`../${ROUTE_SEGMENTS.CREDENTIALS}`], {
+        relativeTo: this.route,
+      });
+    }
+
     this.planForm = this.fb.group<PlanFormControls>({
-      selectedPlan: this.fb.control('', [Validators.required]),
+      plan: this.fb.control('', [Validators.required]),
     });
   }
 
   onSubmit() {
-    console.log(this.planForm.value);
     if (this.planForm.valid) {
-      this.router.navigate([ROUTE_PATH.BROWSE]);
+      this.authService
+        .register({
+          ...this.signUpFormValues,
+          plan: this.planForm.value.plan || '',
+        })
+        .subscribe((res) => {
+          this.router.navigate([`${ROUTE_PATHS.BROWSE}`]);
+        });
     }
   }
 }

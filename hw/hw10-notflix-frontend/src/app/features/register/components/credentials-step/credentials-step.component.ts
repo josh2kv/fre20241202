@@ -1,8 +1,15 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+} from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ROUTE_SEGMENT } from '@core/config/routes';
+import { ROUTE_PATHS, ROUTE_SEGMENTS } from '@core/config/routes';
 import { CredentialsFormControls } from '@shared/interfaces/auth';
 
 @Component({
@@ -37,10 +44,12 @@ export class CredentialsStepComponent {
   }
 
   onSubmit() {
-    console.log('credentialsFormValues', this.credentialsForm.value);
     if (this.credentialsForm.valid) {
-      this.router.navigate([`../${ROUTE_SEGMENT.ACCOUNT}`], {
+      this.router.navigate([`../${ROUTE_SEGMENTS.ACCOUNT}`], {
         relativeTo: this.route,
+        state: {
+          ...this.credentialsForm.value,
+        },
       });
     }
   }

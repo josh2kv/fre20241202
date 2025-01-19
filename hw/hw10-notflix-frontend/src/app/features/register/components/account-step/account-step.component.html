@@ -15,8 +15,8 @@
     </mat-form-field>
     <mat-form-field appearance="outline" hideRequiredMarker>
       <mat-label>Add TMDB API key</mat-label>
-      <input matInput type="text" placeholder="TMDB API key" formControlName="apiKey" />
-      <mat-error *ngIf="accountForm.get('apiKey')?.hasError('required')">TMDB API key is required</mat-error>
+      <input matInput type="text" placeholder="TMDB API key" formControlName="tmdbApiKey" />
+      <mat-error *ngIf="accountForm.get('tmdbApiKey')?.hasError('required')">TMDB API key is required</mat-error>
     </mat-form-field>
     <button type="submit" mat-flat-button class="btn to-next-step" [disabled]="!accountForm.valid">
       Next

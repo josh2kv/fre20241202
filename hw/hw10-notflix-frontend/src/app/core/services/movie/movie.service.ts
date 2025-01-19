@@ -6,7 +6,7 @@ import {
   POSTER_SIZES,
   PROFILE_SIZES,
 } from '@core/config/movie';
-import { ROUTE_SEGMENT } from '@core/config/routes';
+import { ROUTE_SEGMENTS } from '@core/config/routes';
 import {
   MoviesWithPagination,
   MovieVideo,
@@ -26,9 +26,9 @@ export class MovieService {
   private baseUrl = environment.tmdbApiBaseUrl;
   private apiKey = environment.tmdbApiKey;
   private movieListPath = '/discover/movie';
-  private movieDetailsPath = `/movie/${ROUTE_SEGMENT.DYNAMIC_ID}`;
-  private movieCreditsPath = `/movie/${ROUTE_SEGMENT.DYNAMIC_ID}/credits`;
-  private movieVideosPath = `/movie/${ROUTE_SEGMENT.DYNAMIC_ID}/videos`;
+  private movieDetailsPath = `/movie/${ROUTE_SEGMENTS.DYNAMIC_ID}`;
+  private movieCreditsPath = `/movie/${ROUTE_SEGMENTS.DYNAMIC_ID}/credits`;
+  private movieVideosPath = `/movie/${ROUTE_SEGMENTS.DYNAMIC_ID}/videos`;
   private configPath = '/configuration';
   private headers = new HttpHeaders({
     Authorization: `Bearer ${this.apiKey}`,
@@ -145,7 +145,7 @@ export class MovieService {
   getMovieDetails(id: number): Observable<ResMovieDetails> {
     return this.http.get<ResMovieDetails>(
       this.baseUrl +
-        this.movieDetailsPath.replace(ROUTE_SEGMENT.DYNAMIC_ID, id.toString()),
+        this.movieDetailsPath.replace(ROUTE_SEGMENTS.DYNAMIC_ID, id.toString()),
       {
         headers: this.headers,
       }
@@ -156,7 +156,10 @@ export class MovieService {
     return this.http
       .get<ResMovieVideos>(
         this.baseUrl +
-          this.movieVideosPath.replace(ROUTE_SEGMENT.DYNAMIC_ID, id.toString()),
+          this.movieVideosPath.replace(
+            ROUTE_SEGMENTS.DYNAMIC_ID,
+            id.toString()
+          ),
         {
           headers: this.headers,
         }
@@ -177,7 +180,7 @@ export class MovieService {
   getMovieCredits(id: number): Observable<ResMovieCredits> {
     return this.http.get<ResMovieCredits>(
       this.baseUrl +
-        this.movieCreditsPath.replace(ROUTE_SEGMENT.DYNAMIC_ID, id.toString()),
+        this.movieCreditsPath.replace(ROUTE_SEGMENTS.DYNAMIC_ID, id.toString()),
       {
         headers: this.headers,
       }

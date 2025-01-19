@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ROUTE_SEGMENT } from '@core/config/routes';
+import { ROUTE_SEGMENTS } from '@core/config/routes';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: ROUTE_SEGMENT.DYNAMIC_ID,
+    path: ROUTE_SEGMENTS.DYNAMIC_ID,
     loadChildren: () =>
       import('@features/movie-detail/movie-detail.module').then(
         (m) => m.MovieDetailModule

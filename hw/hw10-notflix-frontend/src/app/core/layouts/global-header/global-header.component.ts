@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { ROUTE_PATH, ROUTE_SEGMENT } from '@core/config/routes';
+import { ROUTE_PATHS, ROUTE_SEGMENTS } from '@core/config/routes';
 import { filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -11,11 +11,11 @@ import { filter, Subject, takeUntil } from 'rxjs';
   styleUrl: './global-header.component.scss',
 })
 export class GlobalHeaderComponent {
-  toHome = ROUTE_PATH.HOME;
-  toLogin = ROUTE_PATH.AUTH_LOGIN;
+  toHome = ROUTE_PATHS.HOME;
+  toLogin = ROUTE_PATHS.AUTH_LOGIN;
   hiddenLoginRoutes = [
-    ROUTE_PATH.AUTH_LOGIN,
-    new RegExp(`^/${ROUTE_SEGMENT.BROWSE}/\\d+$`),
+    ROUTE_PATHS.AUTH_LOGIN,
+    new RegExp(`^/${ROUTE_SEGMENTS.BROWSE}/\\d+$`),
   ];
   showLogin = true;
   private destroy$ = new Subject<void>();
