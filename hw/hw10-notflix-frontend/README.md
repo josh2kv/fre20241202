@@ -10,11 +10,11 @@
 
 | Page | UI/Layout | Features | API Integration | Sub Tasks | Note |
 |-------------|:---------------:|:---------:|:---------------:|:-------------|:-----|
-| Home | 🟢 | 🟢 | N/A | - Hero section<br> - Email form |  |
-| Login | 🟢 | 🟢 | ⚪️ | - Form validation<br>- Error handling |  |
-| Register | 🟢 | 🟢 | ⚪️ | - Credentials step<br>- Account step<br>- Plan step |  |
-| Movie List | 🟢 | 🟢 | ⚪️ | - Movie grid<br>- Movie card |  |
-| Movie Detail | 🟢 | 🟢 | ⚪️ | - Video player<br>- Movie info |  |
+| Home | ✅ | ✅ | N/A | - Hero section<br> - Email form |  |
+| Login | ✅ | ✅ | 🟢 | - Form validation<br>- Error handling |  |
+| Register | ✅ | ✅ | 🟢 | - Credentials step<br>- Account step<br>- Plan step |  |
+| Movie List | ✅ | ✅ | 🟢 | - Movie grid<br>- Movie card |  |
+| Movie Detail | ✅ | ✅ | 🟢 | - Video player<br>- Movie info |  |
 
 ## Folder structure: Organize by features([Link](https://medium.com/@marketing_26756/angular-best-practices-tips-for-project-structure-and-organization-490ca7950829))
 
