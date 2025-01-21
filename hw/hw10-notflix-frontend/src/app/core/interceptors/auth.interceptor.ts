@@ -15,6 +15,7 @@ import { API_PATHS, ROUTE_PATHS } from '@core/config/routes';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
+  private publicRoutes = [API_PATHS.AUTH];
 
   constructor(
     private authState: AuthStateService,
@@ -25,6 +26,9 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    if (this.publicRoutes.some((route) => request.url.includes(route)))
+      return next.handle(request);
+
     const accessToken = this.authState.getAccessToken();
     console.log('accessToken', accessToken);
     if (accessToken) {
