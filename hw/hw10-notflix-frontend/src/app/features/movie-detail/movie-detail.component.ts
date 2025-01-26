@@ -14,23 +14,15 @@ import { map, switchMap } from 'rxjs';
 export class MovieDetailComponent implements OnInit {
   movieDetails!: MovieWithCredits;
   movieId!: number;
+  isLoading = true;
 
-  constructor(
-    private movieService: MovieService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.params
-      .pipe(
-        map((params) => +params['id']),
-        switchMap((id) => {
-          this.movieId = id;
-          return this.movieService.getMovieDetails(id);
-        })
-      )
-      .subscribe((movie) => {
-        this.movieDetails = movie;
-      });
+    this.route.data.subscribe((data) => {
+      this.isLoading = false;
+      this.movieDetails = data['movieDetails'];
+      this.movieId = this.movieDetails.details.id;
+    });
   }
 }

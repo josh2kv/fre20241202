@@ -7,6 +7,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 const materialModules = [
   MatButtonModule,
   MatIconModule,
@@ -16,6 +18,7 @@ const materialModules = [
   MatDividerModule,
   MatCheckboxModule,
   MatDialogModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({

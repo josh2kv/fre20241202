@@ -14,9 +14,9 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MovieDetailRoutingModule,
     YouTubePlayerModule,
-    SharedModule,
   ],
 })
 export class MovieDetailModule {}
