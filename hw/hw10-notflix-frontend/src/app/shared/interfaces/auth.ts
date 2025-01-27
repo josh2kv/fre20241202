@@ -21,6 +21,12 @@ export enum Plan {
   PREMIUM = 'PREMIUM',
 }
 
+export const PlanLabelMap = {
+  [Plan.STANDARD_WITH_ADS]: 'Standard with Ads',
+  [Plan.STANDARD]: 'Standard',
+  [Plan.PREMIUM]: 'Premium',
+} as const;
+
 export interface ResAuth {
   user: User;
   accessToken: string;

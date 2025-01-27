@@ -24,6 +24,11 @@ $nf-color-outline-focus: light-dark(hsla(0, 0%, 20%, 1), #ffffff);
 
 $nf-color-placeholder: light-dark(hsla(0, 0%, 50%, 1), hsla(0, 0%, 40%, 1));
 
+$nf-color-success: hsl(114, 79%, 44%);
+$nf-color-on-success: white;
+$nf-color-error: #ff3b30;
+$nf-color-on-error: white;
+
 $nf-gradient-surface: linear-gradient(
   360deg,
   rgba(0, 0, 0, 0.85) 8%,

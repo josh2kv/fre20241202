@@ -20,6 +20,7 @@
       <input matInput type="text" placeholder="TMDB API key" formControlName="tmdbApiKey" />
       <mat-error *ngIf="tmdbApiKeyControl?.hasError('required')">TMDB API key is required</mat-error>
       <mat-error *ngIf="tmdbApiKeyControl?.hasError('pattern')">Invalid TMDB API key</mat-error>
+      <mat-error *ngIf="tmdbApiKeyControl?.hasError('invalid')">Invalid TMDB API key</mat-error>
     </mat-form-field>
     <button type="submit" mat-flat-button class="btn to-next-step" [disabled]="!accountForm.valid">
       Next

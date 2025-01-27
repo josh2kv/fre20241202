@@ -1,16 +1,18 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_PATH_SEGMENTS, API_PATHS, ROUTE_PATHS } from '@core/config/routes';
 import {
   CredentialFormValues,
-  LoginFormControls,
   ResAuth,
   SignupValues,
+  User,
 } from '@shared/interfaces/auth';
 import { ApiSuccessResponse } from '@shared/interfaces/common';
 import { environment } from 'environments/environment';
 import { AuthStateService } from './auth-state.service';
-import { map, Observable, tap } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
+import { ProfileFormValues } from '@shared/interfaces/account';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +22,8 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private authStateService: AuthStateService
+    private authStateService: AuthStateService,
+    private snackBar: MatSnackBar
   ) {}
 
   register(signUpFormValues: SignupValues) {
@@ -110,5 +113,43 @@ export class AuthService {
       `${this.apiUrl + API_PATHS.AUTH_LOGOUT}`,
       { refreshToken: this.authStateService.getRefreshToken() }
     );
+  }
+
+  updateProfile({ email, password, ...rest }: ProfileFormValues) {
+    const body = {
+      ...rest,
+      ...(password ? { password } : {}),
+    };
+
+    return this.http
+      .patch<ApiSuccessResponse<User>>(
+        `${this.apiUrl + API_PATHS.ACCOUNT_PROFILE}`,
+        body
+      )
+      .pipe(
+        tap((res) => {
+          this.authStateService.setAuthState(
+            this.authStateService.getAccessToken() ?? '',
+            this.authStateService.getRefreshToken() ?? '',
+            res.data
+          );
+
+          this.snackBar.open('Profile updated successfully!', '', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            panelClass: 'success-snackbar',
+          });
+        }),
+        catchError((err) => {
+          this.snackBar.open('Failed to update profile.', '', {
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            panelClass: 'error-snackbar',
+          });
+          return of(err);
+        })
+      );
   }
 }
