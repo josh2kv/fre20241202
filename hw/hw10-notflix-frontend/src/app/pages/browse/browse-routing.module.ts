@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ROUTE_SEGMENTS } from '@core/config/routes';
+import { planGuard } from '@core/guards/auth.guard';
+import { Plan } from '@shared/interfaces/auth';
 
 const routes: Routes = [
   {
@@ -16,6 +18,7 @@ const routes: Routes = [
       import('@features/movie-detail/movie-detail.module').then(
         (m) => m.MovieDetailModule
       ),
+    canActivate: [planGuard.bind(null, [Plan.PREMIUM, Plan.STANDARD])],
   },
 ];
 

@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import {
   PASSWORD_MAX_LENGTH,
   PASSWORD_MIN_LENGTH,
+  SNACKBAR_ERROR_CONFIG,
+  SNACKBAR_SUCCESS_CONFIG,
   TMDB_API_KEY_REGEX,
 } from '@core/config';
 import { USERNAME_MAX_LENGTH } from '@core/config';
@@ -34,7 +37,8 @@ export class ProfileComponent {
     private fb: NonNullableFormBuilder,
     private authStateService: AuthStateService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {
     const user = this.authStateService.getCurrentUser();
     if (!user) {
@@ -89,7 +93,22 @@ export class ProfileComponent {
 
   onSubmit() {
     if (this.profileForm.valid) {
-      this.authService.updateProfile(this.profileForm.value).subscribe();
+      this.authService.updateProfile(this.profileForm.value).subscribe({
+        next: () => {
+          this.snackBar.open(
+            '✅ Profile updated successfully!',
+            'Close',
+            SNACKBAR_SUCCESS_CONFIG
+          );
+        },
+        error: () => {
+          this.snackBar.open(
+            '❌ Failed to update profile.',
+            'Close',
+            SNACKBAR_ERROR_CONFIG
+          );
+        },
+      });
     }
   }
 }

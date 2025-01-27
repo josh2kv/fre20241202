@@ -40,6 +40,6 @@
       </mat-radio-group>
     </div>
     <button mat-flat-button color="primary" type="submit" class="btn save"
-      [disabled]="profileForm.invalid">Save</button>
+      [disabled]="profileForm.invalid || !profileForm.dirty">Save</button>
   </form>
 </div>

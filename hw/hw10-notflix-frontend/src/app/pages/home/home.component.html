@@ -23,14 +23,22 @@
                 Email already exists. Please try a different email or login.
               </mat-error>
             </mat-form-field>
-
-            <button type="submit" mat-flat-button class="btn to-register">
-              Get Started
-              <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
-            </button>
+            <ng-container *ngIf="!isAuthenticated; else authenticatedTpl">
+              <button type="submit" mat-flat-button class="btn to-register">
+                Get Started
+                <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
+              </button>
+            </ng-container>
           </form>
         </div>
       </div>
     </section>
   </div>
 </div>
+
+<ng-template #authenticatedTpl>
+  <button type="button" mat-flat-button class="btn to-register" [routerLink]="toBrowse">
+    Get Started
+    <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
+  </button>
+</ng-template>

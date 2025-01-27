@@ -13,6 +13,7 @@ import { AuthStateService } from './auth-state.service';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { ProfileFormValues } from '@shared/interfaces/account';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SNACKBAR_ERROR_CONFIG, SNACKBAR_SUCCESS_CONFIG } from '@core/config';
 
 @Injectable({
   providedIn: 'root',
@@ -133,22 +134,6 @@ export class AuthService {
             this.authStateService.getRefreshToken() ?? '',
             res.data
           );
-
-          this.snackBar.open('Profile updated successfully!', '', {
-            duration: 3000,
-            verticalPosition: 'top',
-            horizontalPosition: 'center',
-            panelClass: 'success-snackbar',
-          });
-        }),
-        catchError((err) => {
-          this.snackBar.open('Failed to update profile.', '', {
-            duration: 3000,
-            verticalPosition: 'top',
-            horizontalPosition: 'center',
-            panelClass: 'error-snackbar',
-          });
-          return of(err);
         })
       );
   }
