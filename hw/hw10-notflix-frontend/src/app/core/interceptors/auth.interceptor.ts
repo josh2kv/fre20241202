@@ -30,7 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(request);
 
     const accessToken = this.authState.getAccessToken();
-    console.log('accessToken', accessToken);
+
     if (accessToken) {
       request = this.addToken(request, accessToken);
     }

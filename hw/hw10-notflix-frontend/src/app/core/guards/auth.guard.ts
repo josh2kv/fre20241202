@@ -6,7 +6,7 @@ import { ROUTE_PATHS } from '@core/config/routes';
 export const authGuard = () => {
   const authState = inject(AuthStateService);
   const router = inject(Router);
-  console.log('authState', authState.isAuthenticated());
+  console.log('isAuthenticated', authState.isAuthenticated());
   if (authState.isAuthenticated()) {
     return true;
   }

@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 import { ROUTE_PATHS, ROUTE_SEGMENTS } from '@core/config/routes';
 import { MovieService } from '@core/services/movie/movie.service';
 import { MoviesCacheService } from '@core/services/movies-cache/movies-cache.service';
-import { ScrollPositionService } from '@core/services/scroll-position/scroll-position.service';
-import { DataWithPagination, PaginationMeta } from '@shared/interfaces/common';
-import { Movie, MoviesWithPagination } from '@shared/interfaces/movie';
+import { PaginationMeta } from '@shared/interfaces/common';
+import { Movie } from '@shared/interfaces/movie';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -46,16 +45,9 @@ export class MovieGridComponent implements OnInit {
     }
 
     this.routerSubscription = this.router.events.subscribe((event) => {
-      // NOTE: Clear cache when navigating away from the list page except for the detail page
+      // NOTE: Clear cache when navigating away from the browse routes
       if (event instanceof NavigationStart) {
-        const browseDetailPattern = new RegExp(
-          `^${ROUTE_PATHS.BROWSE_DETAIL.replace(
-            ROUTE_SEGMENTS.DYNAMIC_ID,
-            '\\d+'
-          )}$`
-        );
-
-        if (!browseDetailPattern.test(event.url)) {
+        if (!event.url.includes(ROUTE_PATHS.BROWSE)) {
           this.moviesCacheService.clearCache();
         }
       }

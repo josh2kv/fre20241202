@@ -17,9 +17,10 @@ import { SharedModule } from '@shared/shared.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HomeModule } from '@pages/home/home.module';
 import { AuthInterceptor } from '@core/interceptors/auth.interceptor';
+import { ProfileComponent } from './features/profile/profile.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

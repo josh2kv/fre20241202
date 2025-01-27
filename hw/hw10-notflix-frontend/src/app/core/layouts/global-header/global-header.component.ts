@@ -16,6 +16,7 @@ import { filter, Subject, takeUntil } from 'rxjs';
 export class GlobalHeaderComponent {
   toHome = ROUTE_PATHS.HOME;
   toLogin = ROUTE_PATHS.AUTH_LOGIN;
+  toAccount = ROUTE_PATHS.ACCOUNT;
   toBrowse = ROUTE_PATHS.BROWSE;
   hiddenLoginRoutes = [
     ROUTE_PATHS.AUTH_LOGIN,

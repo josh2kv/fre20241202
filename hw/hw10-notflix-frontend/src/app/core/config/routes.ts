@@ -9,11 +9,16 @@ export const ROUTE_SEGMENTS = {
   PLAN: 'plan',
   ACCOUNT: 'account',
 
+  PROFILE: 'profile',
+
   BROWSE: 'browse',
 } as const;
 
 export const ROUTE_PATHS = {
   HOME: `/${ROUTE_SEGMENTS.HOME}`,
+
+  ACCOUNT: `/${ROUTE_SEGMENTS.ACCOUNT}`,
+  ACCOUNT_PROFILE: `/${ROUTE_SEGMENTS.ACCOUNT}/${ROUTE_SEGMENTS.PROFILE}`,
 
   AUTH: `/${ROUTE_SEGMENTS.AUTH}`,
   AUTH_LOGIN: `/${ROUTE_SEGMENTS.AUTH}/${ROUTE_SEGMENTS.LOGIN}`,

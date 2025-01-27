@@ -18,6 +18,12 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: ROUTE_SEGMENTS.ACCOUNT,
+    loadChildren: () =>
+      import('./pages/account/account.module').then((m) => m.AccountModule),
+    canActivate: [authGuard],
+  },
+  {
     path: '',
     component: HomeComponent,
     pathMatch: 'full',
