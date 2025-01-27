@@ -76,7 +76,7 @@ body {
       // hover-state-layer-opacity: 0,
       // focus-state-layer-opacity: 0,
       // pressed-state-layer-opacity: 0,
-      // dragged-state-layer-opacity: 0,,,,,,,,
+      // dragged-state-layer-opacity: 0,,,,,,,,,,,,,,,,
     )
   );
 
@@ -123,6 +123,24 @@ body {
       container-shape: var.$nf-rounded-md,
     )
   );
+
+  /* .snackbar-success {
+    @include mat.snack-bar-overrides(
+      (
+        container-color: var.$nf-color-success,
+        supporting-text-color: var.$nf-color-on-success,
+      )
+    );
+  }
+
+  .snackbar-error {
+    @include mat.snack-bar-overrides(
+      (
+        container-color: var.$nf-color-error,
+        supporting-text-color: var.$nf-color-on-error,
+      )
+    );
+  } */
 }
 
 .video-player-modal-backdrop {

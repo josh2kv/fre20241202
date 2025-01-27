@@ -11,12 +11,16 @@
     <mat-form-field appearance="outline" hideRequiredMarker>
       <mat-label>Enter your username</mat-label>
       <input matInput type="text" placeholder="Username" formControlName="username" />
-      <mat-error *ngIf="accountForm.get('username')?.hasError('required')">Username is required</mat-error>
+      <mat-error *ngIf="usernameControl?.hasError('required')">Username is required</mat-error>
+      <mat-error *ngIf="usernameControl?.hasError('minlength')">Username must be at least 4 characters</mat-error>
+      <mat-error *ngIf="usernameControl?.hasError('maxlength')">Username must be at most 16 characters</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" hideRequiredMarker>
       <mat-label>Add TMDB API key</mat-label>
       <input matInput type="text" placeholder="TMDB API key" formControlName="tmdbApiKey" />
-      <mat-error *ngIf="accountForm.get('tmdbApiKey')?.hasError('required')">TMDB API key is required</mat-error>
+      <mat-error *ngIf="tmdbApiKeyControl?.hasError('required')">TMDB API key is required</mat-error>
+      <mat-error *ngIf="tmdbApiKeyControl?.hasError('pattern')">Invalid TMDB API key</mat-error>
+      <mat-error *ngIf="tmdbApiKeyControl?.hasError('invalid')">Invalid TMDB API key</mat-error>
     </mat-form-field>
     <button type="submit" mat-flat-button class="btn to-next-step" [disabled]="!accountForm.valid">
       Next

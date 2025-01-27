@@ -31,14 +31,16 @@ export class AuthStateService {
   }
 
   setAuthState(accessToken: string, refreshToken: string, user: User) {
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem(this.ACCESS_TOKEN_KEY, accessToken);
-      localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
-      localStorage.setItem(this.USER_KEY, JSON.stringify(user));
-    }
+    if (accessToken && refreshToken && user) {
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem(this.ACCESS_TOKEN_KEY, accessToken);
+        localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
+        localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+      }
 
-    this.userSubject.next(user);
-    this.isAuthenticatedSubject.next(true);
+      this.userSubject.next(user);
+      this.isAuthenticatedSubject.next(true);
+    }
   }
 
   clearAuthState() {
@@ -69,6 +71,7 @@ export class AuthStateService {
   private getStoredUser(): User | null {
     if (isPlatformBrowser(this.platformId)) {
       const userStr = localStorage.getItem(this.USER_KEY);
+      console.log(userStr);
       return userStr ? JSON.parse(userStr) : null;
     }
     return null;

@@ -8,24 +8,37 @@
         </div>
         <div class="get-started">
           <p class="message">Ready to watch? Enter your email to create or restart your membership.</p>
-          <form [formGroup]="emailForm" (ngSubmit)="onSubmit()" class="input-group">
+          <form [formGroup]="emailForm" (ngSubmit)="onSubmit()" class="form-group">
             <mat-form-field appearance="outline" hideRequiredMarker>
               <mat-label>Email address</mat-label>
               <input matInput type="email" placeholder="example@example.com" formControlName="email" />
-              <mat-error *ngIf="emailForm.get('email')?.hasError('required')">
+              <mat-spinner matSuffix diameter="20" *ngIf="emailControl?.pending"></mat-spinner>
+              <mat-error *ngIf="emailControl?.hasError('required')">
                 Email is required
               </mat-error>
-              <mat-error *ngIf="emailForm.get('email')?.hasError('email')">
+              <mat-error *ngIf="emailControl?.hasError('pattern')">
                 Please enter a valid email address
               </mat-error>
+              <mat-error *ngIf="emailControl?.hasError('emailExists')">
+                Email already exists. Please try a different email or login.
+              </mat-error>
             </mat-form-field>
-            <button type="submit" mat-flat-button class="btn to-register">
-              Get Started
-              <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
-            </button>
+            <ng-container *ngIf="!isAuthenticated; else authenticatedTpl">
+              <button type="submit" mat-flat-button class="btn to-register">
+                Get Started
+                <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
+              </button>
+            </ng-container>
           </form>
         </div>
       </div>
     </section>
   </div>
 </div>
+
+<ng-template #authenticatedTpl>
+  <button type="button" mat-flat-button class="btn to-register" [routerLink]="toBrowse">
+    Get Started
+    <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
+  </button>
+</ng-template>

@@ -1,16 +1,15 @@
 import { isPlatformBrowser } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  inject,
-  OnInit,
-  Output,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ROUTE_PATHS, ROUTE_SEGMENTS } from '@core/config/routes';
+import {
+  EMAIL_REGEX,
+  PASSWORD_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
+} from '@core/config';
+import { ROUTE_SEGMENTS } from '@core/config/routes';
 import { CredentialsFormControls } from '@shared/interfaces/auth';
+import { createEmailValidator } from '@shared/validators/email.validator';
 
 @Component({
   selector: 'app-credentials-step',
@@ -35,10 +34,15 @@ export class CredentialsStepComponent {
     }
 
     this.credentialsForm = this.fb.group<CredentialsFormControls>({
-      email: this.fb.control(email, [Validators.required, Validators.email]),
+      email: this.fb.control(email, {
+        validators: [Validators.required, Validators.pattern(EMAIL_REGEX)],
+        asyncValidators: [createEmailValidator()],
+        updateOn: 'blur',
+      }),
       password: this.fb.control('', [
         Validators.required,
-        Validators.minLength(6),
+        Validators.minLength(PASSWORD_MIN_LENGTH),
+        Validators.maxLength(PASSWORD_MAX_LENGTH),
       ]),
     });
   }
@@ -52,5 +56,13 @@ export class CredentialsStepComponent {
         },
       });
     }
+  }
+
+  get emailControl() {
+    return this.credentialsForm.get('email');
+  }
+
+  get passwordControl() {
+    return this.credentialsForm.get('password');
   }
 }
