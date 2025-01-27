@@ -1,13 +1,10 @@
 <div class="movie-grid" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
   (scrolled)="onScroll()">
-  <ng-container *ngIf="meta?.hasNextPage; else noMoreMoviesTpl">
-    <ng-container *ngFor="let movie of movies">
-      <app-movie-card [movie]="movie"></app-movie-card>
-    </ng-container>
+  <ng-container *ngFor="let movie of movies">
+    <app-movie-card [movie]="movie"></app-movie-card>
   </ng-container>
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+  <ng-container *ngIf="!isLoading && !meta?.hasNextPage">
+    <p>This is the end of the list</p>
+  </ng-container>
 </div>
-
-<ng-template #noMoreMoviesTpl>
-  <p>This is the end of the list</p>
-</ng-template>
