@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 import { ROUTE_PATHS, ROUTE_SEGMENTS } from '@core/config/routes';
-import { authGuard, publicOnlyGuard } from '@core/guards/auth.guard';
+import { authenticatedGuard, publicOnlyGuard } from '@core/guards/auth.guard';
 import { HomeComponent } from '@pages/home/home.component';
 
 const routes: Routes = [
@@ -9,25 +9,28 @@ const routes: Routes = [
     path: ROUTE_SEGMENTS.AUTH,
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
-    canActivate: [publicOnlyGuard],
+    // canActivate: [publicOnlyGuard],
   },
+
   {
     path: ROUTE_SEGMENTS.BROWSE,
     loadChildren: () =>
       import('./pages/browse/browse.module').then((m) => m.BrowseModule),
-    canActivate: [authGuard],
+    canActivate: [authenticatedGuard],
   },
+
   {
     path: ROUTE_SEGMENTS.ACCOUNT,
     loadChildren: () =>
       import('./pages/account/account.module').then((m) => m.AccountModule),
-    canActivate: [authGuard],
+    canActivate: [authenticatedGuard],
   },
   {
     path: '',
     component: HomeComponent,
     pathMatch: 'full',
   },
+
   {
     path: '**',
     redirectTo: ROUTE_PATHS.HOME,

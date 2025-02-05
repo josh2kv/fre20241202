@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ROUTE_PATHS, ROUTE_SEGMENTS } from '@core/config/routes';
-import { AuthStateService } from '@core/services/auth/auth-state.service';
-import { AuthService } from '@core/services/auth/auth.service';
 import { User } from '@shared/interfaces/auth';
+import { selectUser } from '@store/auth/auth.selectors';
+import { Store } from '@ngrx/store';
 import { filter, Subject, takeUntil } from 'rxjs';
+import * as AuthActions from '@store/auth/auth.actions';
 
 @Component({
   selector: 'app-global-header',
@@ -29,8 +30,7 @@ export class GlobalHeaderComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authStateService: AuthStateService,
-    private authService: AuthService
+    private store: Store
   ) {
     // NOTE: It doesn't work because `router.url` in the constructor runs before the navigation is complete.
     // this.showLogin = this.router.url !== ROUTE_PATH.AUTH_LOGIN;
@@ -48,12 +48,12 @@ export class GlobalHeaderComponent {
         });
       });
 
-    this.authStateService.user$.subscribe((user) => {
+    this.store.select(selectUser).subscribe((user) => {
       this.user = user;
     });
   }
 
   logout() {
-    this.authService.logout();
+    this.store.dispatch(AuthActions.logout());
   }
 }

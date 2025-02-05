@@ -24,9 +24,11 @@
       "@core/*": ["app/core/*"],
       "@shared/*": ["app/shared/*"],
       "@services/*": ["app/core/services/*"],
-      "@features/*": ["app/features/*"]
+      "@features/*": ["app/features/*"],
+      "@store/*": ["app/store/*"]
     }
   },
+
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

@@ -12,12 +12,14 @@ import {
 import { USERNAME_MAX_LENGTH } from '@core/config';
 import { USERNAME_MIN_LENGTH } from '@core/config';
 import { ROUTE_PATHS } from '@core/config/routes';
-import { AuthStateService } from '@core/services/auth/auth-state.service';
 import { AuthService } from '@core/services/auth/auth.service';
 import { ProfileFormControls } from '@shared/interfaces/account';
 import { Plan, PlanLabelMap } from '@shared/interfaces/auth';
 import { enumValidator } from '@shared/validators/enum-validator';
 import { createTmdbApiKeyValidator } from '@shared/validators/tmdb-api-key.validator';
+import { selectUser } from '@store/auth/auth.selectors';
+import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -35,43 +37,47 @@ export class ProfileComponent {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private authStateService: AuthStateService,
     private router: Router,
     private authService: AuthService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private store: Store
   ) {
-    const user = this.authStateService.getCurrentUser();
-    if (!user) {
+    const user$ = this.store.select(selectUser);
+    if (!user$) {
       this.router.navigate([ROUTE_PATHS.HOME]);
       return;
     }
+    user$.subscribe((user) => {
+      this.profileForm = this.fb.group<ProfileFormControls>({
+        email: this.fb.control({
+          value: user?.email ?? '',
 
-    this.profileForm = this.fb.group<ProfileFormControls>({
-      email: this.fb.control({
-        value: user.email,
-        disabled: true,
-      }),
-      password: this.fb.control('', [
-        Validators.minLength(PASSWORD_MIN_LENGTH),
-        Validators.maxLength(PASSWORD_MAX_LENGTH),
-      ]),
-      username: this.fb.control(user.username, [
-        Validators.required,
-        Validators.minLength(USERNAME_MIN_LENGTH),
-        Validators.maxLength(USERNAME_MAX_LENGTH),
-      ]),
-      tmdbApiKey: this.fb.control(user.tmdbApiKey, {
-        validators: [
+          disabled: true,
+        }),
+        password: this.fb.control('', [
+          Validators.minLength(PASSWORD_MIN_LENGTH),
+          Validators.maxLength(PASSWORD_MAX_LENGTH),
+        ]),
+        username: this.fb.control(user?.username ?? '', [
           Validators.required,
-          Validators.pattern(TMDB_API_KEY_REGEX),
-        ],
-        asyncValidators: [createTmdbApiKeyValidator()],
-        updateOn: 'blur',
-      }),
-      plan: this.fb.control(user.plan, [
-        Validators.required,
-        enumValidator(Plan),
-      ]),
+          Validators.minLength(USERNAME_MIN_LENGTH),
+          Validators.maxLength(USERNAME_MAX_LENGTH),
+        ]),
+
+        tmdbApiKey: this.fb.control(user?.tmdbApiKey ?? '', {
+          validators: [
+            Validators.required,
+
+            Validators.pattern(TMDB_API_KEY_REGEX),
+          ],
+          asyncValidators: [createTmdbApiKeyValidator()],
+          updateOn: 'blur',
+        }),
+        plan: this.fb.control(user?.plan ?? '', [
+          Validators.required,
+          enumValidator(Plan),
+        ]),
+      });
     });
   }
 

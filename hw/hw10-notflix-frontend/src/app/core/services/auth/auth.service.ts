@@ -9,12 +9,16 @@ import {
 } from '@shared/interfaces/auth';
 import { ApiSuccessResponse } from '@shared/interfaces/common';
 import { environment } from 'environments/environment';
-import { AuthStateService } from './auth-state.service';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { ProfileFormValues } from '@shared/interfaces/account';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SNACKBAR_ERROR_CONFIG, SNACKBAR_SUCCESS_CONFIG } from '@core/config';
-
+import { Store } from '@ngrx/store';
+import * as AuthActions from '@store/auth/auth.actions';
+import {
+  selectRefreshToken,
+  selectAccessToken,
+} from '@store/auth/auth.selectors';
 @Injectable({
   providedIn: 'root',
 })
@@ -23,7 +27,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private authStateService: AuthStateService,
+    private store: Store,
     private snackBar: MatSnackBar
   ) {}
 
@@ -35,10 +39,12 @@ export class AuthService {
       )
       .pipe(
         tap((res) => {
-          this.authStateService.setAuthState(
-            res.data.accessToken,
-            res.data.refreshToken,
-            res.data.user
+          this.store.dispatch(
+            AuthActions.setAuthState({
+              accessToken: res.data.accessToken,
+              refreshToken: res.data.refreshToken,
+              user: res.data.user,
+            })
           );
         })
       );
@@ -80,10 +86,12 @@ export class AuthService {
       )
       .pipe(
         tap((res) => {
-          this.authStateService.setAuthState(
-            res.data.accessToken,
-            res.data.refreshToken,
-            res.data.user
+          this.store.dispatch(
+            AuthActions.setAuthState({
+              accessToken: res.data.accessToken,
+              refreshToken: res.data.refreshToken,
+              user: res.data.user,
+            })
           );
         })
       );
@@ -94,25 +102,26 @@ export class AuthService {
       .post<ApiSuccessResponse<ResAuth>>(
         `${this.apiUrl + API_PATHS.AUTH_REFRESH}`,
         {
-          refreshToken: this.authStateService.getRefreshToken(),
+          refreshToken: this.store.select(selectRefreshToken),
         }
       )
       .pipe(
         tap((res) => {
-          this.authStateService.setAuthState(
-            res.data.accessToken,
-            res.data.refreshToken,
-            res.data.user
+          this.store.dispatch(
+            AuthActions.setAuthState({
+              accessToken: res.data.accessToken,
+              refreshToken: res.data.refreshToken,
+              user: res.data.user,
+            })
           );
         })
       );
   }
 
   logout() {
-    this.authStateService.clearAuthState();
     return this.http.post<ApiSuccessResponse<ResAuth>>(
       `${this.apiUrl + API_PATHS.AUTH_LOGOUT}`,
-      { refreshToken: this.authStateService.getRefreshToken() }
+      { refreshToken: this.store.select(selectRefreshToken) }
     );
   }
 
@@ -129,10 +138,8 @@ export class AuthService {
       )
       .pipe(
         tap((res) => {
-          this.authStateService.setAuthState(
-            this.authStateService.getAccessToken() ?? '',
-            this.authStateService.getRefreshToken() ?? '',
-            res.data
+          this.store.dispatch(
+            AuthActions.updateProfileSuccess({ user: res.data })
           );
         })
       );

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ROUTE_PATHS } from '@core/config/routes';
-import { AuthService } from '@core/services/auth/auth.service';
 import {
   CredentialFormValues,
   LoginFormControls,
 } from '@shared/interfaces/auth';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '@store/auth/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +19,7 @@ export class LoginComponent {
   toSignup = ROUTE_PATHS.AUTH_REGISTER;
   loginForm: FormGroup<LoginFormControls>;
 
-  constructor(
-    private fb: NonNullableFormBuilder,
-    private router: Router,
-    private authService: AuthService
-  ) {
+  constructor(private fb: NonNullableFormBuilder, private store: Store) {
     this.loginForm = this.fb.group<LoginFormControls>({
       email: this.fb.control('', [Validators.required, Validators.email]),
       password: this.fb.control('', [Validators.required]),
@@ -34,10 +30,10 @@ export class LoginComponent {
   onSubmit() {
     if (!this.loginForm.valid) return;
 
-    this.authService
-      .login(this.loginForm.value as CredentialFormValues)
-      .subscribe((res) => {
-        this.router.navigate([`${ROUTE_PATHS.BROWSE}`]);
-      });
+    this.store.dispatch(
+      AuthActions.login({
+        credentials: this.loginForm.value as CredentialFormValues,
+      })
+    );
   }
 }

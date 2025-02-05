@@ -18,7 +18,7 @@ const routes: Routes = [
       import('@features/movie-detail/movie-detail.module').then(
         (m) => m.MovieDetailModule
       ),
-    canActivate: [planGuard.bind(null, [Plan.PREMIUM, Plan.STANDARD])],
+    canActivate: [planGuard([Plan.PREMIUM, Plan.STANDARD])],
   },
 ];
 

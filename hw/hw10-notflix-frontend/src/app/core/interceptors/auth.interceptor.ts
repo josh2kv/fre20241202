@@ -7,43 +7,48 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
-import { AuthStateService } from '../services/auth/auth-state.service';
-import { AuthService } from '../services/auth/auth.service';
-import { API_PATHS, ROUTE_PATHS } from '@core/config/routes';
-
+import { catchError, switchMap, take } from 'rxjs/operators';
+import { AuthService } from '@services/auth/auth.service';
+import { API_PATHS } from '@core/config/routes';
+import { selectAccessToken } from '@store/auth/auth.selectors';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '@store/auth/auth.actions';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   private isRefreshing = false;
   private publicRoutes = [API_PATHS.AUTH];
 
-  constructor(
-    private authState: AuthStateService,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService, private store: Store) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (this.publicRoutes.some((route) => request.url.includes(route)))
+    if (this.publicRoutes.some((route) => request.url.startsWith(route)))
       return next.handle(request);
 
-    const accessToken = this.authState.getAccessToken();
-
-    if (accessToken) {
-      request = this.addToken(request, accessToken);
-    }
-
-    return next.handle(request).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (
-          error.status === 401 &&
-          !request.url.includes(API_PATHS.AUTH_REFRESH)
-        ) {
-          return this.handle401Error(request, next);
+    return this.store.select(selectAccessToken).pipe(
+      take(1),
+      switchMap((token) => {
+        if (token) {
+          request = request.clone({
+            setHeaders: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
         }
-        return throwError(() => error);
+
+        return next.handle(request).pipe(
+          catchError((error: HttpErrorResponse) => {
+            if (
+              error.status === 401 &&
+              !request.url.includes(API_PATHS.AUTH_REFRESH)
+            ) {
+              return this.handle401Error(request, next);
+            }
+            return throwError(() => error);
+          })
+        );
       })
     );
   }
@@ -67,7 +72,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }),
         catchError((error) => {
           this.isRefreshing = false;
-          this.authState.clearAuthState();
+          this.store.dispatch(AuthActions.clearAuthState());
           return throwError(() => error);
         })
       );

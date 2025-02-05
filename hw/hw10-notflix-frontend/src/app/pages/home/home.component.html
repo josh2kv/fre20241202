@@ -23,7 +23,7 @@
                 Email already exists. Please try a different email or login.
               </mat-error>
             </mat-form-field>
-            <ng-container *ngIf="!isAuthenticated; else authenticatedTpl">
+            <ng-container *ngIf="!(isAuthenticated$ | async); else authenticatedTpl">
               <button type="submit" mat-flat-button class="btn to-register">
                 Get Started
                 <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
