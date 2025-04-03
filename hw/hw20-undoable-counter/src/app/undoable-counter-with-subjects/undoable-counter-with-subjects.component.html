@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Undoable Counter with Subjects</h1>
+  <div class="row">
+    <button [disabled]="!(isUndoable$ | async)" (click)="undo()">Undo</button>
+    <button [disabled]="!(isRedoable$ | async)" (click)="redo()">Redo</button>
+  </div>
+  <div class="row">
+    <div class="btn-group">
+      <button (click)="pushCount(100, 'sub')">-100</button>
+      <button (click)="pushCount(10, 'sub')">-10</button>
+      <button (click)="pushCount(1, 'sub')">-1</button>
+    </div>
+    <span class="current-count">{{ currentCount$ | async }}</span>
+    <div class="btn-group">
+      <button (click)="pushCount(1, 'add')">+1</button>
+      <button (click)="pushCount(10, 'add')">+10</button>
+      <button (click)="pushCount(100, 'add')">+100</button>
+    </div>
+  </div>
+  <hr>
+  <div class="history">
+    <ng-container *ngFor="let item of (history$ | async); let i = index">
+      <div class="item" *ngIf="i !== 0" [ngClass]="{current: i === (currentIndex$ | async)}">
+        <span>{{ i }}.</span>
+        <span>{{ item.action?.type === 'add' ? '+' : '-' }}{{item.action?.operand}}</span>
+        <span>({{ item.action?.prevCount }} -> {{ item.count}})</span>
+      </div>
+    </ng-container>
+  </div>
+  <div class="row">
+    <button (click)="clearHistory()">Clear</button>
+    <span>Current Index: {{ currentIndex$ | async }}</span>
+    <span>History Length: {{ (history$ | async)?.length }}</span>
+    <span>Max Length: {{ MAX_LENGTH}}</span>
+  </div>
+</div>
