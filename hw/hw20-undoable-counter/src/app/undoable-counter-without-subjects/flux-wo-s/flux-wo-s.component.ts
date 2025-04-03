@@ -16,12 +16,12 @@ interface CounterState {
 }
 
 @Component({
-  selector: 'app-undoable-counter-without-subjects',
+  selector: 'app-flux-wo-s',
   standalone: false,
-  templateUrl: './undoable-counter-without-subjects.component.html',
-  styleUrl: './undoable-counter-without-subjects.component.scss',
+  templateUrl: './flux-wo-s.component.html',
+  styleUrl: './flux-wo-s.component.scss',
 })
-export class UndoableCounterWithoutSubjectsComponent {
+export class FluxWoSComponent {
   // State
   MAX_LENGTH = 10;
   private state: CounterState = {

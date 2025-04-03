@@ -24,14 +24,13 @@ type CounterAction =
   | { type: 'UNDO' }
   | { type: 'REDO' }
   | { type: 'CLEAR' };
-
 @Component({
-  selector: 'app-undoable-counter-with-subjects',
+  selector: 'app-flux-w-s',
   standalone: false,
-  templateUrl: './undoable-counter-with-subjects.component.html',
-  styleUrl: './undoable-counter-with-subjects.component.scss',
+  templateUrl: './flux-w-s.component.html',
+  styleUrl: './flux-w-s.component.scss',
 })
-export class UndoableCounterWithSubjectsComponent implements OnDestroy {
+export class FluxWSComponent implements OnDestroy {
   readonly MAX_LENGTH = 50; // Per requirements
 
   // State store (single source of truth)
