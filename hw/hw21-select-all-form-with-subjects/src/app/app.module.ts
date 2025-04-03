@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SelectAllFormComponent } from './components/select-all-form/select-all-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MovieFormComponent } from './components/movie-form/movie-form.component';
 
 @NgModule({
-  declarations: [AppComponent, SelectAllFormComponent],
+  declarations: [AppComponent, MovieFormComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

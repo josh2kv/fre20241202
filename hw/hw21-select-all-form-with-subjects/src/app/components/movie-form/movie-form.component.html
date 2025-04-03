@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Movie Form</h1>
+  <form [formGroup]="movieForm">
+    <div class="control">
+      <label>
+        <input formControlName="selectAll" type="checkbox" />
+        Select All
+      </label>
+    </div>
+    <ul formArrayName="movies">
+      <li *ngFor="let item of movieItems; let i = index">
+        <label [for]="'movie' + i">
+          <input [formControlName]="i" [id]="'movie' + i" type="checkbox" />
+          {{ item }}
+        </label>
+      </li>
+    </ul>
+    <button type="button" (click)="clearMovies()">Clear</button>
+  </form>
+  <h2>Selected List</h2>
+  <ul class="checked-list">
+    <ng-container *ngFor="let item of (checkedList$ | async); let i = index">
+      <li *ngIf="!!item">{{ movieItems[i] }}</li>
+    </ng-container>
+  </ul>
+</div>
