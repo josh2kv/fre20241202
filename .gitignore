@@ -3,13 +3,13 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-package-lock.json
-yarn.lock
 
 # Environment variables
 .env
 .env.local
 .env.*.local
+.env.development
+.env.production
 
 # Build output
 dist/
@@ -48,3 +48,10 @@ logs/
 # Optional: Windows folder attributes
 desktop.ini
 ehthumbs.db
+
+# Environment
+src/environments/environment.ts
+src/environments/environment.prod.ts
+
+# Local Netlify folder
+.netlify

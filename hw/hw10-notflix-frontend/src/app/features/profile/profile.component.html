@@ -1,0 +1,45 @@
+<div class="profile-container">
+  <div class="header">
+    <h2 class="title">Profile</h2>
+    <p class="description">
+      This is your profile page. You can manage your account here.
+    </p>
+  </div>
+  <form class="form-container" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" hideRequiredMarker>
+      <mat-label>Email</mat-label>
+      <input readonly matInput type="email" placeholder="Email" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" hideRequiredMarker>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Password" formControlName="password" />
+      <mat-error *ngIf="passwordControl?.hasError('minlength')">Password must be at least 6
+        characters</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" hideRequiredMarker>
+      <mat-label>Username</mat-label>
+      <input matInput type="text" placeholder="Username" formControlName="username" />
+      <mat-error *ngIf="usernameControl?.hasError('required')">Username is required</mat-error>
+      <mat-error *ngIf="usernameControl?.hasError('minlength')">Username must be at least 4 characters</mat-error>
+      <mat-error *ngIf="usernameControl?.hasError('maxlength')">Username must be at most 16 characters</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" hideRequiredMarker>
+      <mat-label>TMDB API key</mat-label>
+      <input matInput type="text" placeholder="TMDB API key" formControlName="tmdbApiKey" />
+      <mat-spinner matSuffix diameter="20" *ngIf="tmdbApiKeyControl?.pending"></mat-spinner>
+      <mat-error *ngIf="tmdbApiKeyControl?.hasError('required')">TMDB API key is required</mat-error>
+      <mat-error *ngIf="tmdbApiKeyControl?.hasError('pattern')">Invalid TMDB API key</mat-error>
+      <mat-error *ngIf="tmdbApiKeyControl?.hasError('tmdbApiKeyInvalid')">TMDB API key is invalid</mat-error>
+    </mat-form-field>
+    <div class="plan-container">
+      <mat-label class="plan-label">Plan</mat-label>
+      <mat-radio-group formControlName="plan" class="plan-radio-group">
+        <mat-radio-button *ngFor="let plan of plans" [value]="plan.value" class="plan-radio-button">
+          {{ plan.label }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <button mat-flat-button color="primary" type="submit" class="btn save"
+      [disabled]="profileForm.invalid || !profileForm.dirty">Save</button>
+  </form>
+</div>

@@ -1,0 +1,44 @@
+<div class="img-background">
+  <div class="page-container">
+    <section class="hero">
+      <div class="hero-container">
+        <div class="headline">
+          <h1 class="title">Unlimited movies, TV shows, and more</h1>
+          <p class="subtitle">Starts at $6.99. Cancel anytime.</p>
+        </div>
+        <div class="get-started">
+          <p class="message">Ready to watch? Enter your email to create or restart your membership.</p>
+          <form [formGroup]="emailForm" (ngSubmit)="onSubmit()" class="form-group">
+            <mat-form-field appearance="outline" hideRequiredMarker>
+              <mat-label>Email address</mat-label>
+              <input matInput type="email" placeholder="example@example.com" formControlName="email" />
+              <mat-spinner matSuffix diameter="20" *ngIf="emailControl?.pending"></mat-spinner>
+              <mat-error *ngIf="emailControl?.hasError('required')">
+                Email is required
+              </mat-error>
+              <mat-error *ngIf="emailControl?.hasError('pattern')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="emailControl?.hasError('emailExists')">
+                Email already exists. Please try a different email or login.
+              </mat-error>
+            </mat-form-field>
+            <ng-container *ngIf="!isAuthenticated; else authenticatedTpl">
+              <button type="submit" mat-flat-button class="btn to-register">
+                Get Started
+                <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
+              </button>
+            </ng-container>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<ng-template #authenticatedTpl>
+  <button type="button" mat-flat-button class="btn to-register" [routerLink]="toBrowse">
+    Get Started
+    <mat-icon iconPositionEnd>arrow_forward_ios</mat-icon>
+  </button>
+</ng-template>

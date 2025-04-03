@@ -1,0 +1,11 @@
+.movie-detail-container {
+  height: calc(100vh - var(--nf-header-height));
+  /* padding: var(--nf-spacing-md); */
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

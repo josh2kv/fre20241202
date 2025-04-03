@@ -1,0 +1,9 @@
+@baseUrl=https://itunes.apple.com
+@searchPath=/search
+@artistName=bruno
+@media=music
+@entity=album
+@attribute=artistTerm
+@limit=200
+
+GET {{baseUrl}}{{searchPath}}?term={{artistName}}&media={{media}}&entity={{entity}}&attribute={{attribute}}&limit={{limit}}

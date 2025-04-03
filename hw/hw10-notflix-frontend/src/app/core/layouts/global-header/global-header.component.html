@@ -1,0 +1,22 @@
+<header class="global-header">
+  <div class="header-container">
+    <div class="left-wrapper">
+      <a class="logo-wrapper" [routerLink]="toBrowse">
+        <img src="assets/images/netflix-logo.svg" alt="Netflix Logo" />
+      </a>
+    </div>
+    <div class="right-wrapper">
+      <ng-container *ngIf="user && showRightSection; else loginButton">
+        <div class="user-info">
+          <mat-icon class="user-avatar">account_circle</mat-icon>
+          <a [routerLink]="toAccount" class="user-name">{{ user.username }}</a>
+        </div>
+        <button mat-flat-button class="btn" (click)="logout()">Logout</button>
+      </ng-container>
+    </div>
+  </div>
+</header>
+
+<ng-template #loginButton>
+  <button *ngIf="showRightSection" mat-flat-button class="btn" [routerLink]="toLogin">Sign In</button>
+</ng-template>

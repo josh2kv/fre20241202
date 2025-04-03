@@ -1,0 +1,9 @@
+<div class="movie-detail-container">
+  <ng-container *ngIf="!isLoading; else loadingTpl">
+    <app-movie-overview [movie]="movieDetails" [movieId]="movieId"></app-movie-overview>
+  </ng-container>
+</div>
+
+<ng-template #loadingTpl>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

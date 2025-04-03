@@ -1,0 +1,98 @@
+@use "@angular/material" as mat;
+@use "abstracts/variables" as var;
+
+.img-background {
+  margin-top: calc(-1 * var(--nf-header-height));
+  min-height: 100vh;
+  width: 100%;
+  background-image: var(--nf-home-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--nf-color-overlay);
+  }
+}
+
+.page-container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--nf-screen-width-lg);
+  margin: 0 auto;
+  padding: 0 var(--nf-spacing-lg);
+  padding-top: var(--nf-spacing-4xl);
+
+  .hero {
+    min-height: calc(100vh - var(--nf-header-height));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .hero-container {
+      max-width: 704px;
+      width: 100%;
+
+      .headline {
+        text-align: center;
+        padding-bottom: var(--nf-spacing-3xl);
+
+        .title {
+          font-size: var(--nf-font-size-8xl);
+          font-weight: var(--nf-font-weight-black);
+          letter-spacing: var(--nf-letter-spacing-md);
+          line-height: var(--nf-line-height-sm);
+          margin-bottom: var(--nf-spacing-lg);
+        }
+
+        .subtitle {
+          font-size: var(--nf-font-size-xl);
+          font-weight: var(--nf-font-weight-bold);
+          letter-spacing: var(--nf-letter-spacing-md);
+        }
+      }
+
+      .get-started {
+        text-align: center;
+        margin-bottom: var(--nf-spacing-2xl);
+
+        .message {
+          font-size: var(--nf-font-size-md);
+          margin-bottom: var(--nf-spacing-lg);
+          color: hsla(0, 0%, 80%, 1);
+        }
+
+        .form-group {
+          display: flex;
+          gap: var(--nf-spacing-md);
+
+          .mat-mdc-form-field {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .btn.to-register {
+            height: 56px;
+
+            @include mat.button-overrides(
+              (
+                filled-label-text-weight: var.$nf-font-weight-bold,
+                filled-label-text-size: var.$nf-font-size-lg,
+                filled-horizontal-padding: var.$nf-spacing-2xl,
+              )
+            );
+          }
+        }
+      }
+    }
+  }
+}

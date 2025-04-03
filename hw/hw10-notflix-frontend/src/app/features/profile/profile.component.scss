@@ -1,0 +1,50 @@
+.profile-container {
+  max-width: var(--nf-screen-width-sm);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--nf-spacing-lg);
+
+  .header {
+    margin-bottom: var(--nf-spacing-4xl);
+
+    .title {
+      font-size: var(--nf-font-size-3xl);
+      font-weight: var(--nf-font-weight-bold);
+    }
+
+    .description {
+      font-size: var(--nf-font-size-sm);
+      font-weight: var(--nf-font-weight-light);
+      color: var(--nf-color-text-secondary);
+    }
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--nf-spacing-lg);
+
+    .plan-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--nf-spacing-sm);
+
+      .plan-label {
+        font-size: var(--nf-font-size-sm);
+        font-weight: var(--nf-font-weight-medium);
+        color: var(--nf-color-text-secondary);
+      }
+
+      .plan-radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--nf-spacing-sm);
+      }
+    }
+
+    .btn.save {
+      margin-top: var(--nf-spacing-2xl);
+      height: 48px;
+    }
+  }
+}

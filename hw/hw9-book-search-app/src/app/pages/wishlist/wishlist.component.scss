@@ -1,0 +1,62 @@
+:host {
+  width: 100%;
+
+  .wishlist-section {
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    max-width: 1000px;
+
+    padding: 1.5rem;
+
+    .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .message {
+        color: #666;
+        font-size: 1rem;
+      }
+
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 16px;
+
+        .left-section {
+          /* flex: 1; */
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          .image {
+            width: calc(310px * 0.1);
+            height: calc(465px * 0.1);
+          }
+
+          .book-title {
+            max-width: 240px;
+            line-clamp: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+
+        .right-section {
+          .delete-button {
+            color: var(--mat-sys-error);
+          }
+        }
+      }
+    }
+  }
+}

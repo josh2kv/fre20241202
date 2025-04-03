@@ -1,0 +1,67 @@
+<div class="search-result">
+  @if (!booksWithPagination && !search) {
+  <div class="message no-results">Please enter keyword to search</div>}
+  @else if (!booksWithPagination) {}
+  @else if (error) {
+  <div class="message error">{{ error }}</div>
+  } @else if (booksWithPagination.meta.totalItems === 0) {
+  <div class="message no-results">No books found</div>
+  } @else {
+  <div *ngIf="loading" class="overlay">
+    <mat-progress-spinner mode="indeterminate" diameter="24" color="primary" class="spinner" />
+  </div>
+  <div class="pagination">
+    <div class="left-section">
+      <div class="total-items">Total items: <strong>{{ booksWithPagination.meta.totalItems > 1000 ? '1,000+' :
+          booksWithPagination.meta.totalItems | number }}</strong></div>
+      <mat-divider [vertical]="true" />
+      <div class="page">Page <strong>{{ booksWithPagination.meta.page | number }}</strong> of <strong>{{
+          booksWithPagination.meta.totalPages > 100 ? '100+' : booksWithPagination.meta.totalPages |
+          number }}</strong></div>
+    </div>
+    <div class="right-section">
+      <div class="buttons">
+        <button [disabled]="!booksWithPagination.meta.hasPrevPage" mat-button (click)="onPreviousPage()">
+          <mat-icon>chevron_left</mat-icon>
+          <span>Previous</span>
+        </button>
+        <button [disabled]="!booksWithPagination.meta.hasNextPage" mat-button (click)="onNextPage()">
+          <span>Next</span>
+          <mat-icon iconPositionEnd>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="book-card-list">
+    <mat-card class="book-card" *ngFor="let book of booksWithPagination.data">
+      <img class="book-card__image" mat-card-lg-image [src]="book.thumbnail" alt="{{ book.title }}" />
+      <div class="book-card__content">
+        <mat-card-header class="header">
+          <div class="left-section">
+            <mat-card-title class="title">
+              {{ book.title }}
+            </mat-card-title>
+            <mat-card-subtitle class="authors">
+              {{ book.authors?.join(', ') || '-' }}
+            </mat-card-subtitle>
+            <mat-card-subtitle class="publisher">
+              {{ book.publishedDate }} | {{ book.publisher }}
+            </mat-card-subtitle>
+          </div>
+          <div class="right-section">
+            <button mat-icon-button (click)="onToggleWishlist(book)" class="wishlist-button"
+              [ngClass]="{'wishlist-active': isInWishlist(book)}">
+              <mat-icon>{{ isInWishlist(book) ? 'favorite' :
+                'favorite_border' }}</mat-icon>
+            </button>
+          </div>
+        </mat-card-header>
+        <mat-card-content class="description">
+          {{ book.description }}
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </div>
+
+  }
+</div>
