@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Undoable Counter</h1>
+  <div class="row">
+    <button [disabled]="!isUndoable" (click)="undo()" type="button">Undo</button>
+    <button [disabled]="!isRedoable" (click)="redo()" type="button">Redo</button>
+  </div>
+  <div class="row">
+    <div class="btn-group">
+      <button (click)="pushCount(100, 'sub')">-100</button>
+      <button (click)="pushCount(10, 'sub')">-10</button>
+      <button (click)="pushCount(1, 'sub')">-1</button>
+    </div>
+    <div class="current-count">{{ currentCount }}</div>
+    <div class="btn-group">
+      <button (click)="pushCount(100, 'add')">100</button>
+      <button (click)="pushCount(10, 'add')">10</button>
+      <button (click)="pushCount(1, 'add')">1</button>
+    </div>
+  </div>
+  <hr />
+  <div class="history">
+    <span class="item" [ngClass]="{'current':currentIndex === i}" *ngFor="let count of countHistory; let i = index">{{
+      count
+      }}</span>
+  </div>
+  <div class="row">
+    <button (click)="clearHistory()">Clear</button>
+    <span>Current Index: {{ currentIndex }}</span>
+    <span>History Length: {{ countHistory.length }}</span>
+    <span>Max Length: {{ MAX_LENGTH }}</span>
+  </div>
+
+</div>
