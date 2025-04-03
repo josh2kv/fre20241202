@@ -1,59 +1,14 @@
-# Hw20UndoableCounter
+# Undoable Counter
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+## Requirements
 
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- The count should begin at 0
+- Clicking the +1, +10, +100 buttons should add 1, 10, and 100 to the count, respectively
+- Clicking the -1, -10, -100 buttons should subtract 1, 10, and 100 from the count, respectively
+- Clicking any + or - button should show a new entry in the history, in the format: ACTION (BEFORE -> AFTER) (e.g. +1 (0 -> 1))
+- Clicking the 'Undo' button should undo the last action. For example, if the user just clicked '+10', clicking undo should subtract 10 from the
+count
+- The user should be able to undo up to the last 50 actions
+- The 'Redo' button should be greyed out until the user clicks 'Undo'
+- Clicking the 'Redo' button should redo the last action the user undid. For example, if the user clicked '+10', clicking undo would subtract 10, then clicking redo would add 10 again
+- Clicking undo/redo should remove and re-add entries to the history respectively
