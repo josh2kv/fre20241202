@@ -1,0 +1,67 @@
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.new-todo-form {
+  display: flex;
+}
+
+.new-todo-form input {
+  width: 100%;
+}
+
+.new-todo-form label {
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+button {
+  padding: 4px 8px;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.todo-control {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.title-box {
+  width: 100%;
+}
+
+.todo-control:hover {
+  background-color: rgba(222, 222, 222, 0.4);
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
