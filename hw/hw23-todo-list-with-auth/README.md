@@ -1,59 +1,27 @@
 # Hw23TodoListWithAuth
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+## Requirements
 
-## Development server
+Create an Angular application with a simple authentication system and a todo list. The application should include the following features:
 
-To start a local development server, run:
+1. User login: A user should be able to enter a username to log in. You can hardcode password
+2. Persistent Authentication: Once logged in, the user should remain authenticated until log out, even if page is refreshed.
+3. Access control: The todo list should only be accessible to logged in users. If an unauthenticated user tries to access todo list, they should be redirected to the login page.
+4. Todo list: logged in users should be able to Add new task, Mark tasks as completed, Delete tasks
+5. Logout: Users should be able to log out which should remove their authentication status and return them to login page.
+6. Access control additional request (optional):
 
-```bash
-ng serve
-```
+   - a. using ReactiveFrom, create an Async validator for the username formcontrol,
+     if the user input an exist user in your user list, show :white_check_mark: in somewhere, if user not exist show :no_entry_sign:
+   - b. add debounce time to the username formcontrol
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Routes without leading slash
 
-## Code scaffolding
+Angular's routing system is designed to handle paths without leading slashes. When you define routes in your Angular application, you should follow these conventions:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1. Route paths should not include leading slashes
+2. Redirects should use the path name without leading slashes
+The reason your routes aren't working with the leading slashes is that Angular treats the path definitions differently from the actual URL in the browser. In Angular's routing system:
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- path: 'login' matches the URL /login
+- If you write path: '/login', Angular looks for a URL that is literally //login (with double slash)
