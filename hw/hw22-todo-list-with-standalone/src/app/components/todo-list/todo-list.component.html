@@ -1,0 +1,42 @@
+<div class="container">
+  <h1>Todo List</h1>
+  <div class="content">
+    <form class="new-todo-form" [formGroup]="newTodoForm" (ngSubmit)="onNewTodoSubmit()">
+      <input id="title" type="text" formControlName="title" placeholder="Enter your todo" />
+      <button type="submit" [disabled]="!newTodoForm.valid">Add</button>
+    </form>
+    <ul class="todo-list">
+      @if(todos().length > 0) {
+      <div class="header">
+        <label for="checkAll">
+          <input id="checkAll" type="checkbox" [checked]="isAllChecked()" (change)="toggleCheckAll()" />
+          Check All
+        </label>
+        <button type="button" [disabled]="!isAnyChecked()" (click)="deleteCheckedTodos()">
+          Delete Checked
+        </button>
+      </div>
+      } @for (todo of todos(); track todo.id;) {
+      <li class="todo-item">
+        <label [for]="todo.id" class="todo-control">
+          <input [id]="todo.id" [checked]="todo.checked" type="checkbox" [disabled]="todo.editing"
+            (change)="checkTodo(todo.id)" />
+          @if(todo.editing) {
+          <input class="title-box" [defaultValue]="todo.title" (keyup)="saveEditingTodo($event, todo.id)" />
+          } @else {
+          <span>{{ todo.title }}</span>
+          }
+        </label>
+        <div class="actions">
+          <button type="button" [disabled]="todo.editing" (click)="startEditingTodo(todo.id)">
+            Edit
+          </button>
+          <button type="button" [disabled]="todo.editing" (click)="deleteTodo(todo.id)">
+            Delete
+          </button>
+        </div>
+      </li>
+      }
+    </ul>
+  </div>
+</div>
