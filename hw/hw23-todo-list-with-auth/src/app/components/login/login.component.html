@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="form-container">
+  <a routerLink="/todos">Try to go to todos</a>
+  <form class="login-form" [formGroup]=loginForm (ngSubmit)="onSubmit()">
+    <label for="username">
+      <span class="control-label">Username:</span>
+      <div class="control-input-container">
+        <input class="control-input" id="username" formControlName="username" type="text" />
+        <span *ngIf="isUsernameExists && loginForm.controls.username.valid">✅</span>
+        <span *ngIf="!isUsernameExists && loginForm.controls.username.touched">❌</span>
+      </div>
+      <span class="error-message"
+        *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors?.['required']">Username is
+        required</span>
+    </label>
+    <label for="password">
+      <span class="control-label">Password:</span>
+      <input class="control-input" id="password" formControlName="password" type="password" />
+      <span class="error-message"
+        *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']">Password is
+        required</span>
+    </label>
+    <button class="btn-submit" [disabled]="!loginForm.valid || !isUsernameExists" type="submit">Login</button>
+  </form>
+</div>

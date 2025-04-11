@@ -25,3 +25,57 @@ The reason your routes aren't working with the leading slashes is that Angular t
 
 - path: 'login' matches the URL /login
 - If you write path: '/login', Angular looks for a URL that is literally //login (with double slash)
+
+## `Subject.getValue()` vs `Subject.value`
+
+They both return the same current value
+
+- Use getValue() when:
+  - You need more explicit error handling
+  - Working in strict TypeScript environments
+  - Code clarity is a priority
+  - You might extend the code with error catching
+- Use value when:
+  - You want more concise code
+  - You're sure the BehaviorSubject is properly initialized
+  - You're working in a context where brevity matters
+
+## `Subject.subscribe()` vs `Subject.asObservable().subscribe()`
+
+Both Subject and its Observable have subscribe methods, but there are important differences:
+
+1. Direction of data flow:
+
+   - When you subscribe to a Subject directly, you're connecting to both the producer and consumer sides
+   - When you subscribe to the Observable (via .asObservable()), you're connecting only to the consumer side
+
+2. Mutation capabilities:
+
+   - Subject subscription gives you access to the .next(), .error(), and .complete() methods
+   - Observable subscription only lets you consume values, not emit new ones
+
+3. Encapsulation and safety:
+
+   - Using subject.asObservable().subscribe() follows the principle of exposing only what's needed
+   - This prevents consumers from accidentally calling .next() on your subject
+
+📌 Best practice is to expose the Observable (this.users) to external components and keep the Subject (this.usersSubject) private for internal state management.
+
+### When to subscribe to Subjects directly
+
+You should subscribe to subjects directly only within the service itself or in components with explicit need for both consuming and producing values. Specific cases include:
+
+1. When you need the full Subject functionality (emit + receive) in the same place:
+
+   - Services that manage complex state with bidirectional needs
+   - Testing scenarios where you need to trigger events and observe outcomes
+
+2. When implementing mediator patterns:
+
+   - Components that both receive from and send to a central messaging system
+   - Event bus implementations where components are both publishers and subscribers
+
+3. When optimizing for very specific performance cases:
+
+   - High-frequency event handling where the extra wrapper could impact performance
+   - Memory-constrained environments (rare in modern applications)
