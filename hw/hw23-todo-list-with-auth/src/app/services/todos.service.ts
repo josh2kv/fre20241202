@@ -20,23 +20,19 @@ export interface Todo {
 @Injectable({
   providedIn: 'root',
 })
-export class TodosService implements OnInit {
+export class TodosService {
   readonly TODOS_KEY = 'todos';
   private todosSubject = new BehaviorSubject<Todo[]>([]);
   todos$ = this.todosSubject.asObservable();
 
-  constructor(private authService: AuthService) {}
-
-  ngOnInit(): void {
+  constructor(private authService: AuthService) {
     this.authService.currentUser$
       .pipe(distinctUntilChanged())
       .subscribe((user) => {
-        console.log('user', user);
         if (!user) return;
         const todos = retrieveDataFromLocalStorage<Todo[]>(
           `${this.TODOS_KEY}-${user}`
         );
-        console.log('todos', todos);
 
         if (todos) {
           this.todosSubject.next(todos);
@@ -55,6 +51,7 @@ export class TodosService implements OnInit {
         )
       );
   }
+
   addTodo(title: string) {
     this.todosSubject.next([
       ...this.todosSubject.value,
