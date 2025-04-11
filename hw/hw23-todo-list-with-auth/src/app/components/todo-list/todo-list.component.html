@@ -1,5 +1,8 @@
 <div class="container">
-  <a routerLink="/login">Try to go to login</a>
+  <div class="header">
+    <h1>Todo List</h1>
+    <a routerLink="/login">Try to go to login page</a>
+  </div>
   <div class="session-info">
     <p>Session Remained: {{ sessionRemained }} seconds</p>
     <button type="button" (click)="logout()">Logout</button>

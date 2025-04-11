@@ -79,3 +79,23 @@ You should subscribe to subjects directly only within the service itself or in c
 
    - High-frequency event handling where the extra wrapper could impact performance
    - Memory-constrained environments (rare in modern applications)
+
+## `first()` is necessary in async validators
+
+Adding first() is necessary because of how Angular handles async validators. Here's why it works:
+
+1. Observable Completion Requirement:
+Angular's async validator system requires that the observable returned by an async validator must complete after emitting a value. Without completion, Angular won't update the form control's errors.
+2. BehaviorSubject Issue:
+Your auth service likely uses a BehaviorSubject for the users, which never naturally completes. When you subscribe to isUsernameExists(), you're getting an observable that emits values but doesn't complete on its own.
+3. What first() Does:
+   - Takes only the first emission from the source observable
+   - Automatically completes the observable after that first emission
+   - Ensures Angular receives a completed observable with a validation result
+   -
+
+Without first(), your observable would:
+
+- Emit a value with the validation result
+- Stay open waiting for more emissions (because BehaviorSubjects don't complete)
+- Angular would see an incomplete observable and not update the validation state

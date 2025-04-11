@@ -1,5 +1,8 @@
 <div class="container">
-  <a routerLink="/todos">Try to go to todos</a>
+  <div class="header">
+    <h1>Login</h1>
+    <a routerLink="/todos">Try to go to todos page</a>
+  </div>
   <form class="login-form" [formGroup]=loginForm (ngSubmit)="onSubmit()">
     <label for="username">
       <span class="control-label">Username:</span>
@@ -21,6 +24,7 @@
         *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']">Password is
         required</span>
     </label>
-    <button class="btn-submit" [disabled]="!loginForm.valid || !isUsernameExists" type="submit">Login</button>
+    <button class="btn-submit" [disabled]="!loginForm.valid" type="submit">Login</button>
   </form>
+  <div class="login-example">username: asas | password: asas</div>
 </div>

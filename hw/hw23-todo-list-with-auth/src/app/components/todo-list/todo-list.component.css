@@ -1,5 +1,5 @@
 .container {
-  max-width: 324px;
+  max-width: 480px;
   width: 100%;
   margin: 0 auto;
   padding: 24px;
@@ -7,6 +7,12 @@
   border-radius: 8px;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 16px;
+}
 .session-info {
   display: flex;
   justify-content: space-between;

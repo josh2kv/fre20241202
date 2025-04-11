@@ -41,14 +41,6 @@ export class LoginComponent {
         nonNullable: true,
       }),
     });
-
-    this.loginForm.controls.username.valueChanges.subscribe((value) => {
-      console.log('value', value);
-      console.log(
-        'this.loginForm.controls.username.errors',
-        this.loginForm.controls.username.errors
-      );
-    });
   }
 
   onSubmit() {
