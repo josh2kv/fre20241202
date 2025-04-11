@@ -54,7 +54,7 @@ export class TodoListComponent {
   addTodo(title: string) {
     this.todoSignal.update((todos) => [
       ...todos,
-      { id: new Date().getTime(), title, editing: false, checked: false },
+      { id: Date.now(), title, editing: false, checked: false },
     ]);
   }
 

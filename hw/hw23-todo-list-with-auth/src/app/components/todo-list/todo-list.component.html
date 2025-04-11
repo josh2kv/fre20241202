@@ -1,10 +1,28 @@
 <div class="container">
   <div class="header">
-    <h1>Todo List</h1>
+    <h1>My Todo List</h1>
     <a routerLink="/login">Try to go to login page</a>
   </div>
   <div class="session-info">
     <p>Session Remained: {{ sessionRemained }} seconds</p>
     <button type="button" (click)="logout()">Logout</button>
+  </div>
+  <hr />
+  <div class="todo-list">
+    <form [formGroup]="newTodoForm" (ngSubmit)="onSubmit()">
+      <div class="form-item">
+        <input type="text" formControlName="title" placeholder="Enter your todo" />
+        <button type="submit" [disabled]="!newTodoForm.valid">Add</button>
+      </div>
+    </form>
+    <ul class="todo-items">
+      <li class="todo-item" *ngFor="let todo of todos">
+        <label class="todo-item-label" for="{{ todo.id }}" [ngClass]="{ 'completed': todo.completed }">
+          <input id="{{ todo.id }}" type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)" />
+          <span>{{ todo.title }}</span>
+        </label>
+        <button type="button" (click)="removeTodo(todo.id)">Remove</button>
+      </li>
+    </ul>
   </div>
 </div>

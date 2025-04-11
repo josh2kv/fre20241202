@@ -99,3 +99,112 @@ Without first(), your observable would:
 - Emit a value with the validation result
 - Stay open waiting for more emissions (because BehaviorSubjects don't complete)
 - Angular would see an incomplete observable and not update the validation state
+
+## `Date.now()` vs `new Date().getTime()`
+
+Both `new Date().getTime()` and `Date.now()` return the same value for the current timestamp in milliseconds since the epoch (January 1, 1970).
+
+- Functionally identical results
+- `Date.now()` is more efficient (no temporary Date object)
+- `Date.now()` is more modern and preferred in most cases
+
+## Options to unsubscribe from observables
+
+1. Use first() or take(1) operator
+For one-time subscriptions:
+
+```typescript
+this.authService.isUsernameExists(username).pipe(
+  first() // Automatically completes after first emission
+).subscribe(exists => {
+  // Handle result
+});
+```
+
+2. Store and unsubscribe in ngOnDestroy()
+
+```typescript
+private subscription: Subscription = new Subscription();
+
+ngOnInit() {
+  this.subscription.add(
+    this.authService.users$.subscribe(users => {
+      // Handle users
+    })
+  );
+}
+
+ngOnDestroy() {
+  this.subscription.unsubscribe();
+}
+```
+
+3. Use takeUntil with destroy subject ⭐
+
+```typescript
+private destroy$ = new Subject<void>();
+
+ngOnInit() {
+  this.authService.users$.pipe(
+    takeUntil(this.destroy$)
+  ).subscribe(users => {
+    // Handle users
+  });
+}
+
+ngOnDestroy() {
+  this.destroy$.next();
+  this.destroy$.complete();
+}
+```
+
+4. Use async pipe in templates ⭐
+
+```html
+<div *ngFor="let user of users | async">
+  {{ user.name }}
+</div>
+```
+
+```typescript
+// In your component
+users$ = this.authService.users$;
+```
+
+5. For HTTP calls
+HTTP observables automatically complete after emitting, so you generally don't need to unsubscribe
+
+6. takeUntilDestroyed() (Angular 16+) ⭐
+This is a modern, cleaner approach introduced in Angular 16 that doesn't require manual setup:
+
+```typescript
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
+@Component({...})
+export class MyComponent {
+  constructor() {
+    this.authService.users$.pipe(
+      takeUntilDestroyed() // Automatically handles unsubscription
+    ).subscribe(users => {
+      // Handle users
+    });
+  }
+}
+```
+
+7. DestroyRef.onDestroy() (Angular 14+)
+Using the DestroyRef injection directly:
+
+```typescript
+import { DestroyRef, inject } from '@angular/core';
+
+@Component({...})
+export class MyComponent {
+  private destroyRef = inject(DestroyRef);
+  
+  ngOnInit() {
+    const subscription = this.service.data$.subscribe();
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  }
+}
+```

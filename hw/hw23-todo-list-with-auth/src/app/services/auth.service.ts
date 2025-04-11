@@ -17,6 +17,11 @@ const initialUsers: User[] = [
     password: 'asas',
     expiredAt: null,
   },
+  {
+    username: 'qwqw',
+    password: 'qwqw',
+    expiredAt: null,
+  },
 ];
 
 @Injectable({
@@ -67,29 +72,13 @@ export class AuthService {
     return this.users.findIndex((user) => user.username === username);
   }
 
-  // upsertUser(user: User): User {
-  //   const index = this.getUserIndex(user.username);
-  //   if (!index) throw new Error('404');
-
-  //   const users = this.users;
-  //   this.usersSubject.next([
-  //     ...this.users.slice(0, index),
-  //     user,
-  //     ...users.slice(index + 1),
-  //   ]);
-
-  //   return user;
-  // }
-
   updateCurrentUser(username: string): string {
     this.currentUserSubject.next(username);
     return username;
   }
 
   updateSession(user: User, isLogout: boolean = false): Omit<User, 'password'> {
-    const expiredAt = isLogout
-      ? null
-      : new Date().getTime() + this.SESSION_TIME;
+    const expiredAt = isLogout ? null : Date.now() + this.SESSION_TIME;
     const foundIndex = this.getUserIndex(user.username);
 
     const newUser = { ...user, expiredAt };
@@ -127,23 +116,12 @@ export class AuthService {
   isAuthenticated(): boolean {
     const found = this.users.find((user) => user.username === this.currentUser);
 
-    return found && found.expiredAt
-      ? found.expiredAt > new Date().getTime()
-      : false;
+    return found && found.expiredAt ? found.expiredAt > Date.now() : false;
   }
 
   isUsernameExists(username: string): Observable<boolean> {
     return this.users$.pipe(
-      map((users) => {
-        console.log('isUsernameExists', username);
-
-        console.log('users', users);
-        console.log(
-          'users.some((user) => user.username === username)',
-          users.some((user) => user.username === username)
-        );
-        return users.some((user) => user.username === username);
-      })
+      map((users) => users.some((user) => user.username === username))
     );
   }
 
@@ -151,7 +129,7 @@ export class AuthService {
     const found = this.users.find((user) => user.username === this.currentUser);
     if (!found) return 0;
 
-    return Math.floor((found.expiredAt! - new Date().getTime()) / 1000);
+    return Math.floor((found.expiredAt! - Date.now()) / 1000);
   }
 
   get users(): User[] {
