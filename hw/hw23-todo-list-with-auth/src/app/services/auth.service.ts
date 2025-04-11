@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import {
   retrieveDataFromLocalStorage,
   storeDataToLocalStorage,
@@ -130,6 +130,21 @@ export class AuthService {
     return found && found.expiredAt
       ? found.expiredAt > new Date().getTime()
       : false;
+  }
+
+  isUsernameExists(username: string): Observable<boolean> {
+    return this.users$.pipe(
+      map((users) => {
+        console.log('isUsernameExists', username);
+
+        console.log('users', users);
+        console.log(
+          'users.some((user) => user.username === username)',
+          users.some((user) => user.username === username)
+        );
+        return users.some((user) => user.username === username);
+      })
+    );
   }
 
   getSessionRemained(): number {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,8 +7,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { debounceTime } from 'rxjs/operators';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { noUserExistsValidator } from '../../validators/username-exists.validator';
 
 interface LoginFormControls {
   username: FormControl<string>;
@@ -21,7 +20,7 @@ interface LoginFormControls {
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm: FormGroup<LoginFormControls>;
   isUsernameExists = false;
 
@@ -33,6 +32,8 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: this.fb.control('', {
         validators: [Validators.required],
+        asyncValidators: [noUserExistsValidator()],
+        updateOn: 'change',
         nonNullable: true,
       }),
       password: this.fb.control('', {
@@ -40,15 +41,14 @@ export class LoginComponent implements OnInit {
         nonNullable: true,
       }),
     });
-  }
 
-  ngOnInit(): void {
-    this.loginForm.controls.username.valueChanges
-      .pipe(debounceTime(600), distinctUntilChanged())
-      .subscribe((value) => {
-        const user = this.authService.getUserByUsername(value);
-        this.isUsernameExists = user?.username === value;
-      });
+    this.loginForm.controls.username.valueChanges.subscribe((value) => {
+      console.log('value', value);
+      console.log(
+        'this.loginForm.controls.username.errors',
+        this.loginForm.controls.username.errors
+      );
+    });
   }
 
   onSubmit() {

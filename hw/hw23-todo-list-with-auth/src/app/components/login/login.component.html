@@ -1,12 +1,14 @@
-<div class="form-container">
+<div class="container">
   <a routerLink="/todos">Try to go to todos</a>
   <form class="login-form" [formGroup]=loginForm (ngSubmit)="onSubmit()">
     <label for="username">
       <span class="control-label">Username:</span>
       <div class="control-input-container">
         <input class="control-input" id="username" formControlName="username" type="text" />
-        <span *ngIf="isUsernameExists && loginForm.controls.username.valid">✅</span>
-        <span *ngIf="!isUsernameExists && loginForm.controls.username.touched">❌</span>
+        <span
+          *ngIf="!loginForm.controls.username.errors?.['noUserExists'] && loginForm.controls.username.valid">✅</span>
+        <span
+          *ngIf="loginForm.controls.username.errors?.['noUserExists'] && loginForm.controls.username.touched">❌</span>
       </div>
       <span class="error-message"
         *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors?.['required']">Username is

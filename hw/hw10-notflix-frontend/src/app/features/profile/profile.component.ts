@@ -16,7 +16,7 @@ import { AuthStateService } from '@core/services/auth/auth-state.service';
 import { AuthService } from '@core/services/auth/auth.service';
 import { ProfileFormControls } from '@shared/interfaces/account';
 import { Plan, PlanLabelMap } from '@shared/interfaces/auth';
-import { enumValidator } from '@shared/validators/enum-validator';
+import { enumValidator } from '@shared/validators/enum.validator';
 import { createTmdbApiKeyValidator } from '@shared/validators/tmdb-api-key.validator';
 
 @Component({

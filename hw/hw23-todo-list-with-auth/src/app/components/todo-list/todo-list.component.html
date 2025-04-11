@@ -1,3 +1,7 @@
-<a routerLink="/login">Try to go to login</a>
-<button type="button" (click)="logout()">Logout</button>
-<p>Session Remained: {{ sessionRemained }} seconds</p>
+<div class="container">
+  <a routerLink="/login">Try to go to login</a>
+  <div class="session-info">
+    <p>Session Remained: {{ sessionRemained }} seconds</p>
+    <button type="button" (click)="logout()">Logout</button>
+  </div>
+</div>
