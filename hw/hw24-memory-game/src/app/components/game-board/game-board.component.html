@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Memory Game</h1>
+  <div class="winner" *ngIf="winner">
+    <span class="winner-name">{{ winner }}</span> <span *ngIf="winner !== 'draw'"> wins!</span>
+  </div>
+  <div class="header">
+    <div class="player">
+      <span class="player-name .blue">Blue:</span>
+      <span class="player-score">{{ blueScore }}</span>
+    </div>
+    <button (click)="resetBoard()">Reset</button>
+    <div class="player">
+      <span class="player-name .red">Red:</span>
+      <span class="player-score">{{ redScore }}</span>
+    </div>
+  </div>
+  <div class="board" [ngClass]="{
+    'done': winner
+  }">
+    <div class="cell" *ngFor="let cell of boardCells$ | async" (click)="onFlip(cell)" [ngClass]="{
+    flipped: cell.flipped,
+    'blue': cell.won === 'blue',
+    'red': cell.won === 'red'
+  }">
+      <span class="emoji">{{ cell.emoji}}</span>
+    </div>
+  </div>
+</div>
