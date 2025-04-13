@@ -1,0 +1,77 @@
+.container {
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.winner {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #000;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.board {
+  aspect-ratio: 1/1;
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 8px;
+}
+
+.board.done {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.5;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #afafaf;
+  background-color: #afafaf;
+  border-radius: 8px;
+  font-size: 36px;
+}
+
+.cell:hover {
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+.emoji {
+  display: none;
+}
+
+.cell.flipped {
+  background-color: beige;
+  border-color: beige;
+}
+
+.cell.flipped .emoji {
+  display: inline-block;
+}
+
+.cell.blue {
+  background-color: rgba(0, 0, 255, 0.2);
+}
+
+.cell.red {
+  background-color: rgba(255, 0, 0, 0.2);
+}
