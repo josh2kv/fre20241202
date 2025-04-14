@@ -1,24 +1,44 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import "./style.css";
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const redLight$ = document.getElementById("red-light");
+const yellowLight$ = document.getElementById("yellow-light");
+const greenLight$ = document.getElementById("green-light");
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+redLight$?.classList.toggle("on");
+setTimeout(() => {
+  redLight$?.classList.toggle("on");
+  yellowLight$?.classList.remove("on");
+  greenLight$?.classList.toggle("on");
+}, 4000);
+
+setTimeout(() => {
+  redLight$?.classList.remove("on");
+  yellowLight$?.classList.toggle("on");
+  greenLight$?.classList.toggle("on");
+}, 8000);
+
+setTimeout(() => {
+  redLight$?.classList.toggle("on");
+  yellowLight$?.classList.toggle("on");
+  greenLight$?.classList.remove("on");
+}, 10000);
+
+setInterval(() => {
+  setTimeout(() => {
+    redLight$?.classList.toggle("on");
+    yellowLight$?.classList.remove("on");
+    greenLight$?.classList.toggle("on");
+  }, 4000);
+
+  setTimeout(() => {
+    redLight$?.classList.remove("on");
+    yellowLight$?.classList.toggle("on");
+    greenLight$?.classList.toggle("on");
+  }, 8000);
+
+  setTimeout(() => {
+    redLight$?.classList.toggle("on");
+    yellowLight$?.classList.toggle("on");
+    greenLight$?.classList.remove("on");
+  }, 10000);
+}, 10000);
