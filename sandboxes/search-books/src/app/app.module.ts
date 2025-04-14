@@ -10,9 +10,10 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, WishlistPageComponent],
+  declarations: [AppComponent, HomePageComponent, WishlistPageComponent, WishlistComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],

@@ -2,6 +2,12 @@
   max-width: 1200px;
   width: 100%;
   margin: 2rem auto;
+  display: flex;
+  gap: 2rem;
+}
+
+.search-section {
+  flex: 1;
 }
 
 .header {
@@ -53,4 +59,11 @@
   top: 1rem;
   padding: 6px;
   cursor: pointer;
+}
+
+.wishlist-section {
+  width: 400px;
+  height: 720px;
+  border: 1px solid #afafaf;
+  padding: 1rem;
 }
