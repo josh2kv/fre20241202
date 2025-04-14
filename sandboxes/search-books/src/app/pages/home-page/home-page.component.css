@@ -1,0 +1,69 @@
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 2rem auto;
+  display: flex;
+  gap: 2rem;
+}
+
+.search-section {
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 1rem;
+}
+
+.header input {
+  height: 32px;
+  width: 360px;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  border: 1px solid gray;
+  padding: 1rem;
+}
+
+.card .name {
+  font-size: 1.8rem;
+}
+
+.card .sub-info {
+  color: gray;
+  margin-bottom: 1rem;
+}
+
+.card .description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.card .btn-favorite {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.wishlist-section {
+  width: 400px;
+  height: 720px;
+  border: 1px solid #afafaf;
+  padding: 1rem;
+}

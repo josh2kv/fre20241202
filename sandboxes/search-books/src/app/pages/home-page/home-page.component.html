@@ -1,0 +1,28 @@
+<div class="container">
+  <section class="search-section">
+    <div class="header">
+      <input [formControl]="searchControl" type="text" />
+    </div>
+    <div class="result">
+      <div class="card" *ngFor="let book of result; trackBy: trackByBookId">
+        <div class="thumbnail">
+          <img [src]="book.thumbnail" [alt]="book.name" />
+        </div>
+        <div class="content">
+          <h3 class="name">{{ book.name }}</h3>
+          <div class="sub-info">
+            <span class="publisher">{{ book.publisher }}</span>
+            |
+            <span class="publishedDate">{{ book.publishedDate }}</span>
+          </div>
+          <p class="description">{{ book.description }}</p>
+          <button class="btn-favorite" (click)="onToggleFavorite(book)" *ngIf="!isFavorite(book.id)"
+            type="button">⭐</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="wishlist-section">
+    <app-wishlist />
+  </section>
+</div>

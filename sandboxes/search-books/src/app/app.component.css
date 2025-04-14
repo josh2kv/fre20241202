@@ -1,0 +1,12 @@
+header {
+  height: 60px;
+  border-bottom: 1px solid #afafaf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}

@@ -1,0 +1,17 @@
+.wishlist-section {
+  width: 400px;
+  height: 720px;
+  border: 1px solid #afafaf;
+  padding: 1rem;
+}
+
+.wish-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-delete {
+  padding: 4px 8px;
+  cursor: pointer;
+}

@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Wish List</h2>
+  <div class="list">
+    <div class="wish-item" *ngFor="let item of wishlist">
+      <span>{{item.name}}</span>
+      <button class="btn-delete" type="button" (click)="onDeleteFavorite(item.id)">X</button>
+    </div>
+  </div>
+</div>
