@@ -26,7 +26,7 @@ interface BoardCell {
 })
 export class GameBoardComponent implements OnInit, OnDestroy {
   private readonly BOARD_SIZE = 16;
-  private readonly WIN_SCORE = this.BOARD_SIZE / 2 / 2;
+  private readonly MATCH_POINT = this.BOARD_SIZE / 2 / 2;
   private readonly EMOJIS = [
     '🐵',
     '🐶',
@@ -50,10 +50,10 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     '🐰',
     '🐙',
   ];
-  boardCellsSubject = new BehaviorSubject<BoardCell[]>([]);
-  boardCells$ = this.boardCellsSubject.asObservable();
-  flippedCellsSubject = new BehaviorSubject<BoardCell[]>([]);
-  flippedCells$ = this.flippedCellsSubject.asObservable();
+  private readonly boardCellsSubject = new BehaviorSubject<BoardCell[]>([]);
+  readonly boardCells$ = this.boardCellsSubject.asObservable();
+  private readonly flippedCellsSubject = new BehaviorSubject<BoardCell[]>([]);
+  readonly flippedCells$ = this.flippedCellsSubject.asObservable();
   blueScore = 0;
   redScore = 0;
   winner: Player | 'draw' | null = null;
@@ -66,20 +66,22 @@ export class GameBoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Check if the game is over
     this.boardCells$.pipe(takeUntil(this.destroy$)).subscribe((cells) => {
       this.blueScore = cells.filter((c) => c.won === 'blue').length / 2;
       this.redScore = cells.filter((c) => c.won === 'red').length / 2;
       this.winner =
-        this.blueScore > this.WIN_SCORE
+        this.blueScore > this.MATCH_POINT
           ? 'blue'
-          : this.redScore > this.WIN_SCORE
+          : this.redScore > this.MATCH_POINT
           ? 'red'
-          : this.blueScore === this.WIN_SCORE &&
-            this.redScore === this.WIN_SCORE
+          : this.blueScore === this.MATCH_POINT &&
+            this.redScore === this.MATCH_POINT
           ? 'draw'
           : null;
     });
 
+    // Update the flipped cells when the board cells change
     this.boardCells$
       .pipe(
         map((cells) => cells.filter((c) => c.won === null && c.flipped)),
@@ -89,6 +91,7 @@ export class GameBoardComponent implements OnInit, OnDestroy {
         this.flippedCellsSubject.next(cells);
       });
 
+    // Check if the two flipped cells are the same
     this.flippedCells$
       .pipe(
         filter((cells) => cells.length === 2),
