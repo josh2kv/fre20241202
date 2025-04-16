@@ -1,5 +1,7 @@
 # HW26TodoListWithTesting
 
+- useful resource: <https://testing-angular.com/introduction/#introduction>
+
 ## Testing in Angular
 
 ### 1. Jasmine & Karma
@@ -82,9 +84,35 @@
 
 ## Meanings of the tests
 
-- `expectOne()`: Expect one matching HTTP request to be made
+### `done()`
+
+- Jasmine will not finish the test before `done()` is called.
+
+```typescript
+service.todos$.subscribe(todos => {
+  // [3] Assertions run here, but if [2] is so fast, it can't be executed. Because the test is already finished.
+    expect(actualTodos).toEqual(expectedReversedArray);
+    // So we need to call `done()` to signal that the test is complete.
+    // ✅ That way Jasmine will not finish the test before done() is called.
+    done();
+});
+
+// [1] Trigger the service call which is an asynchronous operation.
+service.getTodos().subscribe();
+// [2] The rest of the test will be executed synchronously really fast.
+```
+
+## `expectOne()`: Expect one matching HTTP request to be made
+
 - `flush()`: Send fake response to that request
 - `verify()`: Make sure all expected requests were handled
 
 - test suite: The describe() block is the test group.
 - test case or spec: Each it() block inside is an individual test case.
+
+## Why do I need an emission counter?
+
+- Because `service.todos$` is based on a BehaviorSubject.
+- BehaviorSubject is a type of Observable that requires an initial value and emits values to subscribers.
+- When a test subscribes `to service.todos$`, it will receive the initial value first, and then any subsequent emissions from the BehaviorSubject.
+- Therefore, we need to count the emissions to ensure we're testing the correct value.
