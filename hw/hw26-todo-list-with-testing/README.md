@@ -79,3 +79,12 @@
 
 - Keeping the separate private `todos` array is a standard and often preferred pattern.
 - Think of private `todos` as the service's internal workbench where it prepares the state, and `todosSubject$.next()` as the action of publishing the finished work from the bench to anyone watching (`todos$`). While `BehaviorSubject` does keep a copy of the last published work, having the separate workbench (`private todos`) makes the preparation process within the service cleaner and more explicit.
+
+## Meanings of the tests
+
+- `expectOne()`: Expect one matching HTTP request to be made
+- `flush()`: Send fake response to that request
+- `verify()`: Make sure all expected requests were handled
+
+- test suite: The describe() block is the test group.
+- test case or spec: Each it() block inside is an individual test case.
