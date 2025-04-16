@@ -116,3 +116,14 @@ service.getTodos().subscribe();
 - BehaviorSubject is a type of Observable that requires an initial value and emits values to subscribers.
 - When a test subscribes `to service.todos$`, it will receive the initial value first, and then any subsequent emissions from the BehaviorSubject.
 - Therefore, we need to count the emissions to ensure we're testing the correct value.
+
+## `spyOn(service, 'getTodos').and.returnValue(of(mockTodos));`
+
+means:
+
+- Intercept Calls: "Watch the service object."
+- Replace Method: "When the `getTodos` method on this specific service object is called..."
+- Substitute Logic: "...do not execute the original code inside the actual `getTodos` method. Instead, immediately return this predefined observable: `of(mockTodos)`."
+
+**This is not useful here**. Because this test explicitly throws away the real getTodos logic and substitutes it with of(mockTodos).
+This technique of spying on a service method and providing a mock return value is essential **when you are unit testing a component that uses the service**.

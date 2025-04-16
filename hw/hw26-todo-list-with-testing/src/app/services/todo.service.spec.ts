@@ -186,6 +186,8 @@ describe('TodoService', () => {
       { userId: 3, title: 'New Item2', completed: false },
     ];
 
+    // NOTE: This is not useful here. Because this test explicitly throws away the real getTodos logic and substitutes it with of(mockTodos).
+    // This technique of spying on a service method and providing a mock return value is essential when you are unit testing a component that uses the service.
     spyOn(service, 'getTodos').and.returnValue(of(mockTodos));
     service.getTodos().subscribe((data) => {
       expect(data.length).toBe(2);
