@@ -3,5 +3,6 @@
   [(ngModel)]="newtodo.title" />
 
 <ul id="todolist__container">
-  <app-todo-item *ngFor="let item of todolist" [todoitem]="item" (todoIdEmitter)="deletetodo($event)"></app-todo-item>
+  <app-todo-item *ngFor="let item of todos$ | async" [todoitem]="item"
+    (todoIdEmitter)="deletetodo($event)"></app-todo-item>
 </ul>

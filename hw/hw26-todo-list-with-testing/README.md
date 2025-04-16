@@ -132,3 +132,12 @@ This technique of spying on a service method and providing a mock return value i
 
 - Use `spyOn` to watch the `todoIdEmitter` object BEFORE it's called
 - Use `toHaveBeenCalledWith` to check if the `emit` method was called with the correct argument
+
+## `schemas: [NO_ERRORS_SCHEMA]`
+
+: `NO_ERRORS_SCHEMA` allows you to unit test `TodoListComponent` without needing to declare or provide its child component (`TodoItemComponent`), simplifying the test setup and focusing the test on the parent component's logic.
+
+1. Component Isolation: When you unit test `TodoListComponent`, its template (`todo-list.component.html`) contains the element `<app-todo-item ...>`.
+2. Unknown Element: Normally, during compilation, Angular needs to know what `<app-todo-item>` is. It would expect `TodoItemComponent` to be declared in the declarations array of the testing module, or imported via another module in the imports array.
+3. Avoiding Dependencies: Providing `TodoItemComponent` (and potentially its dependencies) would make the `TodoListComponent` test less isolated and increase the setup complexity. We want to focus only on testing the logic of `TodoListComponent` itself.
+4. Suppressing Errors: By adding `schemas: [NO_ERRORS_SCHEMA]`, you instruct Angular: "Don't worry if you see elements like `<app-todo-item>` or attributes you don't recognize in the template for this test. Just ignore them and don't throw a compilation error."
