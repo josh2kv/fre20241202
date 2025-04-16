@@ -127,3 +127,8 @@ means:
 
 **This is not useful here**. Because this test explicitly throws away the real getTodos logic and substitutes it with of(mockTodos).
 This technique of spying on a service method and providing a mock return value is essential **when you are unit testing a component that uses the service**.
+
+## `spyOn(component.todoIdEmitter, 'emit');`
+
+- Use `spyOn` to watch the `todoIdEmitter` object BEFORE it's called
+- Use `toHaveBeenCalledWith` to check if the `emit` method was called with the correct argument

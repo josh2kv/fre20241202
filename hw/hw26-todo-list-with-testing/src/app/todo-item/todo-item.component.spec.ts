@@ -55,7 +55,7 @@ describe('TodoItemComponent', () => {
     fixture.detectChanges();
 
     // NOTE: Spy on the emit method BEFORE it's called
-    spyOn(component.todoIdEmiter, 'emit');
+    spyOn(component.todoIdEmitter, 'emit');
 
     const deleteButton = fixture.nativeElement.querySelector('button');
     if (deleteButton) {
@@ -65,6 +65,6 @@ describe('TodoItemComponent', () => {
     }
 
     // Now this assertion will work because it's checking the spy
-    expect(component.todoIdEmiter.emit).toHaveBeenCalledWith(mockTodo.id);
+    expect(component.todoIdEmitter.emit).toHaveBeenCalledWith(mockTodo.id);
   });
 });
