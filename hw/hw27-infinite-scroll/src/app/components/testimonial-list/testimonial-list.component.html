@@ -1,0 +1,14 @@
+<div #scrollContainer (scroll)="onScroll($event)" class="scroll-container">
+  <div class="testimonials-count">
+    {{(testimonials$ | async)?.length}}
+  </div>
+  <div class="testimonial-item" *ngFor="let testimonial of testimonials$ | async">
+    <span class="testimonial-id">{{ testimonial.id }}</span>
+    <p> {{ testimonial.message }} </p>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Loading...
+  </div>
+
+</div>
