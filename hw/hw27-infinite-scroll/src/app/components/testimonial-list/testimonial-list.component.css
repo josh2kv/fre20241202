@@ -1,0 +1,41 @@
+.scroll-container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 760px;
+  max-height: 500px;
+  min-height: 200px;
+  overflow-y: scroll;
+}
+
+.testimonials-count {
+  position: sticky;
+  top: 0;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  font-weight: bold;
+}
+
+.testimonial-id {
+  font-size: 1rem;
+  color: gold;
+  font-weight: bold;
+}
+
+.testimonial-item {
+  background-color: #00557f;
+  border-top: 1px solid #11967e;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  color: white;
+  border-radius: 4px;
+}
+
+.loading-message {
+  background-color: rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 1rem;
+  border-radius: 4px;
+}
