@@ -1,0 +1,12 @@
+<div class="container">
+  @if (loading()) {
+  <p>Loading...</p>
+  } @else {
+  @for (post of posts(); track post.id) {
+  <div class="post">
+    <div class="post-title">({{ post.id }}) {{ post.title }}</div>
+    <p class="post-body">{{ post.body }}</p>
+  </div>
+  }
+  }
+</div>

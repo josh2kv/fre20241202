@@ -1,0 +1,26 @@
+td {
+  padding: 8px;
+  text-align: left;
+}
+
+button {
+  cursor: pointer;
+  width: 100%;
+}
+
+.post-list-row {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  padding: 0;
+}
+
+.post-list-row.expanded {
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+}
