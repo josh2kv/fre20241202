@@ -1,0 +1,34 @@
+<div class="container">
+  <h1>Users</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Expand</th>
+      </tr>
+    </thead>
+    @if (userService.loading()) {
+    <p>Loading...</p>
+    } @else if (userService.error()) {
+    <p>{{userService.error()}}</p>
+    } @else {
+    <tbody>
+      @for (user of userService.users(); track user.id) {
+      <tr class="user-row" app-user-row [user]="user" [expanded]="expandedId() === user.id"
+        (onExpand)="toggleRow(user.id)"></tr>
+      @if(expandedId() === user.id) {
+      <tr class="post-list-row" [@expandCollapse]>
+        <td colspan="4">
+          <app-post-list [posts]="postService.posts()" [loading]="postService.loading()">
+          </app-post-list>
+        </td>
+      </tr>
+      }
+      }
+
+    </tbody>
+    }
+  </table>
+</div>

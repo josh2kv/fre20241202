@@ -6,6 +6,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
   imports: [TodoListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  standalone: true,
 })
 export class AppComponent {
   title = 'hw22-todo-list-with-standalone';
