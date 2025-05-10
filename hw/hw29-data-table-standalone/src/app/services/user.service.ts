@@ -17,6 +17,13 @@ export interface PaginationMeta {
   totalPages: number;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
+  sortBy: keyof User;
+  sortOrder: 'asc' | 'desc';
+}
+
+export interface ResUsers {
+  data: User[];
+  meta: PaginationMeta;
 }
 
 @Injectable({
@@ -25,6 +32,7 @@ export interface PaginationMeta {
 export class UserService {
   private readonly baseUrl = 'data/users.json';
   private readonly http = inject(HttpClient);
+
   private readonly _users = signal<User[]>([]);
   private readonly _meta = signal<PaginationMeta>({
     total: 0,
@@ -33,6 +41,8 @@ export class UserService {
     totalPages: 0,
     hasNextPage: false,
     hasPreviousPage: false,
+    sortBy: 'id',
+    sortOrder: 'asc',
   });
   private readonly _loading = signal<boolean>(false);
   private readonly _error = signal<string | null>(null);
@@ -47,20 +57,36 @@ export class UserService {
   getUsers({
     page = 1,
     pageSize = 10,
+    sortBy = 'id',
+    sortOrder = 'asc',
   }: {
     page?: number;
     pageSize?: number;
-  }): Observable<{
-    data: User[];
-    meta: PaginationMeta;
-  }> {
+    sortBy?: keyof User;
+    sortOrder?: 'asc' | 'desc';
+  }): Observable<ResUsers> {
     this._loading.set(true);
     this._error.set(null);
 
     return this.http.get<User[]>(this.baseUrl).pipe(
-      delay(500),
+      delay(200),
       map((res) => ({
-        data: res.slice((page - 1) * pageSize, page * pageSize),
+        data: res
+          .sort((a, b) => {
+            const aValue = a[sortBy as keyof User];
+            const bValue = b[sortBy as keyof User];
+
+            if (typeof aValue === 'number' && typeof bValue === 'number') {
+              return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+            }
+
+            const aStr = String(aValue);
+            const bStr = String(bValue);
+            return sortOrder === 'asc'
+              ? aStr.localeCompare(bStr)
+              : bStr.localeCompare(aStr);
+          })
+          .slice((page - 1) * pageSize, page * pageSize),
         meta: {
           total: res.length,
           page,
@@ -68,6 +94,8 @@ export class UserService {
           totalPages: Math.ceil(res.length / pageSize),
           hasNextPage: page < Math.ceil(res.length / pageSize),
           hasPreviousPage: page > 1,
+          sortBy,
+          sortOrder,
         },
       })),
       tap(({ data, meta }) => {

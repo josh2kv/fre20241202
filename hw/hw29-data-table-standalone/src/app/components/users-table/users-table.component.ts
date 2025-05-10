@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from '@/app/services/user.service';
+import { User, UserService } from '@/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
@@ -22,8 +22,12 @@ export class UsersTableComponent implements OnInit {
         tap((params) => {
           const page = params['page'] ? +params['page'] : 1;
           const pageSize = params['pageSize'] ? +params['pageSize'] : 10;
+          const sortBy = params['sortBy'] || ('id' as keyof User);
+          const sortOrder = params['sortOrder'] || ('asc' as 'asc' | 'desc');
 
-          this.userService.getUsers({ page, pageSize }).subscribe();
+          this.userService
+            .getUsers({ page, pageSize, sortBy, sortOrder })
+            .subscribe();
         })
       )
       .subscribe();
@@ -32,6 +36,7 @@ export class UsersTableComponent implements OnInit {
   onPageSizeChange(pageSize: number | null) {
     this.router.navigate([], {
       queryParams: {
+        ...this.route.snapshot.queryParams,
         pageSize: pageSize || 10,
         page: 1,
       },
@@ -41,6 +46,7 @@ export class UsersTableComponent implements OnInit {
   onNextPage() {
     this.router.navigate([], {
       queryParams: {
+        ...this.route.snapshot.queryParams,
         page: this.userService.meta().page + 1,
       },
     });
@@ -49,7 +55,25 @@ export class UsersTableComponent implements OnInit {
   onPreviousPage() {
     this.router.navigate([], {
       queryParams: {
+        ...this.route.snapshot.queryParams,
         page: this.userService.meta().page - 1,
+      },
+    });
+  }
+
+  onSort(sortBy: keyof User) {
+    const currentSortBy = this.userService.meta().sortBy;
+    const currentSortOrder = this.userService.meta().sortOrder;
+    this.router.navigate([], {
+      queryParams: {
+        ...this.route.snapshot.queryParams,
+        sortBy,
+        sortOrder:
+          currentSortBy === sortBy
+            ? currentSortOrder === 'asc'
+              ? 'desc'
+              : 'asc'
+            : 'asc',
       },
     });
   }

@@ -2,10 +2,14 @@
   <table>
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Occupation</th>
+        <th><button (click)="onSort('id')">ID {{ userService.meta().sortBy === 'id' ? userService.meta().sortOrder ===
+            'asc' ? '▲' : '▼' : '' }}</button></th>
+        <th><button (click)="onSort('name')">Name {{ userService.meta().sortBy === 'name' ? userService.meta().sortOrder
+            === 'asc' ? '▲' : '▼' : '' }}</button></th>
+        <th><button (click)="onSort('age')">Age {{ userService.meta().sortBy === 'age' ? userService.meta().sortOrder
+            === 'asc' ? '▲' : '▼' : '' }}</button></th>
+        <th><button (click)="onSort('occupation')">Occupation {{ userService.meta().sortBy === 'occupation' ?
+            userService.meta().sortOrder === 'asc' ? '▲' : '▼' : '' }}</button></th>
       </tr>
     </thead>
     <tbody>
