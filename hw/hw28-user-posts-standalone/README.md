@@ -1,5 +1,37 @@
 # Hw28UserPostsStandalone
 
+## Requirements
+
+Use Angular 19 to implement a page that displays a list of users in a table format. Each user row includes an "Expand" button which, when clicked, fetches and displays that user’s posts below the row in an accordion-style manner. You should use new features in Angular, including standalone components and signal.
+
+### Functional Requirements
+
+#### User Table Display
+
+- Fetch and display a list of users using GET <https://jsonplaceholder.typicode.com/users>
+
+- Show columns: ID, Name, and Email
+
+#### Expandable Post Section
+
+- Each user row includes an “Expand” button
+
+- When clicked, it fetches posts via GET <https://jsonplaceholder.typicode.com/posts?userId={id}>
+
+- Posts should be displayed below the corresponding user row
+
+- Only one user can be expanded at a time
+
+#### Data Handling
+
+- Show a loading spinner or placeholder while fetching posts
+
+#### UI & Styling Requirements
+  
+- Add hover effects for table rows
+- Implement smooth expand/collapse transitions
+- Style the expanded post section with a different background color
+
 ## Constructor Injection vs Field Injection
 
 Both approaches work, but the `inject()` approach is more modern and recommended for new Angular applications, especially when using standalone components and services.
