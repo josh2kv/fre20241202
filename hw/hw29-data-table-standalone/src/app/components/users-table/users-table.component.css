@@ -1,0 +1,31 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 4px;
+}
+
+.pagination {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loading td {
+  text-align: center;
+  height: 300px;
+}
+
+.error td {
+  text-align: center;
+  height: 300px;
+}

@@ -1,1 +1,46 @@
-<p>users-table works!</p>
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Occupation</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if(userService.loading()) {
+      <tr class="loading">
+        <td colspan="4">Loading...</td>
+      </tr>
+      } @else if(userService.error()) {
+      <tr class="error">
+        <td colspan="4">Error: {{ userService.error() }}</td>
+      </tr>
+      } @else {
+      @for(user of userService.users(); track user.id) {
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.occupation }}</td>
+      </tr>
+      }
+      }
+    </tbody>
+  </table>
+  <div class="pagination">
+    <select (change)="onPageSizeChange($any($event.target).value)">
+      @for(i of [5, 10, 20]; track i) {
+      <option value="{{ i }}" [selected]="i === userService.meta().pageSize">{{ i }}</option>
+      }
+    </select>
+    <div class="pagination-buttons">
+      <button (click)="onPreviousPage()" [disabled]="!userService.meta().hasPreviousPage">Previous</button>
+      <span>
+        Page {{ userService.meta().page }} of {{ userService.meta().totalPages }}
+      </span>
+      <button (click)="onNextPage()" [disabled]="!userService.meta().hasNextPage">Next</button>
+    </div>
+  </div>
+</div>
