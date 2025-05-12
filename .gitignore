@@ -1,57 +1,11 @@
-# Dependencies
+/nbproject/
+/.idea/*
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-.env.development
-.env.production
-
-# Build output
-dist/
-build/
-out/
-.next/
-.angular/
-
-# IDE and editor files
-.idea/
-.vscode/
-*.swp
-*.swo
-.DS_Store
-Thumbs.db
-
-# Testing
-coverage/
-.nyc_output/
-
-# Logs
-logs/
-*.log
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Optional: MacOS folder attributes
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Optional: Windows folder attributes
-desktop.ini
-ehthumbs.db
-
-# Environment
-src/environments/environment.ts
-src/environments/environment.prod.ts
-
-# Local Netlify folder
-.netlify
+bin/
+obj/
+.vs/
