@@ -1,1 +1,5 @@
-<p>progress-bar works!</p>
+<div class="progress-container">
+  <div class="progress-bar" [style.width]="progress + '%'"
+    [style.transitionDuration]="(duration / interval * 100) + 'ms'">
+  </div>
+</div>
