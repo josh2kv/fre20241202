@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 @Component({
-  selector: 'app-progress-bar',
+  selector: 'app-advanced-progress-bar',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './progress-bar.component.html',
-  styleUrl: './progress-bar.component.css',
+  templateUrl: './advanced-progress-bar.component.html',
+  styleUrl: './advanced-progress-bar.component.css',
 })
-export class ProgressBarComponent implements OnInit {
-  progress = 0;
+export class AdvancedProgressBarComponent {
+  @Input() id = 0;
+  @Input() progress = 0;
+  @Input() isActive = false;
+  @Output() completed = new EventEmitter<number>();
+
   duration = 2000;
   interval = 500;
 
-  ngOnInit(): void {
-    this.startProgress();
-  }
-
   startProgress() {
+    if (!this.isActive) return;
+    this.progress = 0;
     const increment = 100 * (this.interval / this.duration);
 
     setTimeout(() => {
@@ -29,8 +31,8 @@ export class ProgressBarComponent implements OnInit {
       if (this.progress >= 100) {
         this.progress = 100;
         clearInterval(intervalId);
+        this.completed.emit(this.id);
       }
-      // increment progress value in advance before the transition to make transition smooth
     }, this.interval - 100);
   }
 }

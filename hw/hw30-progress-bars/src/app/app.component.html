@@ -1,8 +1,4 @@
 <div class="container">
-  <button (click)="addProgressBar()">Add</button>
-  <div class="progress-bars">
-    @for (bar of progressBars; track bar) {
-    <app-progress-bar></app-progress-bar>
-    }
-  </div>
+  <app-progress-bar-generator></app-progress-bar-generator>
+  <app-advanced-progress-bar-generator></app-advanced-progress-bar-generator>
 </div>
