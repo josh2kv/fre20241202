@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Sequential Progress Bar Generator</h2>
+  <button (click)="addProgressBar()">Add</button>
+  <div class="progress-bars">
+    @for (bar of progressBars(); track bar.id) {
+    <app-advanced-progress-bar [id]="bar.id" [isActive]="bar.isActive" (completed)="onCompleted(bar.id)">
+    </app-advanced-progress-bar>
+    }
+  </div>
+</div>
